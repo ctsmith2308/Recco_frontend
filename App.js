@@ -1,45 +1,16 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
+import React, { Component } from 'react'
+import { View, Text } from 'react-native'
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
 
-import React, { Component } from 'react';
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
-
-import { Header } from './components'
-
-export default class App extends Component<{}> {
-  render() {
-    return (
-      <View>
-        <Header headerText='Im text'/>
-        <Text>Im an APP!</Text>
-      </View>
-    );
+export default class App extends Component{
+  render(){
+    return(
+      <Provider store={createStore(reducers)}>
+        <View>
+          <Text>Hello</Text>
+        </View>
+      </Provider>
+    )
   }
 }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//     backgroundColor: '#F5FCFF',
-//   },
-//   welcome: {
-//     fontSize: 20,
-//     textAlign: 'center',
-//     margin: 10,
-//   },
-//   instructions: {
-//     textAlign: 'center',
-//     color: '#333333',
-//     marginBottom: 5,
-//   },
-// });
