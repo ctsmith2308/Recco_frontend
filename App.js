@@ -15,17 +15,7 @@ export default class App extends Component{
     config
     firebase.initializeApp(config)
   }
-  // componentWillMount(){
-  //   const config = {
-  //    apiKey: "AIzaSyAQmERObw1Eaq__fMdynQMSNCOPTs1tGnI",
-  //    authDomain: "recco-f3b3a.firebaseapp.com",
-  //    databaseURL: "https://recco-f3b3a.firebaseio.com",
-  //    projectId: "recco-f3b3a",
-  //    storageBucket: "recco-f3b3a.appspot.com",
-  //    messagingSenderId: "470399913883"
-  //   };
-  //   firebase.initializeApp(config)
-  // }
+  
 
 
   render(){
