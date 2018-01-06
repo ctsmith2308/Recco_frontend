@@ -50,13 +50,12 @@ export const loginUser = ({email, password})=>{
                 email: user.email,
                 token: idToken
               })
-              console.log('this is the users token', idToken)
-              // .then(function (response) {
-              //   console.log(response);
-              // })
-              // .catch(function (error) {
-              //   console.log(error);
-              // });
+              .then(function (response) {
+                console.log(response);
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
             })
             .catch((error)=> {
               console.log('error from new user creation', error);
