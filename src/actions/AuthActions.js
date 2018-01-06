@@ -28,20 +28,16 @@ export const loginUser = ({email, password})=>{
       .then((idToken) => {
         axios.get(url + "/" + idToken)
         .then((response)=>{
-          let userID = response.data.user_id
-          console.log(userID);
+          let userId = response.data.user_id
+          loginUserSuccess(dispatch, userId)
         })
         .catch(function (error) {
-          console.log('this is the request', error);
         });
       })
       .catch(function(error) {
-        console.log(error);
       })
-      loginUserSuccess(dispatch, user)
     })
     .catch((error)=>{
-      console.log(error);
       firebase.auth().createUserWithEmailAndPassword(email, password)
         .then(user => {
           firebase.auth().currentUser.getIdToken(true)
@@ -50,17 +46,18 @@ export const loginUser = ({email, password})=>{
                 email: user.email,
                 token: idToken
               })
-              .then(function (response) {
-                console.log(response);
+              .then((response)=>{
+                let userId = response.data.user_id
+                console.log(userId);
+                loginUserSuccess(dispatch, userId)
               })
               .catch(function (error) {
-                console.log(error);
+                console.log('this is the error' , error);
               });
             })
             .catch((error)=> {
               console.log('error from new user creation', error);
             });
-          loginUserSuccess(dispatch, user)
         })
       .catch(()=> loginUserFail(dispatch))
     })
@@ -73,11 +70,11 @@ const loginUserFail = (dispatch)=>{
   })
 }
 
-const loginUserSuccess = (dispatch, user) => {
+const loginUserSuccess = (dispatch, userId) => {
   dispatch({
     type: LOGIN_USER_SUCCESS,
-    payload: user
-  })-
+    payload: userId
+  })
 
   Actions.main()
 }
