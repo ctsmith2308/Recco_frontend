@@ -29,7 +29,8 @@ export const loginUser = ({email, password})=>{
         axios.get(url + "/" + idToken)
         .then((response)=>{
           let userId = response.data.user_id
-          loginUserSuccess(dispatch, userId)
+          let idToken = response.data.userToken
+          loginUserSuccess(dispatch, userId, idToken)
         })
         .catch(function (error) {
         });
@@ -48,8 +49,8 @@ export const loginUser = ({email, password})=>{
               })
               .then((response)=>{
                 let userId = response.data.user_id
-                console.log(userId);
-                loginUserSuccess(dispatch, userId)
+                let idToken = response.data.userToken
+                loginUserSuccess(dispatch, userId, idToken)
               })
               .catch(function (error) {
                 console.log('this is the error' , error);
@@ -70,10 +71,10 @@ const loginUserFail = (dispatch)=>{
   })
 }
 
-const loginUserSuccess = (dispatch, userId) => {
+const loginUserSuccess = (dispatch, userId, idToken) => {
   dispatch({
     type: LOGIN_USER_SUCCESS,
-    payload: userId
+    payload: { userId, idToken }
   })
 
   Actions.main()

@@ -5,12 +5,13 @@ const INITIAL_STATE = {
   password:'',
   id: null,
   loggingIn: false,
-  error: ''
+  error: '',
+  token: null
 }
 
 export default (state = INITIAL_STATE, action)=>{
   console.log(action);
-  
+
   switch (action.type) {
     case EMAIL_CHANGED:
       return {
@@ -26,7 +27,8 @@ export default (state = INITIAL_STATE, action)=>{
       return {
         ...state,
         ...INITIAL_STATE,
-        id: action.payload,
+        id: action.payload.userId,
+        token: action.payload.idToken
       }
     case LOGIN_USER_FAIL:
       return {
