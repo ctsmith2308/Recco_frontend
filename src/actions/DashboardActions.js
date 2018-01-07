@@ -8,7 +8,7 @@ export const addUserPhoto = (image) => {
 }
 
 export const createUsername = (text) => {
-  console.log('text on the action creator side', text);
+  console.log('text on the action creator side for users', text);
   return {
     type: ADD_USERNAME,
     payload: text
@@ -16,7 +16,7 @@ export const createUsername = (text) => {
 }
 
 export const createBio = (text) => {
-  console.log('you typed this in the bio', text);
+  console.log('you typed this in action creator for bio', text);
   return {
     type: ADD_BIO,
     payload: text

@@ -7,8 +7,13 @@ import { createUsername, createBio } from '../actions'
 class Dashboard extends Component{
 
 handleUsername(text){
-  console.log('this is the text from dashboard.js', text)
+  console.log('this is the text from dashboard username', text)
   this.props.createUsername(text)
+}
+
+handleBio(text){
+  console.log('this is text from dashboard bio', text);
+  this.props.createBio(text)
 }
 
   render(){
@@ -31,6 +36,7 @@ handleUsername(text){
           <Input
           label='bio'
           placeholder='I hate life'
+          onChangeText={this.handleBio.bind(this)}
           />
         </CardSection>
       </Card>
@@ -56,4 +62,4 @@ const mapStateToProps = (state) => {
   return {state}
 }
 
-export default connect(mapStateToProps, {createUsername})(Dashboard)
+export default connect(mapStateToProps, {createUsername, createBio})(Dashboard)
