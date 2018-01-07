@@ -1,15 +1,18 @@
-import { ADD_PHOTO } from '../actions/types'
+import { ADD_PHOTO, ADD_USERNAME, ADD_BIO } from '../actions/types'
 
 const INITIAL_STATE = {
   photo:null,
-  username:null,
-  bio:null
+  username:'',
+  bio:''
 }
 
 export default (state = INITIAL_STATE, action) => {
+  console.log(action);
   switch(action.type){
-    case ADD_PHOTO:
-      return { ...state, [action.payload.prop]: action.payload.value } // ES:6 string interpolation --> if prop = name and value = 'Jane' the output will be ==> name: 'Jane'. Refer to EmployeeActions.js
+    case ADD_USERNAME:
+      return { ...state, username: action.payload }
+      case ADD_BIO:
+        return { ...state, bio: action.payload }
     default:
       return state
   }

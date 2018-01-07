@@ -1,8 +1,16 @@
 import React, { Component } from 'react'
 import { View, Text, Image } from 'react-native'
+import { connect } from 'react-redux'
 import { Card, CardSection, Input } from './common'
+import { createUsername, createBio } from '../actions'
 
-export default class Dashboard extends Component{
+class Dashboard extends Component{
+
+handleUsername(text){
+  console.log('this is the text from dashboard.js', text)
+  this.props.createUsername(text)
+}
+
   render(){
     return (
       <Card>
@@ -16,6 +24,7 @@ export default class Dashboard extends Component{
           <Input
           label='username'
           placeholder='grumpyCat2018'
+          onChangeText={this.handleUsername.bind(this)}
           />
         </CardSection>
         <CardSection>
@@ -42,3 +51,9 @@ const styles = {
     borderWidth: 4
   }
 }
+
+const mapStateToProps = (state) => {
+  return {state}
+}
+
+export default connect(mapStateToProps, {createUsername})(Dashboard)

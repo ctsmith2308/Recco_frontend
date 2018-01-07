@@ -1,8 +1,24 @@
-import { ADD_PHOTO } from './types'
+import { ADD_PHOTO, ADD_USERNAME, ADD_BIO } from './types'
 
-export const employeeUpdate = ({ prop, value }) => {
+export const addUserPhoto = (image) => {
  return {
    type: ADD_PHOTO,
-   payload: { prop, value }
+   payload: image
  }
+}
+
+export const createUsername = (text) => {
+  console.log('text on the action creator side', text);
+  return {
+    type: ADD_USERNAME,
+    payload: text
+  }
+}
+
+export const createBio = (text) => {
+  console.log('you typed this in the bio', text);
+  return {
+    type: ADD_BIO,
+    payload: text
+  }
 }
