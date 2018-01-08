@@ -1,19 +1,24 @@
 import React, { Component } from 'react'
 import { View, Text, Image } from 'react-native'
 import { connect } from 'react-redux'
-import { Card, CardSection, Input } from './common'
-import { createUsername, createBio } from '../actions'
+import { Card, CardSection, Input, Button } from './common'
+import { createUsername, createBio, submitUserInfo } from '../actions'
 
 class Dashboard extends Component{
 
 handleUsername(text){
-  console.log('this is the text from dashboard username', text)
   this.props.createUsername(text)
 }
 
 handleBio(text){
-  console.log('this is text from dashboard bio', text);
   this.props.createBio(text)
+}
+
+handleUserInfo(){
+  // checks out
+  let { id, token } = this.props.auth
+  let { username, bio } = this.props.dashboard
+  submitUserInfo({id, token, username, bio})
 }
 
   render(){
@@ -30,6 +35,7 @@ handleBio(text){
           label='username'
           placeholder='grumpyCat2018'
           onChangeText={this.handleUsername.bind(this)}
+          value = {this.props.username}
           />
         </CardSection>
         <CardSection>
@@ -37,7 +43,13 @@ handleBio(text){
           label='bio'
           placeholder='I hate life'
           onChangeText={this.handleBio.bind(this)}
+          value = {this.props.bio}
           />
+        </CardSection>
+        <CardSection>
+          <Button onPress={this.handleUserInfo.bind(this)}>
+            Looks Good!
+          </Button>
         </CardSection>
       </Card>
     )
@@ -59,7 +71,9 @@ const styles = {
 }
 
 const mapStateToProps = (state) => {
-  return {state}
+  //checks out
+  let { auth, dashboard } = state
+  return { auth, dashboard }
 }
 
-export default connect(mapStateToProps, {createUsername, createBio})(Dashboard)
+export default connect(mapStateToProps, {createUsername, createBio, submitUserInfo})(Dashboard)
