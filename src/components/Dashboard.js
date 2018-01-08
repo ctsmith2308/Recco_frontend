@@ -16,9 +16,8 @@ handleBio(text){
 
 handleUserInfo(){
   // checks out
-  let { id, token } = this.props.auth
-  let { username, bio } = this.props.dashboard
-  submitUserInfo({id, token, username, bio})
+  let { token, id, username, bio } = this.props
+  this.props.submitUserInfo({ token, id, username, bio})
 }
 
   render(){
@@ -34,7 +33,7 @@ handleUserInfo(){
           <Input
           label='username'
           placeholder='grumpyCat2018'
-          onChangeText={this.handleUsername.bind(this)}
+          onChangeText= {this.handleUsername.bind(this)}
           value = {this.props.username}
           />
         </CardSection>
@@ -70,10 +69,11 @@ const styles = {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({auth, dashboard}) => {
   //checks out
-  let { auth, dashboard } = state
-  return { auth, dashboard }
+  let { username, bio, updating } = dashboard
+  let { token, id } = auth
+  return { token, id, username, bio, updating }
 }
 
 export default connect(mapStateToProps, {createUsername, createBio, submitUserInfo})(Dashboard)

@@ -22,15 +22,18 @@ export const createBio = (text) => {
   }
 }
 
-export const submitUserInfo = ({ id, token, username, bio }) => {
-  // return (dispatch) => {
-    console.log('this is the dispatch in action creator', dispatch);
-    // dispatch({type: SEND_USER_INFO})
-    // let url = 'http://localhost:3000/dashboard'
-    // let reqBody = { id, idToken, username, bio }
-    // axios.post(url, reqBody)
-    //   .then((res)=>{
-    //     console.log(res);
-    //   })
-  // }
+export const submitUserInfo = ({ token, id, username, bio }) => {
+  return (dispatch) => {
+    console.log('here are the props passed from helper function' , token, id, username, bio);
+    let url = 'http://localhost:3000/users/username'
+    let reqBody = { token, id, username, bio }
+    console.log('here is the reqBody to be passed into Axios', reqBody);
+    axios.post(url, reqBody)
+      .then((res) => {
+        console.log('here is the response just before dispatch', res);
+        dispatch({
+          type: SEND_USER_INFO,
+      })
+    })
+  }
 }
