@@ -1,5 +1,6 @@
 import { ADD_PHOTO, ADD_USERNAME, ADD_BIO, SEND_USER_INFO, BIO_INFO } from './types'
 import axios from 'axios'
+import { Actions } from 'react-native-router-flux'
 
 export const getUserInfo=({ id }) => {
   return (dispatch) => {
@@ -15,7 +16,7 @@ export const getUserInfo=({ id }) => {
         })
       })
       .catch((error)=>{
-        console.log('nope you got an error', error);
+        console.log('no user id found');
       })
   }
 }

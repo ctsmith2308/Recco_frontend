@@ -1,4 +1,4 @@
-import { EMAIL_CHANGED, PASSWORD_CHANGED, LOGIN_USER_SUCCESS, LOGIN_USER_FAIL, LOGIN_USER } from '../actions/types'
+import { EMAIL_CHANGED, PASSWORD_CHANGED, LOGIN_USER_SUCCESS, LOGIN_USER_FAIL, LOGIN_USER, TO_DASHBOARD ,TO_MAP } from '../actions/types'
 
 const INITIAL_STATE = {
   email:'',
@@ -29,6 +29,14 @@ export default (state = INITIAL_STATE, action)=>{
         ...INITIAL_STATE,
         id: action.payload.userId,
         token: action.payload.idToken
+      }
+    case TO_MAP:
+      return {
+        ...state
+      }
+    case TO_DASHBOARD:
+      return {
+        ...state
       }
     case LOGIN_USER_FAIL:
       return {
