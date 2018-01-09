@@ -2,9 +2,15 @@ import React, { Component } from 'react'
 import { View, Text, Image } from 'react-native'
 import { connect } from 'react-redux'
 import { Card, CardSection, Input, Button } from './common'
-import { createUsername, createBio, submitUserInfo } from '../actions'
+import { createUsername, createBio, submitUserInfo, getUserInfo } from '../actions'
 
 class Dashboard extends Component{
+
+componentDidMount(){
+  //checks out
+  let { id } = this.props
+  this.props.getUserInfo({ id })
+}
 
 handleUsername(text){
   this.props.createUsername(text)
@@ -15,9 +21,8 @@ handleBio(text){
 }
 
 handleUserInfo(){
-  // checks out
   let { token, id, username, bio } = this.props
-  this.props.submitUserInfo({ token, id, username, bio})
+  this.props.submitUserInfo({ token, id, username, bio })
 }
 
   render(){
@@ -32,17 +37,16 @@ handleUserInfo(){
         <CardSection>
           <Input
           label='username'
-          placeholder='grumpyCat2018'
+          placeholder={this.props.placeholderUsername}
           onChangeText= {this.handleUsername.bind(this)}
-          value = {this.props.username}
           />
         </CardSection>
         <CardSection>
           <Input
           label='bio'
-          placeholder='I hate life'
+          placeholder={this.props.placeholderBio}
           onChangeText={this.handleBio.bind(this)}
-          value = {this.props.bio}
+          
           />
         </CardSection>
         <CardSection>
@@ -69,11 +73,10 @@ const styles = {
   }
 }
 
-const mapStateToProps = ({auth, dashboard}) => {
-  //checks out
-  let { username, bio, updating } = dashboard
+const mapStateToProps = ({ auth, dashboard }) => {
+  let { username, bio, placeholderBio, placeholderUsername, updating } = dashboard
   let { token, id } = auth
-  return { token, id, username, bio, updating }
+  return { token, id, username, bio, placeholderUsername, placeholderBio, updating }
 }
 
-export default connect(mapStateToProps, {createUsername, createBio, submitUserInfo})(Dashboard)
+export default connect(mapStateToProps, {createUsername, createBio, submitUserInfo, getUserInfo})(Dashboard)

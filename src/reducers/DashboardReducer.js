@@ -1,9 +1,11 @@
-import { ADD_USERNAME, ADD_BIO, SEND_USER_INFO } from '../actions/types'
+import { ADD_USERNAME, ADD_BIO, SEND_USER_INFO, BIO_INFO } from '../actions/types'
 
 const INITIAL_STATE = {
   photo:null,
   username:'',
   bio:'',
+  placeholderUsername: 'grumpyKitty',
+  placeholderBio: 'I love tacos!!!'
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -15,6 +17,8 @@ export default (state = INITIAL_STATE, action) => {
         return { ...state, bio: action.payload }
     case SEND_USER_INFO:
         return { ...state }
+    case BIO_INFO:
+        return { ...state, bio:action.payload.bio, username: action.payload.username, placeholderUsername: action.payload.username, placeholderBio: action.payload.bio }
     default:
       return state
   }
