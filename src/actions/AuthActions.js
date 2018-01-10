@@ -21,7 +21,7 @@ export const passwordChanged=(text)=>{
 export const loginUser = ({ email, password }) => {
   const url = 'http://localhost:3000/users'
   return (dispatch) => {
-    dispatch({type: LOGIN_USER});
+    // dispatch({type: LOGIN_USER});
 
     firebase.auth().signInWithEmailAndPassword(email, password)
     .then(user => { firebase.auth().currentUser.getIdToken(true)

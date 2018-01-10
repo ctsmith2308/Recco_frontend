@@ -6,7 +6,7 @@ import { createUsername, createBio, submitUserInfo, getUserInfo, changeEditable,
 
 class Dashboard extends Component{
 
-componentWillMount(){
+componentDidMount(){
   let { id } = this.props
   this.props.getUserInfo({ id })
 }
@@ -23,15 +23,21 @@ handleUserInfo=()=>{
   let { token, id, username, bio } = this.props
   this.props.submitUserInfo({ token, id, username, bio })
 }
+
 toggleButton=()=>{
   this.props.buttonToggler()
 }
 
+usernameValue=()=>{
+  if(this.props.editable) return this.props.username
+}
+
+bioValue=()=>{
+  if(this.props.editable) return this.props.bio
+}
+
 renderIf(condition){
   console.log('this is the condition', condition);
-  // set the condition on line 30 to condition,
-  // set !this.props.previousLogIn on line 72
-  // set state to false
   if(condition){
     return (
       <Button onPress={()=>{this.toggleButton()}}>
@@ -62,6 +68,7 @@ renderIf(condition){
           placeholder={this.props.placeholderUsername || 'username' }
           onChangeText= {this.handleUsername.bind(this)}
           editable={this.props.editable}
+          value={this.usernameValue()}
           />
         </CardSection>
         <CardSection>
@@ -70,6 +77,7 @@ renderIf(condition){
           placeholder={this.props.placeholderBio || 'I love tacos and long walks on the beach' }
           onChangeText={this.handleBio.bind(this)}
           editable={this.props.editable}
+          value={this.bioValue()}
           />
         </CardSection>
         <CardSection>

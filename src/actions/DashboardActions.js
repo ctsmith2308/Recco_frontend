@@ -1,4 +1,4 @@
-import { ADD_PHOTO, ADD_USERNAME, ADD_BIO, SEND_USER_INFO, SET_USER_INFO, INVERT_PREV_LOGIN } from './types'
+import { ADD_PHOTO, ADD_USERNAME, ADD_BIO, SEND_USER_INFO, SET_USER_INFO, INVERT_PREV_LOGIN, NO_PREV_LOGIN } from './types'
 import axios from 'axios'
 import { Actions } from 'react-native-router-flux'
 
@@ -12,7 +12,7 @@ export const getUserInfo=({ id }) => {
       if(!username){
         console.log('im dispatching invert login');
         dispatch({
-          type: INVERT_PREV_LOGIN
+          type: NO_PREV_LOGIN
         })
       } else {
         console.log('im dispatching set user info');
@@ -67,9 +67,3 @@ export const buttonToggler = () => {
     type: INVERT_PREV_LOGIN,
   }
 }
-
-// export const changeEditable=()=>{
-//   return {
-//     type: CHANGE_EDITABLE,
-//   }
-// }
