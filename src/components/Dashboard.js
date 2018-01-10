@@ -2,12 +2,11 @@ import React, { Component } from 'react'
 import { View, Text, Image } from 'react-native'
 import { connect } from 'react-redux'
 import { Card, CardSection, Input, Button } from './common'
-import { createUsername, createBio, submitUserInfo, getUserInfo } from '../actions'
+import { createUsername, createBio, submitUserInfo, getUserInfo, changeEditable, buttonToggler } from '../actions'
 
 class Dashboard extends Component{
 
-componentDidMount(){
-  //checks out
+componentWillMount(){
   let { id } = this.props
   this.props.getUserInfo({ id })
 }
@@ -20,9 +19,32 @@ handleBio(text){
   this.props.createBio(text)
 }
 
-handleUserInfo(){
+handleUserInfo=()=>{
   let { token, id, username, bio } = this.props
   this.props.submitUserInfo({ token, id, username, bio })
+}
+toggleButton=()=>{
+  this.props.buttonToggler()
+}
+
+renderIf(condition){
+  console.log('this is the condition', condition);
+  // set the condition on line 30 to condition,
+  // set !this.props.previousLogIn on line 72
+  // set state to false
+  if(condition){
+    return (
+      <Button onPress={()=>{this.toggleButton()}}>
+        Edit
+      </Button>
+    )
+  }else{
+    return (
+    <Button onPress={()=>this.handleUserInfo()}>
+      Looks Good!
+    </Button>
+    )
+  }
 }
 
   render(){
@@ -37,22 +59,21 @@ handleUserInfo(){
         <CardSection>
           <Input
           label='username'
-          placeholder={this.props.placeholderUsername}
+          placeholder={this.props.placeholderUsername || 'username' }
           onChangeText= {this.handleUsername.bind(this)}
+          editable={this.props.editable}
           />
         </CardSection>
         <CardSection>
           <Input
           label='bio'
-          placeholder={this.props.placeholderBio}
+          placeholder={this.props.placeholderBio || 'I love tacos and long walks on the beach' }
           onChangeText={this.handleBio.bind(this)}
-          
+          editable={this.props.editable}
           />
         </CardSection>
         <CardSection>
-          <Button onPress={this.handleUserInfo.bind(this)}>
-            Looks Good!
-          </Button>
+          {this.renderIf(this.props.previousLogIn)}
         </CardSection>
       </Card>
     )
@@ -74,9 +95,9 @@ const styles = {
 }
 
 const mapStateToProps = ({ auth, dashboard }) => {
-  let { username, bio, placeholderBio, placeholderUsername, updating } = dashboard
+  let { username, bio, placeholderUsername, placeholderBio, previousLogIn, editable, updating } = dashboard
   let { token, id } = auth
-  return { token, id, username, bio, placeholderUsername, placeholderBio, updating }
+  return { token, id, username, bio, placeholderUsername, placeholderBio, previousLogIn, editable, updating }
 }
 
-export default connect(mapStateToProps, {createUsername, createBio, submitUserInfo, getUserInfo})(Dashboard)
+export default connect(mapStateToProps, {createUsername, createBio, submitUserInfo, getUserInfo, changeEditable, buttonToggler })(Dashboard)

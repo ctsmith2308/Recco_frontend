@@ -13,7 +13,7 @@ export const emailChanged=(text)=>{
 
 export const passwordChanged=(text)=>{
   return {
-    type:PASSWORD_CHANGED,
+    type: PASSWORD_CHANGED,
     payload:text
   }
 }
@@ -75,7 +75,8 @@ const loginUserSuccess = (dispatch, userId, idToken) => {
     type: LOGIN_USER_SUCCESS,
     payload: { userId, idToken }
   })
-  Actions.map()
+  // Actions.map()
+  Actions.userDash()
 }
 
 const loginUserSuccessToDash = (dispatch, userId, idToken) => {

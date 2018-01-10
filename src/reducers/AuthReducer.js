@@ -6,7 +6,8 @@ const INITIAL_STATE = {
   id: null,
   loggingIn: false,
   error: '',
-  token: null
+  token: null,
+  previousLogIn: false
 }
 
 export default (state = INITIAL_STATE, action)=>{
