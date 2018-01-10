@@ -1,14 +1,21 @@
-import { ADD_USERNAME, ADD_BIO, SET_USER_INFO, CHANGE_EDITABLE, INVERT_PREV_LOGIN, NO_PREV_LOGIN
+import {
+  ADD_USERNAME,
+  ADD_BIO,
+  SET_USER_INFO,
+  CHANGE_EDITABLE,
+  INVERT_PREV_LOGIN,
+  NO_PREV_LOGIN,ACCESS_PHOTOS
  } from '../actions/types'
 
 const INITIAL_STATE = {
-  photo:null,
   username:'',
   bio:'',
   placeholderUsername: '',
   placeholderBio: '',
   previousLogIn: false,
-  editable: false
+  editable: false,
+  photoArray: [],
+  showPhotoGallery: false,
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -27,6 +34,8 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, previousLogIn: !state.previousLogIn, editable: !state.editable }
     case NO_PREV_LOGIN:
       return { ...state , editable: true}
+    case ACCESS_PHOTOS:
+      return { ...state, photoArray:action.payload, showPhotoGallery: !state.showPhotoGallery }
     default:
       return state
   }

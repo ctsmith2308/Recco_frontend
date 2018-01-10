@@ -1,8 +1,16 @@
 import React, { Component } from 'react'
-import { View, Text, Image } from 'react-native'
+import { View, Text, Image, CameraRoll } from 'react-native'
 import { connect } from 'react-redux'
 import { Card, CardSection, Input, Button } from './common'
-import { createUsername, createBio, submitUserInfo, getUserInfo, changeEditable, buttonToggler } from '../actions'
+import ViewPhotos from './common/ViewPhotos'
+import {
+  createUsername,
+  createBio,
+  submitUserInfo,
+  getUserInfo,
+  changeEditable,
+  buttonToggler,
+  accessPhotos } from '../actions'
 
 class Dashboard extends Component{
 
@@ -53,38 +61,53 @@ renderIf(condition){
   }
 }
 
+getPhotosFromGallery=()=> {
+   CameraRoll.getPhotos({ first: 1000000 })
+     .then(res => {
+       let photoArray = res.edges;
+       this.props.accessPhotos({ photoArray })
+     })
+ }
+
   render(){
-    return (
-      <Card>
-        <CardSection style={styles.thumbnailContainerStyle}>
-          <Image
-            style={styles.thumbnailStyle}
-            source={{uri: 'https://news.nationalgeographic.com/content/dam/news/photos/000/755/75552.ngsversion.1422285553360.adapt.1900.1.jpg'}}
-          />
-        </CardSection>
-        <CardSection>
-          <Input
-          label='username'
-          placeholder={this.props.placeholderUsername || 'username' }
-          onChangeText= {this.handleUsername.bind(this)}
-          editable={this.props.editable}
-          value={this.usernameValue()}
-          />
-        </CardSection>
-        <CardSection>
-          <Input
-          label='bio'
-          placeholder={this.props.placeholderBio || 'I love tacos and long walks on the beach' }
-          onChangeText={this.handleBio.bind(this)}
-          editable={this.props.editable}
-          value={this.bioValue()}
-          />
-        </CardSection>
-        <CardSection>
-          {this.renderIf(this.props.previousLogIn)}
-        </CardSection>
-      </Card>
-    )
+    if (this.props.showPhotoGallery) {
+      return (
+        <ViewPhotos
+          photoArray={this.props.photoArray} />
+      )
+    } else {
+      return (
+        <Card>
+          <CardSection style={styles.thumbnailContainerStyle} onPress={this.getPhotosFromGallery()}>
+            <Image
+              style={styles.thumbnailStyle}
+              source={require('../../avatar.png')}
+            />
+          </CardSection>
+          <CardSection>
+            <Input
+            label='username'
+            placeholder={this.props.placeholderUsername || 'username' }
+            onChangeText= {this.handleUsername.bind(this)}
+            editable={this.props.editable}
+            value={this.usernameValue()}
+            />
+          </CardSection>
+          <CardSection>
+            <Input
+            label='bio'
+            placeholder={this.props.placeholderBio || 'I love tacos and long walks on the beach' }
+            onChangeText={this.handleBio.bind(this)}
+            editable={this.props.editable}
+            value={this.bioValue()}
+            />
+          </CardSection>
+          <CardSection>
+            {this.renderIf(this.props.previousLogIn)}
+          </CardSection>
+        </Card>
+      )
+    }
   }
 }
 const styles = {
@@ -103,9 +126,9 @@ const styles = {
 }
 
 const mapStateToProps = ({ auth, dashboard }) => {
-  let { username, bio, placeholderUsername, placeholderBio, previousLogIn, editable, updating } = dashboard
+  let { username, bio, placeholderUsername, placeholderBio, previousLogIn, editable, photoArray, showPhotoGallery, updating } = dashboard
   let { token, id } = auth
-  return { token, id, username, bio, placeholderUsername, placeholderBio, previousLogIn, editable, updating }
+  return { token, id, username, bio, placeholderUsername, placeholderBio, previousLogIn, editable, photoArray, showPhotoGallery, updating }
 }
 
-export default connect(mapStateToProps, {createUsername, createBio, submitUserInfo, getUserInfo, changeEditable, buttonToggler })(Dashboard)
+export default connect(mapStateToProps, { createUsername, createBio, submitUserInfo, getUserInfo, changeEditable, buttonToggler, accessPhotos })(Dashboard)

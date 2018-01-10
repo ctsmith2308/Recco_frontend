@@ -1,4 +1,14 @@
-import { ADD_PHOTO, ADD_USERNAME, ADD_BIO, SEND_USER_INFO, SET_USER_INFO, INVERT_PREV_LOGIN, NO_PREV_LOGIN } from './types'
+import {
+  ADD_PHOTO,
+  ADD_USERNAME,
+  ADD_BIO,
+  SEND_USER_INFO,
+  SET_USER_INFO,
+  INVERT_PREV_LOGIN,
+  NO_PREV_LOGIN,
+  ACCESS_PHOTOS
+} from './types'
+
 import axios from 'axios'
 import { Actions } from 'react-native-router-flux'
 
@@ -67,3 +77,13 @@ export const buttonToggler = () => {
     type: INVERT_PREV_LOGIN,
   }
 }
+
+
+
+
+export const accessPhotos =({ photoArray })=> {
+  return {
+    type: ACCESS_PHOTOS,
+    payload: photoArray
+    }
+  }
