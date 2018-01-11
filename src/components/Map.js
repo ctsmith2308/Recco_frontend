@@ -5,30 +5,75 @@ import {
   Text,
   View
 } from 'react-native';
-import MapView from 'react-native-maps';
+import MapView, { Marker, Callout } from 'react-native-maps';
 import { connect } from 'react-redux'
-import { Container } from 'native-base';
+import { Container, Icon } from 'native-base';
 
 import { Card, CardSection, Input, Button, Toolbar } from './common'
 
 export default class Map extends Component {
+
+state = {
+  toggleModal:false,
+  toggleSearch:false
+}
+
+toggleState=()=>{
+  this.setState(previousState => {
+      return { showText: !previousState.showText };
+    });
+    this.reviewModal()
+  }
+
+reviewModal(){
+  // if(this.state.toggleModal){
+    console.log('state changed', this.state.toggleModal);
+    // return (
+    //     <Text>Im new text</Text>
+    // )
+  // }
+}
+
   render() {
     return (
       <View style={styles.container}>
-      <MapView
-      style={ styles.map }
-       initialRegion={{
-         latitude: 37.78825,
-         longitude: -122.4324,
-         latitudeDelta: 0.0922,
-         longitudeDelta: 0.0421,
-       }}
-       />
+        <MapView
+          style={ styles.map }
+          initialRegion={{
+          latitude: 37.78825,
+          longitude: -122.4324,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
+         }}
+        >
+          <MapView.Marker
+            coordinate={{latitude: 37.78825,
+            longitude: -122.4324,}}
+          >
+            <MapView.Callout>
+            <View style={styles.popUp}>
+              <CardSection style={{flexDirection:'row',alignItems:'center'}}>
+                <Text style={{marginRight:5}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo</Text>
+                <Icon name="md-star-outline" />
+              </CardSection>
+              <CardSection style={{borderColor:'transparent', paddingBottom:10, alignItems:'flex-end'}}>
+                <Button onPress={()=>this.toggleState()}>Leave a Recco</Button>
+              </CardSection>
+            </View>
+            </MapView.Callout>
+          </MapView.Marker>
+        </MapView>
+        <View>
+        {this.reviewModal()}
+        </View>
        <Toolbar/>
-       </View>
+      </View>
     )
   }
 }
+
+
+
 
 const styles = StyleSheet.create({
   container: {
@@ -47,6 +92,14 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
   },
+  popUp:{
+    alignItems:'center',
+    width:300,
+    height:85
+  },
+  popUpText:{
+    marginBottom:5
+  }
 });
 
 

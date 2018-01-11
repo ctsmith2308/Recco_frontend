@@ -15,7 +15,7 @@ import { Actions } from 'react-native-router-flux'
           <Text>Favorites</Text>
         </Button>
         <Button vertical onPress={() => Actions.map()}>
-          <Icon active name="navigate" />
+          <Icon name="navigate" />
           <Text>Map</Text>
         </Button>
         <Button vertical onPress={() => Actions.userDash()}>

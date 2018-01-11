@@ -8,9 +8,11 @@ import Favorites from './components/Favorites'
 
 const RouterComponent=()=>{
   return (
-    <Router sceneStyle = {{ paddingTop: 65 }}>
+    <Router sceneStyle = {{ backgroundColor:'#8DD9D8',paddingTop: 65 }}>
       <Scene key="auth">
         <Scene key="login"
+          hideNavBar
+          navBar={null}
           component={LoginForm}
           title="Please Login"
         />

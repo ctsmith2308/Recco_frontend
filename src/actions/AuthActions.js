@@ -75,8 +75,8 @@ const loginUserSuccess = (dispatch, userId, idToken) => {
     type: LOGIN_USER_SUCCESS,
     payload: { userId, idToken }
   })
-  // Actions.map()
-  Actions.userDash()
+  Actions.map()
+  // Actions.userDash()
   // Actions.tabBar()
 }
 
