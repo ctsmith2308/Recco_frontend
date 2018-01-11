@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Container, Header, Content, Tab, Tabs } from 'native-base';
-import { View, Text } from 'react-native'
+import { View, Text, FlatList, Image } from 'react-native'
 import { Card, CardSection, Input, Button, Toolbar } from './common'
 
 

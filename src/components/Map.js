@@ -1,33 +1,3 @@
-// import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { Container } from 'native-base';
-
-import { Card, CardSection, Input, Button, Toolbar } from './common'
-//
-// export default class MapView extends Component{
-//   render(){
-//     return (
-//       <View>
-//         <Text>Im the foodie page</Text>
-//         <Toolbar/>
-//       </View>
-//     )
-//   }
-// }
-
-// const styles = {
-//   pickerStyle:{
-//     fontSize: 18,
-//     alignSelf:'center'
-//   }
-// }
-// const mapStateToProps = (state) => {
-//   const { name, phone, shift } = state.employeeForm
-//   return { name, phone, shift }
-// }
-
-// export default connect(mapStateToProps, {employeeUpdate})(EmployeeCreate)
-
 import React, { Component } from 'react';
 import {
   Platform,
@@ -35,8 +5,11 @@ import {
   Text,
   View
 } from 'react-native';
-
 import MapView from 'react-native-maps';
+import { connect } from 'react-redux'
+import { Container } from 'native-base';
+
+import { Card, CardSection, Input, Button, Toolbar } from './common'
 
 export default class Map extends Component {
   render() {
@@ -75,3 +48,11 @@ const styles = StyleSheet.create({
     bottom: 0,
   },
 });
+
+
+// const mapStateToProps = (state) => {
+//   const { name, phone, shift } = state.employeeForm
+//   return { name, phone, shift }
+// }
+//
+// export default connect(mapStateToProps, {employeeUpdate})(EmployeeCreate)
