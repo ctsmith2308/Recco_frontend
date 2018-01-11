@@ -81,40 +81,40 @@ getPhotosFromGallery=()=>{
       )
     } else {
       return (
-        <Container>
-        <Card>
-          <CardSection style={styles.thumbnailContainerStyle}>
-            <TouchableOpacity onPress={()=>{this.getPhotosFromGallery()}}>
-              <Image
-                style={styles.thumbnailStyle}
-                source={{ uri: this.props.imageURI }}
+        <View>
+          <Card>
+            <CardSection style={styles.thumbnailContainerStyle}>
+              <TouchableOpacity onPress={()=>{this.getPhotosFromGallery()}}>
+                <Image
+                  style={styles.thumbnailStyle}
+                  source={{ uri: this.props.imageURI }}
+                />
+              </TouchableOpacity>
+            </CardSection>
+            <CardSection>
+              <Input
+              label='username'
+              placeholder={this.props.placeholderUsername || 'username' }
+              onChangeText= {this.handleUsername.bind(this)}
+              editable={this.props.editable}
+              value={this.usernameValue()}
               />
-            </TouchableOpacity>
-          </CardSection>
-          <CardSection>
-            <Input
-            label='username'
-            placeholder={this.props.placeholderUsername || 'username' }
-            onChangeText= {this.handleUsername.bind(this)}
-            editable={this.props.editable}
-            value={this.usernameValue()}
-            />
-          </CardSection>
-          <CardSection>
-            <Input
-            label='bio'
-            placeholder={this.props.placeholderBio || 'I love tacos and long walks on the beach' }
-            onChangeText={this.handleBio.bind(this)}
-            editable={this.props.editable}
-            value={this.bioValue()}
-            />
-          </CardSection>
-          <CardSection>
-            {this.renderIf(this.props.previousLogIn)}
-          </CardSection>
+            </CardSection>
+            <CardSection>
+              <Input
+              label='bio'
+              placeholder={this.props.placeholderBio || 'I love tacos and long walks on the beach' }
+              onChangeText={this.handleBio.bind(this)}
+              editable={this.props.editable}
+              value={this.bioValue()}
+              />
+            </CardSection>
+            <CardSection>
+              {this.renderIf(this.props.previousLogIn)}
+            </CardSection>
           </Card>
           <Toolbar/>
-          </Container>
+        </View>
       )
     }
   }
@@ -131,8 +131,25 @@ const styles = {
     borderRadius: 100,
     borderColor: 'black',
     borderWidth: 4
+  },
+  container: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
+  map: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
   }
 }
+
 
 const mapStateToProps = ({ auth, dashboard }) => {
   let { imageURI, username, bio, placeholderUsername, placeholderBio, previousLogIn, editable, photoArray, showPhotoGallery, updating } = dashboard

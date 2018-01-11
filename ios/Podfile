@@ -1,0 +1,59 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+# target 'Recco' do
+#   # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
+#   # use_frameworks!
+#
+#   # Pods for Recco
+#
+#   target 'Recco-tvOSTests' do
+#     inherit! :search_paths
+#     # Pods for testing
+#   end
+#
+#   target 'ReccoTests' do
+#     inherit! :search_paths
+#     # Pods for testing
+#   end
+#
+# end
+#
+# target 'Recco-tvOS' do
+#   # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
+#   # use_frameworks!
+#
+#   # Pods for Recco-tvOS
+#
+#   target 'Recco-tvOSTests' do
+#     inherit! :search_paths
+#     # Pods for testing
+#   end
+#
+# end
+
+target 'Recco' do
+  rn_path = '../node_modules/react-native'
+  rn_maps_path = '../node_modules/react-native-maps'
+
+  pod 'yoga', path: "#{rn_path}/ReactCommon/yoga/yoga.podspec"
+  pod 'React', path: rn_path, subspecs: [
+    'Core',
+    'RCTActionSheet',
+    'RCTAnimation',
+    'RCTGeolocation',
+    'RCTImage',
+    'RCTLinkingIOS',
+    'RCTNetwork',
+    'RCTSettings',
+    'RCTText',
+    'RCTVibration',
+    'RCTWebSocket',
+    'BatchedBridge'
+  ]
+
+  pod 'react-native-maps', path: rn_maps_path
+
+  # pod 'GoogleMaps'  # Remove this line if you don't want to support Google Maps on iOS
+  # pod 'react-native-google-maps', path: rn_maps_path  # Remove this line if you don't want to support Google Maps on iOS
+end
