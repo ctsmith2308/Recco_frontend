@@ -1,8 +1,15 @@
 import React, { Component } from 'react'
-import { View, Text, Image, CameraRoll } from 'react-native'
+import { View, Image, TouchableOpacity, CameraRoll } from 'react-native'
+// import { Container, Header, Content, Footer, FooterTab, Button, Text, Icon} from 'native-base';
+import { Container } from 'native-base';
+
+import {Actions} from 'react-native-router-flux'
+
 import { connect } from 'react-redux'
-import { Card, CardSection, Input, Button } from './common'
+import { Card, CardSection, Input, Button, Toolbar } from './common'
+
 import ViewPhotos from './common/ViewPhotos'
+
 import {
   createUsername,
   createBio,
@@ -10,11 +17,12 @@ import {
   getUserInfo,
   changeEditable,
   buttonToggler,
-  accessPhotos } from '../actions'
+  accessPhotos
+} from '../actions'
 
 class Dashboard extends Component{
 
-componentDidMount(){
+componentWillMount(){
   let { id } = this.props
   this.props.getUserInfo({ id })
 }
@@ -45,7 +53,6 @@ bioValue=()=>{
 }
 
 renderIf(condition){
-  console.log('this is the condition', condition);
   if(condition){
     return (
       <Button onPress={()=>{this.toggleButton()}}>
@@ -61,28 +68,28 @@ renderIf(condition){
   }
 }
 
-getPhotosFromGallery=()=> {
-   CameraRoll.getPhotos({ first: 1000000 })
-     .then(res => {
-       let photoArray = res.edges;
-       this.props.accessPhotos({ photoArray })
-     })
+getPhotosFromGallery=()=>{
+   this.props.accessPhotos()
  }
 
   render(){
     if (this.props.showPhotoGallery) {
       return (
         <ViewPhotos
-          photoArray={this.props.photoArray} />
+          photoArray={this.props.photoArray}
+        />
       )
     } else {
       return (
+        <Container>
         <Card>
-          <CardSection style={styles.thumbnailContainerStyle} onPress={this.getPhotosFromGallery()}>
-            <Image
-              style={styles.thumbnailStyle}
-              source={require('../../avatar.png')}
-            />
+          <CardSection style={styles.thumbnailContainerStyle}>
+            <TouchableOpacity onPress={()=>{this.getPhotosFromGallery()}}>
+              <Image
+                style={styles.thumbnailStyle}
+                source={{ uri: this.props.imageURI }}
+              />
+            </TouchableOpacity>
           </CardSection>
           <CardSection>
             <Input
@@ -105,7 +112,9 @@ getPhotosFromGallery=()=> {
           <CardSection>
             {this.renderIf(this.props.previousLogIn)}
           </CardSection>
-        </Card>
+          </Card>
+          <Toolbar/>
+          </Container>
       )
     }
   }
@@ -126,9 +135,9 @@ const styles = {
 }
 
 const mapStateToProps = ({ auth, dashboard }) => {
-  let { username, bio, placeholderUsername, placeholderBio, previousLogIn, editable, photoArray, showPhotoGallery, updating } = dashboard
+  let { imageURI, username, bio, placeholderUsername, placeholderBio, previousLogIn, editable, photoArray, showPhotoGallery, updating } = dashboard
   let { token, id } = auth
-  return { token, id, username, bio, placeholderUsername, placeholderBio, previousLogIn, editable, photoArray, showPhotoGallery, updating }
+  return { token, id,imageURI, username, bio, placeholderUsername, placeholderBio, previousLogIn, editable, photoArray, showPhotoGallery, updating }
 }
 
 export default connect(mapStateToProps, { createUsername, createBio, submitUserInfo, getUserInfo, changeEditable, buttonToggler, accessPhotos })(Dashboard)

@@ -77,6 +77,7 @@ const loginUserSuccess = (dispatch, userId, idToken) => {
   })
   // Actions.map()
   Actions.userDash()
+  // Actions.tabBar()
 }
 
 const loginUserSuccessToDash = (dispatch, userId, idToken) => {
@@ -85,9 +86,11 @@ const loginUserSuccessToDash = (dispatch, userId, idToken) => {
     payload: { userId, idToken }
   })
   Actions.userDash()
+  // Action.tabBar()
+
 }
 
-const loginUserFail = (dispatch)=>{
+const loginUserFail = (dispatch) => {
   dispatch({
     type: LOGIN_USER_FAIL
   })

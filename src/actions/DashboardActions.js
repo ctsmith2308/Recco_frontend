@@ -1,16 +1,18 @@
+import { CameraRoll } from 'react-native'
+import { Actions } from 'react-native-router-flux'
 import {
-  ADD_PHOTO,
+  SET_IMAGE,
+  ACCESS_PHOTOS,
   ADD_USERNAME,
   ADD_BIO,
   SEND_USER_INFO,
   SET_USER_INFO,
   INVERT_PREV_LOGIN,
   NO_PREV_LOGIN,
-  ACCESS_PHOTOS
+  DUMMY_ACTION
 } from './types'
 
 import axios from 'axios'
-import { Actions } from 'react-native-router-flux'
 
 export const getUserInfo=({ id }) => {
   return (dispatch) => {
@@ -37,11 +39,28 @@ export const getUserInfo=({ id }) => {
   }
 }
 
-export const addUserPhoto = (image) => {
- return {
-   type: ADD_PHOTO,
-   payload: image
- }
+export const accessPhotos = () => {
+  return (dispatch) => {
+    CameraRoll.getPhotos({ first: 1000000 })
+    .then(res => {
+      let photoArray = res.edges;
+      dispatch({
+        type: ACCESS_PHOTOS,
+        payload: photoArray
+      })
+    })
+  }
+}
+
+export const setImage = ({ uri }) =>{
+  console.log('im the setImage action');
+  return (dispatch) => {
+    dispatch({
+      type: SET_IMAGE,
+      payload: uri
+    })
+    Actions.userDash()
+  }
 }
 
 export const createUsername = (text) => {
@@ -77,13 +96,3 @@ export const buttonToggler = () => {
     type: INVERT_PREV_LOGIN,
   }
 }
-
-
-
-
-export const accessPhotos =({ photoArray })=> {
-  return {
-    type: ACCESS_PHOTOS,
-    payload: photoArray
-    }
-  }

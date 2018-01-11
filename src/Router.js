@@ -3,12 +3,17 @@ import { Scene, Router, Actions } from 'react-native-router-flux'
 import LoginForm from './components/LoginForm'
 import Dashboard from './components/Dashboard'
 import MapView from './components/MapView'
+import SearchFoodies from './components/SearchFoodies'
+import Favorites from './components/Favorites'
 
 const RouterComponent=()=>{
   return (
     <Router sceneStyle = {{ paddingTop: 65 }}>
       <Scene key="auth">
-        <Scene key="login" component={LoginForm} title="Please Login"/>
+        <Scene key="login"
+          component={LoginForm}
+          title="Please Login"
+        />
       </Scene>
       <Scene key='map'>
         <Scene
@@ -22,6 +27,18 @@ const RouterComponent=()=>{
           key="dashboard"
           component={ Dashboard }
           title="Dashboard"
+        />
+      </Scene>
+      <Scene key="foodieSearch">
+        <Scene
+          key="foodies"
+          component={ SearchFoodies }
+        />
+      </Scene>
+      <Scene key="myFavorites">
+        <Scene
+          key="favorites"
+          component={ Favorites }
         />
       </Scene>
     </Router>
