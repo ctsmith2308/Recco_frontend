@@ -1,30 +1,30 @@
 import React, { Component } from 'react'
 import { Container, Header, Content, Tab, Tabs } from 'native-base';
 import { View, Text, FlatList, Image } from 'react-native'
+import { connect } from 'react-redux'
 import { Card, CardSection, Input, Button, Toolbar } from './common'
 
+import { listUsers } from '../actions'
 
-export default class ListFoodies extends Component {
+class ListFoodies extends Component {
+
+  componentWillMount=()=>{
+    console.log('i was mounted');
+    console.log('hey', this.props.users);
+    this.props.listUsers()
+  }
   render() {
     return (
       <View style={styles.container}>
         <FlatList
-          data={[
-            {key: 'Devin'},
-            {key: 'Jackson'},
-            {key: 'James'},
-            {key: 'Joel'},
-            {key: 'John'},
-            {key: 'Jillian'},
-            {key: 'Jimmy'},
-            {key: 'Julie'},
-          ]}
+          data={this.props.users.data}
           renderItem={({item}) =>
           <CardSection>
           <View style ={styles.thumbnailContainerStyle}>
             <Image source={require('../../avatar.png')}  style={styles.thumbnailStyle}/>
           </View>
-            <Text style={styles.headerTextStyle}>{item.key}</Text>
+            <Text style={styles.headerTextStyle}>{item.username}</Text>
+            <Button onPress={() => console.log('i was clicked')}>Press Me</Button>
           </CardSection>
           }
         />
@@ -52,7 +52,6 @@ const styles ={
     marginLeft:15,
     marginRight:15,
     marginBottom:3
-
   },
   thumbnailContainerStyle:{
     justifyContent:'center',
@@ -73,3 +72,23 @@ const styles ={
     height: 44,
   }
 }
+
+const mapStateToProps = ({ getUserlist }) => {
+  console.log('im state in mapStateToProps ', getUserlist);
+  // let {
+  //   imageURI, username, bio,
+  //   placeholderUsername, placeholderBio,
+  //   previousLogIn, editable, photoArray,
+  //   showPhotoGallery, updating
+  //   } = dashboard
+  //
+  // let { token, id } = auth
+  //
+  let { users } = getUserlist
+  console.log('here is the list after youve defined it', users);
+
+  // return { token, id,imageURI, username, bio, placeholderUsername, placeholderBio, previousLogIn, editable, photoArray, showPhotoGallery, updating }
+  return { users }
+}
+
+export default connect(mapStateToProps, { listUsers })(ListFoodies)
