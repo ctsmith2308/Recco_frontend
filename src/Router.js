@@ -35,7 +35,7 @@ const RouterComponent=()=>{
         <Scene
           key="foodies"
           component={ SearchFoodies }
-          title="Seach Foodies"
+          title="Search Foodies"
         />
       </Scene>
       <Scene key="myFavorites">

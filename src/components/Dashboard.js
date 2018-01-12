@@ -109,7 +109,7 @@ getPhotosFromGallery=()=>{
               value={this.bioValue()}
               />
             </CardSection>
-            <CardSection>
+            <CardSection style={{marginBottom:150}}>
               {this.renderIf(this.props.previousLogIn)}
             </CardSection>
           </Card>

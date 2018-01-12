@@ -52,6 +52,7 @@ reviewModal(){
         </CardSection>
         <CardSection style={{borderColor:'transparent'}}>
           <Button onPress={()=> this.toggleState()}>Submit</Button>
+          <Button onPress={()=> this.toggleState()}>Close</Button>
         </CardSection>
       </CardSection>
     )

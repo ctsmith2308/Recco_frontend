@@ -8,7 +8,7 @@ export default class Favorites extends Component{
   render(){
     return(
       <View>
-        <Text>Im the favorites page</Text>
+        <Text style={{marginBottom:531}}>Im the favorites page</Text>
         <Toolbar/>
       </View>
     )

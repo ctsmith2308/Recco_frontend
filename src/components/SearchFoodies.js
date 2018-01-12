@@ -23,7 +23,7 @@ class ListFoodies extends Component {
             <Image source={require('../../avatar.png')}  style={styles.thumbnailStyle}/>
           </View>
             <Text style={styles.headerTextStyle}>{item.username}</Text>
-            <Button onPress={() => console.log('i was clicked')}>Press Me</Button>
+            <Button onPress={() => console.log('i was clicked')}>Follow</Button>
           </CardSection>
           }
           keyExtractor={(item, index) => index}
