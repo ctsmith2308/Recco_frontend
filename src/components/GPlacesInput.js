@@ -22,8 +22,8 @@ class GPlacesInput extends Component {
     RNGooglePlaces.openAutocompleteModal()
     .then((place) => {
       console.log(place);
-      let { name, address ,locationAddress, latitude, longitude, website } = place
-      this.props.setLocatioinDetails({name, address, locationAddress, latitude, longitude, website })
+      let { name, address,locationAddress, latitude, longitude, website, placeID } = place
+      this.props.setLocatioinDetails({name, address, locationAddress, latitude, longitude, website, placeID})
     })
     .catch(error => console.log(error.message));
   }
@@ -70,8 +70,8 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps=({ locationInfo })=>{
-  let { name, address, latitude, longitude, website } = locationInfo
-  return { name, address, latitude, longitude, website }
+  let { name, address, latitude, longitude, website, placeID } = locationInfo
+  return { name, address, latitude, longitude, website, placeID }
 }
 
 export default connect( mapStateToProps, {setLocatioinDetails})(GPlacesInput)

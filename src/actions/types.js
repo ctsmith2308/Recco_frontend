@@ -18,5 +18,8 @@ export const NO_PREV_LOGIN = 'no_prev_login'
 //Location ACTIONS
 export const SET_LOCATION_DETAILS = 'set_location_details'
 
+//
+export const SEND_REVIEW = 'send_review'
+
 // Placeholder ACTIONS
 export const DUMMY_ACTION = 'dummy_action'

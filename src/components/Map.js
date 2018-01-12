@@ -15,7 +15,7 @@ import { Card, CardSection, Input, Button, Toolbar } from './common'
 
 import GPlacesInput from './GPlacesInput'
 
-import { setLocatioinDetails } from '../actions'
+import { setLocatioinDetails, postReview } from '../actions'
 
 /// add AirMaps into xcode project refer to this link https://github.com/react-community/react-native-maps/blob/1e71a21f39e7b88554852951f773c731c94680c9/docs/installation.md#ios
 
@@ -27,13 +27,16 @@ state = {
   toggleSearch:false
 }
 
-
 toggleState=()=>{
   this.setState(previousState => {
       return { toggleModal: !previousState.toggleModal };
     });
     this.reviewModal()
   }
+
+handleReviewText(text){
+  this.props.postReview(text)
+}
 
 reviewModal(){
   if(this.state.toggleModal){
@@ -44,6 +47,7 @@ reviewModal(){
           <TextInput
             style={{height:18, width:290, fontSize:18, marginBottom:25, marginTop:15}}
             placeholder="Leave a review"
+            onChangeText={this.handleReviewText.bind(this)}
           />
         </CardSection>
         <CardSection style={{borderColor:'transparent'}}>
@@ -73,8 +77,10 @@ reviewModal(){
           >
             <MapView.Callout>
             <View style={styles.popUp}>
-              <CardSection style={{borderColor:'transparent',flexDirection:'row',alignItems:'center'}}>
-                <Text style={{marginRight:5}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo</Text>
+              <CardSection style={{borderColor:'transparent',flexDirection:'column',alignItems:'center'}}>
+                <Text style={{marginRight:5,marginBottom:3,fontSize:15,fontWeight:'bold'}}>{this.props.name}</Text>
+                <Text>{this.props.address}</Text>
+                <Text>{this.props.website}</Text>
                 <Icon name="md-star-outline" />
               </CardSection>
               <CardSection style={{borderColor:'transparent', paddingBottom:10, alignItems:'flex-end'}}>
@@ -88,7 +94,6 @@ reviewModal(){
         <Card>
           {this.reviewModal()}
         </Card>
-
         <CardSection style={{width:300, height:50,marginTop:100, marginBottom:10}}>
           <GPlacesInput/>
         </CardSection>
@@ -122,7 +127,7 @@ const styles = StyleSheet.create({
   popUp:{
     alignItems:'center',
     width:300,
-    height:85
+    height:145
   },
   popUpText:{
     marginBottom:5
@@ -130,10 +135,10 @@ const styles = StyleSheet.create({
 });
 
 
-const mapStateToProps = ({locationInfo}) => {
+const mapStateToProps = ({ locationInfo, reviews }) => {
   const { name, address, lat, long, website } = locationInfo
-  console.log('here are the lat and long',lat, long);
-  return { name, address, lat, long, website }
+  const { userReview } = reviews
+  return { name, address, lat, long, website, userReview }
 }
 
-export default connect(mapStateToProps, { setLocatioinDetails })(Map)
+export default connect(mapStateToProps, { setLocatioinDetails, postReview })(Map)
