@@ -11,19 +11,21 @@ import {
   TouchableOpacity
 } from 'react-native';
 import MapView, { Marker, Callout, PROVIDER_GOOGLE } from 'react-native-maps';
-
 import RNGooglePlaces from 'react-native-google-places';
+import { connect } from 'react-redux'
+
+import { setLocatioinDetails } from '../actions'
 
 class GPlacesInput extends Component {
   openSearchModal() {
     console.log('i was clicked');
     RNGooglePlaces.openAutocompleteModal()
     .then((place) => {
-		console.log(place);
-		// place represents user's selection from the
-		// suggestions and it is a simplified Google Place object.
+      console.log(place);
+      let { name, address ,locationAddress, latitude, longitude, website } = place
+      this.props.setLocatioinDetails({name, address, locationAddress, latitude, longitude, website })
     })
-    .catch(error => console.log(error.message));  // error is a Javascript Error object
+    .catch(error => console.log(error.message));
   }
 
   render() {
@@ -67,4 +69,9 @@ const styles = StyleSheet.create({
   }
 });
 
-export { GPlacesInput }
+const mapStateToProps=({ locationInfo })=>{
+  let { name, address, latitude, longitude, website } = locationInfo
+  return { name, address, latitude, longitude, website }
+}
+
+export default connect( mapStateToProps, {setLocatioinDetails})(GPlacesInput)

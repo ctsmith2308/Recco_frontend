@@ -15,6 +15,8 @@ export const SET_USER_INFO = 'bio_info'
 export const INVERT_PREV_LOGIN = 'invert_prev_login'
 export const NO_PREV_LOGIN = 'no_prev_login'
 
+//Location ACTIONS
+export const SET_LOCATION_DETAILS = 'set_location_details'
 
-//
+// Placeholder ACTIONS
 export const DUMMY_ACTION = 'dummy_action'

@@ -11,26 +11,22 @@ import MapView, { Marker, Callout, PROVIDER_GOOGLE } from 'react-native-maps';
 import { connect } from 'react-redux'
 import { Container, Icon } from 'native-base';
 
-import { Card, CardSection, Input, Button, Toolbar, GPlacesInput } from './common'
+import { Card, CardSection, Input, Button, Toolbar } from './common'
 
+import GPlacesInput from './GPlacesInput'
+
+import { setLocatioinDetails } from '../actions'
 
 /// add AirMaps into xcode project refer to this link https://github.com/react-community/react-native-maps/blob/1e71a21f39e7b88554852951f773c731c94680c9/docs/installation.md#ios
 
 
-
-export default class Map extends Component {
-
+class Map extends Component {
 
 state = {
   toggleModal:false,
   toggleSearch:false
 }
 
-// toggleSubmitter()=>{
-//   this.setState(previousState => {
-//       return { toggleModal: !previousState.toggleModal };
-//     });
-// }
 
 toggleState=()=>{
   this.setState(previousState => {
@@ -64,17 +60,16 @@ reviewModal(){
 
         <MapView
           style={ styles.map }
-          initialRegion={{
-          latitude: 37.78825,
-          longitude: -122.4324,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
+          region={{
+          latitude: Number(this.props.lat) || 40.01330,
+          longitude: Number(this.props.long) || -105.28000,
+          latitudeDelta: 0.0122,
+          longitudeDelta: 0.0221,
          }}
         >
 
           <MapView.Marker
-            coordinate={{latitude: 37.78825,
-            longitude: -122.4324,}}
+            coordinate={{latitude: Number(this.props.lat), longitude: Number(this.props.long)}}
           >
             <MapView.Callout>
             <View style={styles.popUp}>
@@ -106,10 +101,6 @@ reviewModal(){
   }
 }
 
-// <TextInput
-//   style={{width: 290,fontSize:18}}
-//   placeholder='Search'/>
-
 
 const styles = StyleSheet.create({
   container: {
@@ -139,9 +130,10 @@ const styles = StyleSheet.create({
 });
 
 
-// const mapStateToProps = (state) => {
-//   const { name, phone, shift } = state.employeeForm
-//   return { name, phone, shift }
-// }
-//
-// export default connect(mapStateToProps, {employeeUpdate})(EmployeeCreate)
+const mapStateToProps = ({locationInfo}) => {
+  const { name, address, lat, long, website } = locationInfo
+  console.log('here are the lat and long',lat, long);
+  return { name, address, lat, long, website }
+}
+
+export default connect(mapStateToProps, { setLocatioinDetails })(Map)

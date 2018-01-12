@@ -9,6 +9,7 @@ import {
   ACCESS_PHOTOS,
   DUMMY_ACTION
  } from '../actions/types'
+ 
 const INITIAL_STATE = {
   imageURI: 'http://localhost:3000/images/avatar.png',
   username: '',
