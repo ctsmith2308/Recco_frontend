@@ -4,7 +4,7 @@ import { Actions } from 'react-native-router-flux'
 
  const Toolbar = () => {
     return (
-      <Footer style={{marginTop:150}}>
+      <Footer style={{marginTop:0}}>
       <FooterTab>
         <Button vertical onPress={() => Actions.foodieSearch()}>
           <Icon name="ios-people" />
