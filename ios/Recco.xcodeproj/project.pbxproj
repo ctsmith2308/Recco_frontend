@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -53,6 +52,7 @@
 		CA09C13749BD473899BED8EE /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A622B002BF0345F59A08AE78 /* Entypo.ttf */; };
 		CA82AD67401F4FF5B581E028 /* libRNGooglePlaces.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5612BB1734DF495883E7179A /* libRNGooglePlaces.a */; };
 		E6F999E4A63C43EAA3128160 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BE1025D173384632B312ED52 /* FontAwesome.ttf */; };
+		6864AF0061774834B1328AF0 /* libRNImageToBase64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D8C76DAEA9344AA9E85CB09 /* libRNImageToBase64.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -392,6 +392,8 @@
 		E3CF72088F23445CB869FB72 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/native-base/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		EE441F9AA73661321CAE4712 /* libPods-Recco.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Recco.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7BDB91CA64B4389A0267497 /* RNFetchBlob.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFetchBlob.xcodeproj; path = "../node_modules/react-native-fetch-blob/ios/RNFetchBlob.xcodeproj"; sourceTree = "<group>"; };
+		280D238622E347838F6CF2D5 /* RNImageToBase64.xcodeproj */ = {isa = PBXFileReference; name = "RNImageToBase64.xcodeproj"; path = "../node_modules/react-native-image-to-base64/ios/RNImageToBase64.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		3D8C76DAEA9344AA9E85CB09 /* libRNImageToBase64.a */ = {isa = PBXFileReference; name = "libRNImageToBase64.a"; path = "libRNImageToBase64.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -424,6 +426,7 @@
 				86D7D7CF08684886A7B59CC5 /* libRNFetchBlob.a in Frameworks */,
 				7DDDE5CA64C0177635E3C4AE /* libPods-Recco.a in Frameworks */,
 				CA82AD67401F4FF5B581E028 /* libRNGooglePlaces.a in Frameworks */,
+				6864AF0061774834B1328AF0 /* libRNImageToBase64.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -630,6 +633,7 @@
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				F7BDB91CA64B4389A0267497 /* RNFetchBlob.xcodeproj */,
 				486937AE3E7E428EA35AE7A2 /* RNGooglePlaces.xcodeproj */,
+				280D238622E347838F6CF2D5 /* RNImageToBase64.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1400,12 +1404,14 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-fetch-blob/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-google-places/ios",
+					"$(SRCROOT)/../node_modules/react-native-image-to-base64/ios",
 				);
 				INFOPLIST_FILE = ReccoTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
@@ -1427,12 +1433,14 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-fetch-blob/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-google-places/ios",
+					"$(SRCROOT)/../node_modules/react-native-image-to-base64/ios",
 				);
 				INFOPLIST_FILE = ReccoTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
@@ -1456,6 +1464,7 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-fetch-blob/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-google-places/ios",
+					"$(SRCROOT)/../node_modules/react-native-image-to-base64/ios",
 				);
 				INFOPLIST_FILE = Recco/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1479,6 +1488,7 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-fetch-blob/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-google-places/ios",
+					"$(SRCROOT)/../node_modules/react-native-image-to-base64/ios",
 				);
 				INFOPLIST_FILE = Recco/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1508,11 +1518,13 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-fetch-blob/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-google-places/ios",
+					"$(SRCROOT)/../node_modules/react-native-image-to-base64/ios",
 				);
 				INFOPLIST_FILE = "Recco-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
@@ -1544,11 +1556,13 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-fetch-blob/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-google-places/ios",
+					"$(SRCROOT)/../node_modules/react-native-image-to-base64/ios",
 				);
 				INFOPLIST_FILE = "Recco-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
@@ -1581,6 +1595,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.Recco-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1605,6 +1620,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);

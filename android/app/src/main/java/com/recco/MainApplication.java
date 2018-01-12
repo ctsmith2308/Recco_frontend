@@ -3,6 +3,7 @@ package com.recco;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.github.xfumihiro.react_native_image_to_base64.ImageToBase64Package;
 import com.arttitude360.reactnative.rngoogleplaces.RNGooglePlacesPackage;
 import com.airbnb.android.react.maps.MapsPackage;
 import com.RNFetchBlob.RNFetchBlobPackage;
@@ -26,6 +27,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new ImageToBase64Package(),
             new RNGooglePlacesPackage(),
             new MapsPackage(),
             new RNFetchBlobPackage()

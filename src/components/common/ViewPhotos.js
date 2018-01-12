@@ -21,32 +21,14 @@ import { SelectedPhoto } from '../common';
 class ViewPhotos extends Component {
 
 passPhotoToPlaceholder=({ uri })=>{
-  this.props.setImage({ uri })
+this.props.setImage({ uri })
 }
   state = {
     ds: new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2
     }),
-   // uri: ''
   }
 
-  // uploadFile=(uri) => {
-  //   console.log('here is the url', uri)
-  //   console.log('filename', uri.fileName)
-  //   console.log('orign', uri.origURL)
-    // RNFetchBlob.fetch('POST',`https://api.cloudinary.com/v1_1/${cloudinaryName}/image/upload?upload_preset=${preset}`,
-    //   {
-    //     'Content-Type': 'multipart/form-data'
-    //   }, [{
-    //     name: 'file',
-    //     filename: uri.fileName,
-    //     data: RNFetchBlob.wrap(uri.origURL)
-    //   }]
-    // )
-    // .then((res)=>{
-    //   console.log('HERE IS THE RESPONSE', res );
-    // })
-  // }
 
   renderRow(rowData) {
     const { uri } = rowData.node.image;
