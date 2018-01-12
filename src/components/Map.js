@@ -3,7 +3,8 @@ import {
   Platform,
   StyleSheet,
   Text,
-  View
+  View,
+  TextInput
 } from 'react-native';
 import MapView, { Marker, Callout } from 'react-native-maps';
 import { connect } from 'react-redux'
@@ -18,20 +19,36 @@ state = {
   toggleSearch:false
 }
 
+// toggleSubmitter()=>{
+//   this.setState(previousState => {
+//       return { toggleModal: !previousState.toggleModal };
+//     });
+// }
+
 toggleState=()=>{
   this.setState(previousState => {
-      return { showText: !previousState.showText };
+      return { toggleModal: !previousState.toggleModal };
     });
     this.reviewModal()
   }
 
 reviewModal(){
-  // if(this.state.toggleModal){
+  if(this.state.toggleModal){
     console.log('state changed', this.state.toggleModal);
-    // return (
-    //     <Text>Im new text</Text>
-    // )
-  // }
+    return (
+      <CardSection style={{width:320, height:140, flexDirection:'column'}}>
+        <CardSection style={{flexDirection:'row', borderColor:'transparent'}}>
+          <TextInput
+            style={{height:18, width:290, fontSize:18, marginBottom:25, marginTop:15}}
+            placeholder="Leave a review"
+          />
+        </CardSection>
+        <CardSection style={{borderColor:'transparent'}}>
+          <Button onPress={()=> this.toggleState()}>Submit</Button>
+        </CardSection>
+      </CardSection>
+    )
+  }
 }
 
   render() {
@@ -63,9 +80,9 @@ reviewModal(){
             </MapView.Callout>
           </MapView.Marker>
         </MapView>
-        <View>
-        {this.reviewModal()}
-        </View>
+        <Card>
+          {this.reviewModal()}
+        </Card>
        <Toolbar/>
       </View>
     )

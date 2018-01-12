@@ -9,15 +9,14 @@ import { listUsers } from '../actions'
 class ListFoodies extends Component {
 
   componentWillMount=()=>{
-    console.log('i was mounted');
-    console.log('hey', this.props.users);
+     console.log('hey here is the array', this.props.users);
     this.props.listUsers()
   }
   render() {
     return (
       <View style={styles.container}>
         <FlatList
-          data={this.props.users.data}
+          data={this.props.users}
           renderItem={({item}) =>
           <CardSection>
           <View style ={styles.thumbnailContainerStyle}>
@@ -27,6 +26,7 @@ class ListFoodies extends Component {
             <Button onPress={() => console.log('i was clicked')}>Press Me</Button>
           </CardSection>
           }
+          keyExtractor={(item, index) => index}
         />
         <Toolbar/>
       </View>

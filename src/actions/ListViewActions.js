@@ -8,10 +8,11 @@ export const listUsers = () => {
   return(dispatch)=>{
     axios.get(url)
     .then((data)=>{
-      console.log('here is the data from listview', data);
+      let userArray = data.data
+      console.log('here is the data from listview', userArray);
       dispatch({
         type:DUMMY_ACTION,
-        payload:data
+        payload:userArray
       })
     })
   }
