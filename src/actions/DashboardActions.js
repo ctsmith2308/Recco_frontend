@@ -11,8 +11,8 @@ import {
   NO_PREV_LOGIN,
   DUMMY_ACTION
 } from './types'
-// import NativeModules from 'NativeModules';
-let NativeModules =require('NativeModules');
+import NativeModules from 'NativeModules';
+// let NativeModules =require('NativeModules');
 // import NativeModules from 'react-native-image-to-base64'
 import axios from 'axios'
 
@@ -54,36 +54,40 @@ export const accessPhotos = () => {
   }
 }
 
-export const setImage = ({ uri }) =>{
+export const setImage = ({ uri }) => {
+  return(dispatch)=>{
+    NativeModules.RNImageToBase64.getBase64String(uri, (err, base64) => {
 
-  NativeModules.RNImageToBase64.getBase64String(uri, (err, base64) => {
-  // Do something with the base64 string
-  console.log('here is the encoded image', base64);
-  axios.post('')
-})
-  // let url = 'http://localhost:3000/photos'
-  //   const data = new FormData();
-  //   data.append('photo', {
-  //     uri: uri,
-  //     type: 'image/jpeg',
-  //     name: 'testPhotoName'
-  //   });
-  //   console.log('here is the data', data);
-  //   // fetch(url, {
-  //   //   method: 'post',
-  //   //   body: data
-  //   // }).then(res => {
-  //   //   console.log(res)
-  //   // });
-
-  return (dispatch) => {
-    dispatch({
-      type: SET_IMAGE,
-      payload: uri
+      let url = "https://api.imgur.com/3/image"
+      let body = JSON.stringify({
+        image: base64,
+        type: 'base64'
+      })
+      let clientId = 'a0d07d8b8078282'
+      axios.post(url, body , {
+          headers: {
+              'Authorization': `Client-ID ${clientId}`,
+              'content-type': 'application/json'
+          }
+      })
+      .then((res) => {
+        console.log('here is the res', res);
+        dispatch({
+          type:DUMMY_ACTION
+        })
+      })
     })
-    Actions.userDash()
   }
 }
+
+//   return (dispatch) => {
+//     dispatch({
+//       type: SET_IMAGE,
+//       payload: uri
+//     })
+//     Actions.userDash()
+//   }
+// }
 
 export const createUsername = (text) => {
   return {
