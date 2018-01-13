@@ -24,8 +24,9 @@ class GPlacesInput extends Component {
       let { name, address,locationAddress, latitude, longitude, website, placeID } = place
       this.props.setLocatioinDetails({name, address, locationAddress, latitude, longitude, website, placeID})
 
-
-      RNGooglePlaces.lookUpPlaceByID(info)
+      //IMPORT AND PASS THIS FUNCTION TO ANOTHER ACTION CREATOR TO GET DETAILS FOR INDIVIDUAL USERS
+      //REVIEWS  
+      RNGooglePlaces.lookUpPlaceByID(placeID)
         .then((results) => console.log(results,'results'))
         .catch((error) => console.log(error.message));
 

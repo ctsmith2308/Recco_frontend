@@ -22,14 +22,11 @@ export const getUserInfo=({ userID }) => {
     axios.get(url + userID)
     .then((res)=>{
       let { username, bio } = res.data
-      console.log('here is the username', username);
       if(!username){
-        console.log('im dispatching invert login');
         dispatch({
           type: NO_PREV_LOGIN
         })
       } else {
-        console.log('im dispatching set user info');
         dispatch({
           type: SET_USER_INFO,
           payload: { username, bio }
@@ -119,7 +116,6 @@ export const submitUserInfo = ({ token, userID, username, bio }) => {
 }
 
 export const buttonToggler = () => {
-  console.log('im in the buttonToggler action');
   return {
     type: INVERT_PREV_LOGIN,
   }

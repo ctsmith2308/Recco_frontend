@@ -1,8 +1,8 @@
 import { EMAIL_CHANGED, PASSWORD_CHANGED, LOGIN_USER_SUCCESS, LOGIN_USER_FAIL, LOGIN_USER, TO_DASHBOARD ,TO_MAP } from '../actions/types'
 
 const INITIAL_STATE = {
-  email:'chris@chris.com',
-  password:'password',
+  email:'',
+  password:'',
   userID: null,
   loggingIn: false,
   error: '',
@@ -28,7 +28,7 @@ export default (state = INITIAL_STATE, action)=>{
       return {
         ...state,
         ...INITIAL_STATE,
-        userID: action.payload.userId,
+        userID: action.payload.userID,
         token: action.payload.idToken
       }
     case TO_MAP:

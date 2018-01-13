@@ -21,18 +21,19 @@ export const passwordChanged=(text)=>{
 export const loginUser = ({ email, password }) => {
   const url = 'http://localhost:3000/users'
   return (dispatch) => {
-    // dispatch({type: LOGIN_USER});
+    dispatch({type: LOGIN_USER});
 
     firebase.auth().signInWithEmailAndPassword(email, password)
     .then(user => { firebase.auth().currentUser.getIdToken(true)
       .then((idToken) => {
+        console.log('here is the idToken', idToken);
         //wrap this in a new function later
         axios.get(url + "/" + idToken)
         .then((response) => {
-          let userId = response.data.user_id
+          let userID = response.data.user_id
           let idToken = response.data.userToken
           let url = 'http://localhost:3000/dashboard/'
-          loginUserSuccess(dispatch, userId, idToken)
+          loginUserSuccess(dispatch, userID, idToken)
         })
         .catch(function (error) {
         });
@@ -52,9 +53,9 @@ export const loginUser = ({ email, password }) => {
                 token: idToken
               })
               .then((response) => {
-                let userId = response.data.user_id
+                let userID = response.data.user_id
                 let idToken = response.data.userToken
-                loginUserSuccessToDash(dispatch, userId, idToken)
+                loginUserSuccessToDash(dispatch, userID, idToken)
               })
               .catch((error) => {
                 console.log('this is the error' , error);
@@ -70,20 +71,20 @@ export const loginUser = ({ email, password }) => {
   }
 }
 
-const loginUserSuccess = (dispatch, userId, idToken) => {
+const loginUserSuccess = (dispatch, userID, idToken) => {
   dispatch({
     type: LOGIN_USER_SUCCESS,
-    payload: { userId, idToken }
+    payload: { userID, idToken }
   })
   Actions.map()
   // Actions.userDash()
   // Actions.tabBar()
 }
 
-const loginUserSuccessToDash = (dispatch, userId, idToken) => {
+const loginUserSuccessToDash = (dispatch, userID, idToken) => {
   dispatch({
     type: LOGIN_USER_SUCCESS,
-    payload: { userId, idToken }
+    payload: { userID, idToken }
   })
   Actions.userDash()
   // Action.tabBar()

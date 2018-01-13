@@ -19,6 +19,7 @@ export default class App extends Component{
 // second parameter in createStore is an option to use a preloaded state, but is set to an empty {} for now
   render(){
     const store = createStore(reducers, {}, applyMiddleware(ReduxThunk, logger))
+    console.disableYellowBox = true
     return(
       <Provider store={store}>
           <Router/>

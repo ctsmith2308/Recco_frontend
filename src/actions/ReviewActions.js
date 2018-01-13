@@ -10,25 +10,23 @@ export const addTextToReview=(text)=>{
   }
 }
 
-export const postReview = ({
-  userID,
-  userReview,
-  placeID
-}) => {
+export const postReview = ({ userID, userReview, placeID }) => {
   return (dispatch) => {
     let url = 'http://localhost:3000/reviews'
-    console.log('here is the url', url);
     let body = {
+      userID,
       userReview,
       placeID
     }
     axios.post(url, body)
-      .then((res) => {
+      .then(res => {
+        console.log('here it is from the backend', res);
         dispatch({
           type: DUMMY_ACTION
         })
       })
-      .catch((error) => {
+      .catch( error => {
+        console.log('this is an error', error);
         dispatch({
           type: DUMMY_ACTION
         })

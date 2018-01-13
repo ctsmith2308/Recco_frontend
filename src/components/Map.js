@@ -39,14 +39,12 @@ handleReviewText(text){
 
 submitReview=()=>{
   let { userID,userReview, placeID } = this.props
-  console.log('here is the userReview in the helper function', userReview);
-  console.log('here is the placeID', placeID);
   this.props.postReview({userID, userReview, placeID})
 }
 
 reviewModal(){
   if(this.state.toggleModal){
-    console.log('state changed', this.state.toggleModal);
+    // console.log('state changed', this.state.toggleModal);
     return (
       <CardSection style={{width:320, height:140, flexDirection:'column'}}>
         <CardSection style={{flexDirection:'row', borderColor:'transparent'}}>
@@ -146,7 +144,6 @@ const mapStateToProps = ({ auth, locationInfo, reviews}) => {
   const { userID } = auth
   const { name, address, lat, long, website, placeID } = locationInfo
   const { userReview } = reviews
-  console.log('here is the placeID in maptoprops', placeID);
   return { name, address, lat, long, website, placeID, userReview, userID}
 }
 

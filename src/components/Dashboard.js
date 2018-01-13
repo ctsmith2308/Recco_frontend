@@ -87,7 +87,7 @@ getPhotosFromGallery=()=>{
               <TouchableOpacity onPress={()=>{this.getPhotosFromGallery()}}>
                 <Image
                   style={styles.thumbnailStyle}
-s                />
+                />
               </TouchableOpacity>
             </CardSection>
             <CardSection>
