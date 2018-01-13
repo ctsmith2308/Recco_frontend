@@ -16,10 +16,10 @@ import NativeModules from 'NativeModules';
 // import NativeModules from 'react-native-image-to-base64'
 import axios from 'axios'
 
-export const getUserInfo=({ id }) => {
+export const getUserInfo=({ userID }) => {
   return (dispatch) => {
     let url = 'http://localhost:3000/dashboard/'
-    axios.get(url + id)
+    axios.get(url + userID)
     .then((res)=>{
       let { username, bio } = res.data
       console.log('here is the username', username);
@@ -55,6 +55,7 @@ export const accessPhotos = () => {
 }
 
 export const setImage = ({ uri }) => {
+  //YPU STILL NEED TO SEND THE RESPONSE ID TO YOUR BACKEND!!!!
   return(dispatch)=>{
     NativeModules.RNImageToBase64.getBase64String(uri, (err, base64) => {
 
@@ -71,6 +72,7 @@ export const setImage = ({ uri }) => {
           }
       })
       .then((res) => {
+        //SEND RESPONSE TO YOUR BACKEND HERE!!!
         console.log('here is the res', res);
         dispatch({
           type:DUMMY_ACTION
@@ -103,10 +105,10 @@ export const createBio = (text) => {
   }
 }
 
-export const submitUserInfo = ({ token, id, username, bio }) => {
+export const submitUserInfo = ({ token, userID, username, bio }) => {
   return (dispatch) => {
     let url = 'http://localhost:3000/users/username'
-    let reqBody = { token, id, username, bio }
+    let reqBody = { token, userID, username, bio }
     axios.post(url, reqBody)
       .then((res) => {
         dispatch({

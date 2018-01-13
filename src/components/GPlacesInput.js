@@ -21,9 +21,14 @@ class GPlacesInput extends Component {
     console.log('i was clicked');
     RNGooglePlaces.openAutocompleteModal()
     .then((place) => {
-      console.log(place);
       let { name, address,locationAddress, latitude, longitude, website, placeID } = place
       this.props.setLocatioinDetails({name, address, locationAddress, latitude, longitude, website, placeID})
+
+
+      RNGooglePlaces.lookUpPlaceByID(info)
+        .then((results) => console.log(results,'results'))
+        .catch((error) => console.log(error.message));
+
     })
     .catch(error => console.log(error.message));
   }

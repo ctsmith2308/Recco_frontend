@@ -10,7 +10,7 @@ class ListFoodies extends Component {
 
   componentWillMount=()=>{
      console.log('hey here is the array', this.props.users);
-    this.props.listUsers()
+     this.props.listUsers()
   }
   render() {
     return (

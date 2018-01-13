@@ -15,7 +15,7 @@ import { Card, CardSection, Input, Button, Toolbar } from './common'
 
 import GPlacesInput from './GPlacesInput'
 
-import { setLocatioinDetails, postReview } from '../actions'
+import { setLocatioinDetails, addTextToReview, postReview } from '../actions'
 
 /// add AirMaps into xcode project refer to this link https://github.com/react-community/react-native-maps/blob/1e71a21f39e7b88554852951f773c731c94680c9/docs/installation.md#ios
 
@@ -24,7 +24,6 @@ class Map extends Component {
 
 state = {
   toggleModal:false,
-  toggleSearch:false
 }
 
 toggleState=()=>{
@@ -35,7 +34,14 @@ toggleState=()=>{
   }
 
 handleReviewText(text){
-  this.props.postReview(text)
+  this.props.addTextToReview(text)
+}
+
+submitReview=()=>{
+  let { userID,userReview, placeID } = this.props
+  console.log('here is the userReview in the helper function', userReview);
+  console.log('here is the placeID', placeID);
+  this.props.postReview({userID, userReview, placeID})
 }
 
 reviewModal(){
@@ -51,7 +57,7 @@ reviewModal(){
           />
         </CardSection>
         <CardSection style={{borderColor:'transparent'}}>
-          <Button onPress={()=> this.toggleState()}>Submit</Button>
+          <Button onPress={()=> this.submitReview()}>Submit</Button>
           <Button onPress={()=> this.toggleState()}>Close</Button>
         </CardSection>
       </CardSection>
@@ -136,10 +142,12 @@ const styles = StyleSheet.create({
 });
 
 
-const mapStateToProps = ({ locationInfo, reviews }) => {
-  const { name, address, lat, long, website } = locationInfo
+const mapStateToProps = ({ auth, locationInfo, reviews}) => {
+  const { userID } = auth
+  const { name, address, lat, long, website, placeID } = locationInfo
   const { userReview } = reviews
-  return { name, address, lat, long, website, userReview }
+  console.log('here is the placeID in maptoprops', placeID);
+  return { name, address, lat, long, website, placeID, userReview, userID}
 }
 
-export default connect(mapStateToProps, { setLocatioinDetails, postReview })(Map)
+export default connect(mapStateToProps, { setLocatioinDetails, addTextToReview, postReview })(Map)

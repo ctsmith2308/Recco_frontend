@@ -3,7 +3,7 @@ import { EMAIL_CHANGED, PASSWORD_CHANGED, LOGIN_USER_SUCCESS, LOGIN_USER_FAIL, L
 const INITIAL_STATE = {
   email:'chris@chris.com',
   password:'password',
-  id: null,
+  userID: null,
   loggingIn: false,
   error: '',
   token: null,
@@ -28,7 +28,7 @@ export default (state = INITIAL_STATE, action)=>{
       return {
         ...state,
         ...INITIAL_STATE,
-        id: action.payload.userId,
+        userID: action.payload.userId,
         token: action.payload.idToken
       }
     case TO_MAP:

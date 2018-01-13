@@ -19,7 +19,7 @@ export const NO_PREV_LOGIN = 'no_prev_login'
 export const SET_LOCATION_DETAILS = 'set_location_details'
 
 //
-export const SEND_REVIEW = 'send_review'
+export const ADD_REVIEW_TEXT = 'add_review_text'
 
 // Placeholder ACTIONS
 export const DUMMY_ACTION = 'dummy_action'

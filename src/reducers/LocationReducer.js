@@ -6,7 +6,7 @@ const INITIAL_STATE = {
   lat:null,
   long:null,
   website:'no website',
-  locationID: null
+  placeID: null
 }
 
 export default (state = INITIAL_STATE, action)=>{
@@ -20,7 +20,7 @@ export default (state = INITIAL_STATE, action)=>{
         lat:action.payload.latitude,
         long:action.payload.longitude,
         website:action.payload.website,
-        locationID: action.payload.placeID
+        placeID: action.payload.placeID
      }
     default:
       return state

@@ -22,9 +22,9 @@ import {
 
 class Dashboard extends Component{
 
-componentWillMount(){
-  let { id } = this.props
-  this.props.getUserInfo({ id })
+componentDidMount(){
+  let { userID } = this.props
+  this.props.getUserInfo({ userID })
 }
 
 handleUsername(text){
@@ -36,8 +36,8 @@ handleBio(text){
 }
 
 handleUserInfo=()=>{
-  let { token, id, username, bio } = this.props
-  this.props.submitUserInfo({ token, id, username, bio })
+  let { token, userID, username, bio } = this.props
+  this.props.submitUserInfo({ token, userID, username, bio })
 }
 
 toggleButton=()=>{
@@ -87,8 +87,7 @@ getPhotosFromGallery=()=>{
               <TouchableOpacity onPress={()=>{this.getPhotosFromGallery()}}>
                 <Image
                   style={styles.thumbnailStyle}
-                  source={{ uri: this.props.imageURI }}
-                />
+s                />
               </TouchableOpacity>
             </CardSection>
             <CardSection>
@@ -153,8 +152,8 @@ const styles = {
 
 const mapStateToProps = ({ auth, dashboard }) => {
   let { imageURI, username, bio, placeholderUsername, placeholderBio, previousLogIn, editable, photoArray, showPhotoGallery, updating } = dashboard
-  let { token, id } = auth
-  return { token, id,imageURI, username, bio, placeholderUsername, placeholderBio, previousLogIn, editable, photoArray, showPhotoGallery, updating }
+  let { token, userID } = auth
+  return { token, userID,imageURI, username, bio, placeholderUsername, placeholderBio, previousLogIn, editable, photoArray, showPhotoGallery, updating }
 }
 
 export default connect(mapStateToProps, { createUsername, createBio, submitUserInfo, getUserInfo, changeEditable, buttonToggler, accessPhotos })(Dashboard)
