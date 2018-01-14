@@ -42,9 +42,10 @@ export const grabFoodies = ({ userID }) => {
     axios.get(url)
     .then((data)=>{
       console.log('here is the data from backend', data);
+      let foodieList = data.data
       dispatch({
         type: GRAB_FOODIES,
-        payload: 'here is the payload'
+        payload: foodieList
       })
     })
   }
