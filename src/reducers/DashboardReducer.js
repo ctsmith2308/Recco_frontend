@@ -9,7 +9,7 @@ import {
   ACCESS_PHOTOS,
   DUMMY_ACTION
  } from '../actions/types'
- 
+
 const INITIAL_STATE = {
   imageURI: 'http://localhost:3000/images/avatar.png',
   username: '',
@@ -36,7 +36,8 @@ export default (state = INITIAL_STATE, action) => {
     case SET_USER_INFO:
       return { ...state, bio:action.payload.bio, username: action.payload.username,
         placeholderUsername: action.payload.username, placeholderBio: action.payload.bio,
-        previousLogIn: !state.previousLogIn}
+        previousLogIn: !state.previousLogIn
+      }
     case INVERT_PREV_LOGIN:
       return { ...state, previousLogIn: !state.previousLogIn, editable: !state.editable }
     case NO_PREV_LOGIN:

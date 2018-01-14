@@ -40,6 +40,7 @@ handleReviewText(text){
 submitReview=()=>{
   let { userID,userReview, placeID } = this.props
   this.props.postReview({userID, userReview, placeID})
+  this.toggleState()
 }
 
 reviewModal(){

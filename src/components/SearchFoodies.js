@@ -1,42 +1,44 @@
 import React, { Component } from 'react'
-import { Container, Header, Content, Tab, Tabs } from 'native-base';
+// import { Container, Header, Content, Tab, Tabs, Icon } from 'native-base';
+import { Container, Header, Content, Footer, FooterTab, Icon} from 'native-base';
+
 import { View, Text, FlatList, Image } from 'react-native'
 import { connect } from 'react-redux'
-import { Card, CardSection, Input, Button, Toolbar } from './common'
+import { Card, CardSection, Input, Button, Toolbar, RenderUserRow } from './common'
 
 import { listUsers } from '../actions'
 
 class ListFoodies extends Component {
 
-  componentWillMount=()=>{
-     console.log('hey here is the array', this.props.users);
+  componentDidMount=()=>{
      this.props.listUsers()
   }
+
+
+
   render() {
     return (
       <View style={styles.container}>
         <FlatList
           data={this.props.users}
-          renderItem={({item}) =>
-          <CardSection>
-          <View style ={styles.thumbnailContainerStyle}>
-            <Image source={require('../../avatar.png')}  style={styles.thumbnailStyle}/>
-          </View>
-            <Text style={styles.headerTextStyle}>{item.username}</Text>
-            <Button onPress={() => console.log('i was clicked')}>Follow</Button>
-          </CardSection>
+          renderItem={ ({item}) =>
+            <RenderUserRow
+              user_id={item.user_id}
+              username={item.username}
+            />
           }
           keyExtractor={(item, index) => index}
         />
         <Toolbar/>
       </View>
-    );
+    )
   }
 }
 
 const styles ={
   headerContentStyle: {
-    flexDirection:'column',
+    flexDirection:'row',
+    flex:1,
     justifyContent:'space-around'
   },
   headerTextStyle:{
@@ -54,6 +56,7 @@ const styles ={
     marginBottom:3
   },
   thumbnailContainerStyle:{
+    marginTop:3,
     justifyContent:'center',
     alignItems:'center',
   },
@@ -64,7 +67,6 @@ const styles ={
   },
   container: {
    flex: 1,
-   paddingTop: 22
   },
   item: {
     padding: 10,
@@ -74,21 +76,13 @@ const styles ={
 }
 
 const mapStateToProps = ({ getUserlist }) => {
-  console.log('im state in mapStateToProps ', getUserlist);
-  // let {
-  //   imageURI, username, bio,
-  //   placeholderUsername, placeholderBio,
-  //   previousLogIn, editable, photoArray,
-  //   showPhotoGallery, updating
-  //   } = dashboard
-  //
-  // let { token, id } = auth
-  //
-  let { users } = getUserlist
-  console.log('here is the list after youve defined it', users);
 
-  // return { token, id,imageURI, username, bio, placeholderUsername, placeholderBio, previousLogIn, editable, photoArray, showPhotoGallery, updating }
+  let { users } = getUserlist
+  console.log('here is the userlist', users);
+
   return { users }
 }
 
 export default connect(mapStateToProps, { listUsers })(ListFoodies)
+
+///////////////////////////////////////////////////////////////////////////////
