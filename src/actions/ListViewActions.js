@@ -38,10 +38,14 @@ export const addFoodie = ( friend_id, user_id ) => {
 
 export const grabFoodies = ({ userID }) => {
   return (dispatch)=>{
-    console.log(userID);
-    dispatch({
-      type: GRAB_FOODIES,
-      payload: 'here is the payload'
+    let url = `http://localhost:3000/friends/${userID}`
+    axios.get(url)
+    .then((data)=>{
+      console.log('here is the data from backend', data);
+      dispatch({
+        type: GRAB_FOODIES,
+        payload: 'here is the payload'
+      })
     })
   }
 }
