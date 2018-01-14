@@ -6,11 +6,10 @@ import { Card, CardSection, Input, Button, Toolbar } from '../common'
 
 class RenderUserRow extends Component {
 
-  helperFunction = () =>{
+  helperFunction = () => {
     console.log('here is the username', this.props.user_id);
-    // this.props.actionCreator({ id })
+    this.props.addFoodie(this.props.user_id)
   }
-
 
   render(){
     return(
@@ -28,7 +27,6 @@ class RenderUserRow extends Component {
       </CardSection>
     )
   }
-
 }
 
 

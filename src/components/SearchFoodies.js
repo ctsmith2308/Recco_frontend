@@ -1,20 +1,22 @@
 import React, { Component } from 'react'
-// import { Container, Header, Content, Tab, Tabs, Icon } from 'native-base';
 import { Container, Header, Content, Footer, FooterTab, Icon} from 'native-base';
 
 import { View, Text, FlatList, Image } from 'react-native'
 import { connect } from 'react-redux'
 import { Card, CardSection, Input, Button, Toolbar, RenderUserRow } from './common'
 
-import { listUsers } from '../actions'
+import { listUsers, addFoodie } from '../actions'
 
-class ListFoodies extends Component {
 
-  componentDidMount=()=>{
+class ListFoodies extends React.PureComponent {
+
+  componentWillMount=()=>{
      this.props.listUsers()
   }
 
-
+  helperFunction = (user_id) => {
+    this.props.addFoodie(user_id)
+  }
 
   render() {
     return (
@@ -22,10 +24,20 @@ class ListFoodies extends Component {
         <FlatList
           data={this.props.users}
           renderItem={ ({item}) =>
-            <RenderUserRow
-              user_id={item.user_id}
-              username={item.username}
-            />
+            <CardSection style={{flexDirection:'row', flex:1}}>
+              <View style ={styles.thumbnailContainerStyle}>
+                <Image style={styles.thumbnailStyle}/>
+              </View>
+              <View style={{width:200}}>
+                <Text style={styles.headerTextStyle}>{item.username}</Text>
+              </View>
+              <View style={{width:65}}>
+                <Button
+                 onPress={()=>this.helperFunction(item.user_id)}>
+                  <Icon name="ios-person-add-outline"></Icon>
+                 </Button>
+              </View>
+            </CardSection>
           }
           keyExtractor={(item, index) => index}
         />
@@ -83,6 +95,6 @@ const mapStateToProps = ({ getUserlist }) => {
   return { users }
 }
 
-export default connect(mapStateToProps, { listUsers })(ListFoodies)
+export default connect(mapStateToProps, { listUsers, addFoodie })(ListFoodies)
 
 ///////////////////////////////////////////////////////////////////////////////

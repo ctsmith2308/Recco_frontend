@@ -23,3 +23,6 @@ export const ADD_REVIEW_TEXT = 'add_review_text'
 
 // Placeholder ACTIONS
 export const DUMMY_ACTION = 'dummy_action'
+
+// Foodie ACTIONS
+export const SET_FOODIE_ID = 'set_foodie_id'
