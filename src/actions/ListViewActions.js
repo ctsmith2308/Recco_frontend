@@ -11,7 +11,7 @@ export const listUsers = () => {
       let userArray = data.data
       console.log('here is the data from listview', userArray);
       dispatch({
-        type:DUMMY_ACTION,
+        type: DUMMY_ACTION,
         payload:userArray
       })
     })
@@ -31,9 +31,19 @@ export const addFoodie = ( friend_id, user_id ) => {
     .then((res)=>{
       console.log(res);
       dispatch({
-        type:SET_FOODIE_ID,
+        type: SET_FOODIE_ID,
         payload: friend_id
       })
+    })
+  }
+}
+
+export const grabFoodies = ({ currentUserID }) => {
+  return (dispatch)=>{
+    console.log(currentUserID);
+    dispatch({
+      type: GRAB_FOODIES,
+      payload: 'here is the payload'
     })
   }
 }

@@ -79,7 +79,8 @@ const loginUserSuccess = (dispatch, userID, idToken) => {
   // Actions.map()
   // Actions.userDash()
   // Actions.tabBar()
-  Actions.foodieSearch()
+  // Actions.foodieSearch()
+  Actions.myFoodies()
 }
 
 const loginUserSuccessToDash = (dispatch, userID, idToken) => {

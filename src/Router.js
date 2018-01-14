@@ -4,7 +4,7 @@ import LoginForm from './components/LoginForm'
 import Dashboard from './components/Dashboard'
 import Map from './components/Map'
 import SearchFoodies from './components/SearchFoodies'
-import Favorites from './components/Favorites'
+import MyFoodies from './components/MyFoodies'
 
 const RouterComponent=()=>{
   return (
@@ -38,11 +38,11 @@ const RouterComponent=()=>{
           title="Search Foodies"
         />
       </Scene>
-      <Scene key="myFavorites">
+      <Scene key="myFoodies">
         <Scene
           key="favorites"
-          component={ Favorites }
-          title= "My Favorites"
+          component={ MyFoodies }
+          title= "My Foodies"
         />
       </Scene>
     </Router>

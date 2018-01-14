@@ -10,7 +10,7 @@ import { Actions } from 'react-native-router-flux'
           <Icon name="ios-people" />
           <Text>Foodies</Text>
         </Button>
-        <Button vertical onPress={() => Actions.myFavorites()}>
+        <Button vertical onPress={() => Actions.myFoodies()}>
           <Icon name="md-star-outline" />
           <Text>Favorites</Text>
         </Button>

@@ -4,11 +4,16 @@ import { View, Text, FlatList, Image } from 'react-native'
 import { Card, CardSection, Input, Button, Toolbar } from './common'
 
 
-export default class Favorites extends Component{
+export default class MyFoodies extends Component{
+
+  componentWillMount=()=>{
+    
+    // console.log('i was mounted');
+  }
   render(){
     return(
       <View>
-        <Text style={{marginBottom:531}}>Im the favorites page</Text>
+        <Text style={{marginBottom:531}}>Im the foodies page</Text>
         <Toolbar/>
       </View>
     )

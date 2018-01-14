@@ -26,3 +26,4 @@ export const DUMMY_ACTION = 'dummy_action'
 
 // Foodie ACTIONS
 export const SET_FOODIE_ID = 'set_foodie_id'
+export const GRAB_FOODIES = 'grab_foodies'
