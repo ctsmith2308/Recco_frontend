@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Container, Header, Content, Tab, Tabs, Icon } from 'native-base';
-import { View, Text, FlatList, Image } from 'react-native'
+import { View, Text, FlatList, Image, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import { Card, CardSection, Input, Button, Toolbar } from './common'
 
@@ -20,10 +20,12 @@ class MyFoodies extends Component{
   }
   render() {
     return (
+
       <View style={styles.container}>
         <FlatList
           data={this.props.myFoodies}
           renderItem={ ({item}) =>
+          <TouchableOpacity>
             <CardSection style={{flexDirection:'row', flex:1}}>
               <View style ={styles.thumbnailContainerStyle}>
                 <Image style={styles.thumbnailStyle}/>
@@ -38,9 +40,11 @@ class MyFoodies extends Component{
                  </Button>
               </View>
             </CardSection>
+            </TouchableOpacity>
           }
           keyExtractor={(item, index) => index}
         />
+
         <Toolbar/>
       </View>
     )
