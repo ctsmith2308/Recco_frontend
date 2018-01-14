@@ -71,7 +71,7 @@ reviewModal(){
         <MapView
           style={ styles.map }
           region={{
-          latitude: Number(this.props.lat) || 40.01330,
+          latitude: Number(this.props.lat) || 41.01330,
           longitude: Number(this.props.long) || -105.28000,
           latitudeDelta: 0.0122,
           longitudeDelta: 0.0221,
