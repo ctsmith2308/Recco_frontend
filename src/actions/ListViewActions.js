@@ -1,7 +1,7 @@
 import { Actions } from 'react-native-router-flux'
 import  axios  from 'axios'
 
-import { DUMMY_ACTION, SET_FOODIE_ID } from './types'
+import { GRAB_FOODIES, DUMMY_ACTION, SET_FOODIE_ID } from './types'
 
 export const listUsers = () => {
   let url = 'http://localhost:3000/dashboard'
@@ -20,8 +20,6 @@ export const listUsers = () => {
 
 export const addFoodie = ( friend_id, user_id ) => {
   return(dispatch)=>{
-    // console.log('friend id passed to action', friend_id);
-    // console.log('user id passed to action', user_id);
     let url = 'http://localhost:3000/friends'
     let body = {
       userID: user_id,
@@ -38,9 +36,9 @@ export const addFoodie = ( friend_id, user_id ) => {
   }
 }
 
-export const grabFoodies = ({ currentUserID }) => {
+export const grabFoodies = ({ userID }) => {
   return (dispatch)=>{
-    console.log(currentUserID);
+    console.log(userID);
     dispatch({
       type: GRAB_FOODIES,
       payload: 'here is the payload'
