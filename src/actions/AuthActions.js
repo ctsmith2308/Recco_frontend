@@ -22,7 +22,6 @@ export const loginUser = ({ email, password }) => {
   const url = 'http://localhost:3000/users'
   return (dispatch) => {
     dispatch({type: LOGIN_USER});
-
     firebase.auth().signInWithEmailAndPassword(email, password)
     .then(user => { firebase.auth().currentUser.getIdToken(true)
       .then((idToken) => {
@@ -45,6 +44,7 @@ export const loginUser = ({ email, password }) => {
     .catch((error) => {
       firebase.auth().createUserWithEmailAndPassword(email, password)
         .then(user => {
+          console.log('email', email);
           firebase.auth().currentUser.getIdToken(true)
             .then((idToken) => {
               //put this in a new function later
