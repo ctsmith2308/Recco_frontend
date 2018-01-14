@@ -18,12 +18,22 @@ export const listUsers = () => {
   }
 }
 
-export const addFoodie = ( user_id ) => {
+export const addFoodie = ( friend_id, user_id ) => {
   return(dispatch)=>{
-  console.log('here is the id passed from sowhere', user_id)
-    dispatch({
-      type:SET_FOODIE_ID,
-      payload: user_id
+    // console.log('friend id passed to action', friend_id);
+    // console.log('user id passed to action', user_id);
+    let url = 'http://localhost:3000/friends'
+    let body = {
+      userID: user_id,
+      friendID: friend_id
+    }
+    axios.post(url, body)
+    .then((res)=>{
+      console.log(res);
+      dispatch({
+        type:SET_FOODIE_ID,
+        payload: friend_id
+      })
     })
   }
 }

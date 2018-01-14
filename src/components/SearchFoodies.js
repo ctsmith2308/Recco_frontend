@@ -14,8 +14,8 @@ class ListFoodies extends React.PureComponent {
      this.props.listUsers()
   }
 
-  helperFunction = (user_id) => {
-    this.props.addFoodie(user_id)
+  helperFunction = (friend_id ) => {
+    this.props.addFoodie(friend_id, this.props.userID)
   }
 
   render() {
@@ -87,12 +87,13 @@ const styles ={
   }
 }
 
-const mapStateToProps = ({ getUserlist }) => {
-
+const mapStateToProps = ({ getUserlist, auth }) => {
+  let { userID } = auth
   let { users } = getUserlist
-  console.log('here is the userlist', users);
+  // console.log('here is the userlist', users);
+  // console.log('current userID', userID);
 
-  return { users }
+  return { users, userID }
 }
 
 export default connect(mapStateToProps, { listUsers, addFoodie })(ListFoodies)
