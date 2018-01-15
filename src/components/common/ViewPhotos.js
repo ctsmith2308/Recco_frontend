@@ -15,13 +15,11 @@ import { connect } from 'react-redux'
 import { setImage } from '../../actions'
 import { SelectedPhoto } from '../common';
 
-// let cloudinaryName = "duefuwxt9";
-// let preset = 'jkjsofcc'
-
 class ViewPhotos extends Component {
 
 passPhotoToPlaceholder=({ uri })=>{
-this.props.setImage({ uri })
+let userID = this.props.userID
+this.props.setImage({ userID, uri })
 }
   state = {
     ds: new ListView.DataSource({
@@ -74,8 +72,9 @@ const styles = StyleSheet.create({
     borderColor: '#979797'
   }
 })
-const mapStateToProps = ({ dashboard }) => {
-  return {dashboard}
+const mapStateToProps = ({ dashboard, auth }) => {
+  let { userID } = auth
+  return { dashboard, userID }
 }
 
 export default connect(mapStateToProps, { setImage })(ViewPhotos);

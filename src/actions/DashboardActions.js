@@ -51,9 +51,12 @@ export const accessPhotos = () => {
   }
 }
 
-export const setImage = ({ uri }) => {
-  //YPU STILL NEED TO SEND THE RESPONSE ID TO YOUR BACKEND!!!!
+export const setImage = ({ userID, uri }) => {
   return(dispatch)=>{
+    let link;
+    let postBody;
+    let myAPIUrl = 'http://localhost/3000/photos'
+
     NativeModules.RNImageToBase64.getBase64String(uri, (err, base64) => {
 
       let url = "https://api.imgur.com/3/image"
@@ -69,24 +72,25 @@ export const setImage = ({ uri }) => {
           }
       })
       .then((res) => {
-        //SEND RESPONSE TO YOUR BACKEND HERE!!!
-        console.log('here is the res', res);
-        dispatch({
-          type:DUMMY_ACTION
+        link = res.data.data.link
+        postBody = {
+          userID,
+          url: link
+        }
+      })
+      .then(()=>{
+        axios.post('http://localhost:3000/photos', postBody )
+        .then((response)=>{
+          console.log('here is the response', response );
+            dispatch({
+            type:DUMMY_ACTION
+          })
         })
       })
     })
   }
 }
 
-//   return (dispatch) => {
-//     dispatch({
-//       type: SET_IMAGE,
-//       payload: uri
-//     })
-//     Actions.userDash()
-//   }
-// }
 
 export const createUsername = (text) => {
   return {

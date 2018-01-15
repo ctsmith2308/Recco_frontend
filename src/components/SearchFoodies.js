@@ -27,7 +27,9 @@ class ListFoodies extends React.PureComponent {
           renderItem={ ({item}) =>
             <CardSection style={styles.headerContentStyle}>
               <View style ={styles.thumbnailContainerStyle}>
-                <Image style={styles.thumbnailStyle}/>
+                <Image
+                  style={styles.thumbnailStyle}
+                  source={{uri:'https://i.imgur.com/bYkgFbm.jpg'}}/>
               </View>
               <View style={{width:200}}>
                 <Text style={styles.headerTextStyle}>{item.username}</Text>
