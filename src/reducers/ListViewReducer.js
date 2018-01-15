@@ -2,14 +2,14 @@ import {
   GRAB_FOODIES,
   DUMMY_ACTION,
   SET_FOODIE_ID,
-  SET_CURRENT_FOODIE_REVIEW
+  FOODIES_REVIEWS_LIST,
  } from '../actions/types'
 
 const INITIAL_STATE = {
   users:[],
   currentFoodieId: null,
   myFoodies:null,
-  currentFoodiesReviews:null
+  foodieReviewList:null
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -20,8 +20,8 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, currentFoodieId:action.payload }
     case GRAB_FOODIES:
       return { ...state, myFoodies: action.payload }
-    case SET_CURRENT_FOODIE_REVIEW:
-      return { ...state, currentFoodiesReviews: action.payload }
+    case FOODIES_REVIEWS_LIST:
+      return { ...state, foodieReviewList: action.payload }
     default:
       return state
   }

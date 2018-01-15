@@ -14,21 +14,21 @@ import MapView, { Marker, Callout, PROVIDER_GOOGLE } from 'react-native-maps';
 import RNGooglePlaces from 'react-native-google-places';
 import { connect } from 'react-redux'
 
-import { setLocatioinDetails } from '../actions'
+import { setLocationDetails } from '../actions'
 
 class GPlacesInput extends Component {
   openSearchModal() {
     console.log('i was clicked');
     RNGooglePlaces.openAutocompleteModal()
     .then((place) => {
-      let { name, address,locationAddress, latitude, longitude, website, placeID } = place
-      this.props.setLocatioinDetails({name, address, locationAddress, latitude, longitude, website, placeID})
+      let { name, address, locationAddress, latitude, longitude, website, placeID } = place
+      this.props.setLocationDetails({name, address, locationAddress, latitude, longitude, website, placeID})
 
       //IMPORT AND PASS THIS FUNCTION TO ANOTHER ACTION CREATOR TO GET DETAILS FOR INDIVIDUAL USERS
-      //REVIEWS  
-      RNGooglePlaces.lookUpPlaceByID(placeID)
-        .then((results) => console.log(results,'results'))
-        .catch((error) => console.log(error.message));
+      //REVIEWS
+      // RNGooglePlaces.lookUpPlaceByID(placeID)
+      //   .then((results) => console.log(results,'results'))
+      //   .catch((error) => console.log(error.message));
 
     })
     .catch(error => console.log(error.message));
@@ -80,4 +80,4 @@ const mapStateToProps=({ locationInfo })=>{
   return { name, address, latitude, longitude, website, placeID }
 }
 
-export default connect( mapStateToProps, {setLocatioinDetails})(GPlacesInput)
+export default connect( mapStateToProps, {setLocationDetails})(GPlacesInput)
