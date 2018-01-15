@@ -117,7 +117,7 @@ getPhotosFromGallery=()=>{
     }
   }
 }
-// <Toolbar/>
+
 const styles = {
   thumbnailContainerStyle:{
     justifyContent:'center',

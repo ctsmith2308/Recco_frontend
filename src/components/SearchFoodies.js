@@ -29,7 +29,7 @@ class ListFoodies extends React.PureComponent {
               <View style ={styles.thumbnailContainerStyle}>
                 <Image
                   style={styles.thumbnailStyle}
-                  source={{uri:'https://i.imgur.com/bYkgFbm.jpg'}}/>
+                  source={{uri:item.image_url}}/>
               </View>
               <View style={{width:200}}>
                 <Text style={styles.headerTextStyle}>{item.username}</Text>

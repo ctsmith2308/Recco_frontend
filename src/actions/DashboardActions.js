@@ -81,7 +81,7 @@ export const setImage = ({ userID, uri }) => {
       .then(()=>{
         axios.post('http://localhost:3000/photos', postBody )
         .then((response)=>{
-          console.log('here is the response', response );
+          // console.log('here is the response', response );
             dispatch({
             type:DUMMY_ACTION
           })

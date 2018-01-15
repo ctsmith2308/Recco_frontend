@@ -18,7 +18,7 @@ const INITIAL_STATE = {
   placeholderBio: '',
   previousLogIn: false,
   editable: false,
-  photoArray: [],
+  photoArray:null,
   showPhotoGallery: false,
 }
 
@@ -41,9 +41,9 @@ export default (state = INITIAL_STATE, action) => {
     case INVERT_PREV_LOGIN:
       return { ...state, previousLogIn: !state.previousLogIn, editable: !state.editable }
     case NO_PREV_LOGIN:
-      return { ...state , editable: true}
+      return { ...state , editable: true }
     case DUMMY_ACTION:
-      return { ...state }
+      return { ...state, showPhotoGallery:!state.showPhotoGallery }
     default:
       return state
   }
