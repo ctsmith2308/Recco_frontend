@@ -15,7 +15,6 @@ class MyFoodies extends Component{
 
   foodieReviewListHelperFn=(id)=>{
     this.props.grabFoodiesReviews(id)
-    // this.props.setSelectedReviewsOnMap()
   }
 
   removeFoodie = (friend_id ) => {

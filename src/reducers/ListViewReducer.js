@@ -1,7 +1,7 @@
 import {
   GRAB_FOODIES,
   LIST_USERS,
-  SET_FOODIE_ID,
+  ADD_FOODIE_TO_STATE,
   REVIEWS_LIST,
  } from '../actions/types'
 
@@ -17,8 +17,8 @@ export default (state = INITIAL_STATE, action) => {
   switch(action.type){
     case LIST_USERS:
       return { ...state, users:action.payload }
-    case SET_FOODIE_ID:
-      return { ...state, currentFoodieId:action.payload }
+    case ADD_FOODIE_TO_STATE:
+      return { ...state, myFoodies: [...state.myFoodies, action.payload ] }
     case GRAB_FOODIES:
       return { ...state, myFoodies: action.payload }
     case REVIEWS_LIST:

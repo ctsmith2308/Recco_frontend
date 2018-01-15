@@ -89,8 +89,7 @@ const loginUserSuccessToDash = (dispatch, userID, idToken) => {
     type: LOGIN_USER_SUCCESS,
     payload: { userID, idToken }
   })
-  Actions.userDash()
-  // Action.tabBar()
+Actions.navigator()  // Action.tabBar()
 
 }
 

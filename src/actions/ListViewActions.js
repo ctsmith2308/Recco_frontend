@@ -1,13 +1,14 @@
 import { Actions } from 'react-native-router-flux'
 import  axios  from 'axios'
 
-import { GRAB_FOODIES, LIST_USERS, SET_FOODIE_ID, REVIEWS_LIST } from './types'
+import { GRAB_FOODIES, LIST_USERS, ADD_FOODIE_TO_STATE, REVIEWS_LIST } from './types'
 
 export const listUsers = () => {
   let url = 'http://localhost:3000/dashboard'
   return(dispatch)=>{
     axios.get(url)
     .then((data)=>{
+      console.log('here is the data', data);
       let userArray = data.data
       dispatch({
         type: LIST_USERS,
@@ -17,18 +18,22 @@ export const listUsers = () => {
   }
 }
 
-export const addFoodie = ( friend_id, user_id ) => {
+export const addFoodie = ( username, bio, friend_id, user_id ) => {
   return(dispatch)=>{
+    // console.log('im the bio in the actions', bio);
+    //need to pass item.username, item.bio to set state
     let url = 'http://localhost:3000/friends'
     let body = {
       userID: user_id,
       friendID: friend_id
     }
+    let add = { user_id: friend_id, bio, username }
+    console.log('i will be added to state', add);
     axios.post(url, body)
     .then((res)=>{
       dispatch({
-        type: SET_FOODIE_ID,
-        payload: friend_id
+        type: ADD_FOODIE_TO_STATE,
+        payload: add
       })
     })
   }
@@ -59,7 +64,7 @@ export const grabFoodiesReviews = (id) =>{
         type: REVIEWS_LIST,
         payload: reviewsArr
       })
-      Actions.reviewsList() // send user to foodies list of reviews
+      Actions.dashboard()
     })
   }
 }

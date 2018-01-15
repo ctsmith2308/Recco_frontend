@@ -10,7 +10,7 @@ import TabNavigator from './components/TabNavigator'
 
 const RouterComponent=()=>{
   return (
-    <Router sceneStyle = {{ backgroundColor:'#8DD9D8',paddingTop: 65 }}>
+    <Router sceneStyle = {{ backgroundColor:'#8DD9D8',paddingTop:0 }}>
       <Scene key="auth">
         <Scene key="login"
           hideNavBar
@@ -47,7 +47,7 @@ const RouterComponent=()=>{
           title= "My Foodies"
         />
       </Scene>
-      <Scene key="reviewsList">
+      <Scene key="listReview">
         <Scene
           key="list"
           component={ ReviewsList }
@@ -56,9 +56,10 @@ const RouterComponent=()=>{
       </Scene>
       <Scene key="navigator">
         <Scene
+          hideNavBar
+          navBar={null}
           key="list"
           component={ TabNavigator }
-          title= "Reviews"
         />
       </Scene>
     </Router>

@@ -14,8 +14,10 @@ class ListFoodies extends React.PureComponent {
      this.props.listUsers()
   }
 
-  helperFunction = (friend_id ) => {
-    this.props.addFoodie(friend_id, this.props.userID)
+  helperFunction = (username, bio, friend_id ) => {
+    // console.log('here is the item',item );
+    //need to pass item.username, item.bio
+    this.props.addFoodie(username, bio ,friend_id, this.props.userID)
   }
 
   render() {
@@ -33,7 +35,7 @@ class ListFoodies extends React.PureComponent {
               </View>
               <View style={{width:65}}>
                 <Button
-                 onPress={()=>this.helperFunction(item.user_id)}>
+                 onPress={()=>this.helperFunction(item.username,item.bio, item.user_id)}>
                   <Icon name="ios-person-add-outline"></Icon>
                  </Button>
               </View>
@@ -45,7 +47,7 @@ class ListFoodies extends React.PureComponent {
     )
   }
 }
-// <Toolbar/>
+
 
 const styles ={
   headerContentStyle: {

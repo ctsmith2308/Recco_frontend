@@ -23,7 +23,6 @@ helperFunction=()=>{
                   <Text style={styles.headerTextStyle}>{item.name}</Text>
                   <Text style={styles.locationStyle}>{item.address}</Text>
                   <Text style={styles.reviewStyle}>{item.user_review}</Text>
-
                 </View>
               </CardSection>
             </TouchableOpacity>
