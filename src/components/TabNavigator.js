@@ -9,14 +9,18 @@ import ListFoodies from './SearchFoodies'
 import MyFoodies from './MyFoodies'
 
 class TabNavigator extends Component{
+
   render(){
     return(
       <Container>
       <Header hasTabs />
              <Tabs
+             tabBarUnderlineStyle={{backgroundColor:'transparent'}}
+             initialPage={2}
              tabBarPosition='bottom'
              >
-               <Tab heading="Search">
+               <Tab heading="Search"
+               >
                  <ListFoodies />
                </Tab>
                <Tab heading="Favs">

@@ -29,7 +29,6 @@ const RouterComponent=()=>{
           component={ TabNavigator }
         />
       </Scene>
-
       <Scene key="listOfReviews"
           component={ ReviewsList }
           title= "Reviews"

@@ -73,6 +73,7 @@ const styles ={
   },
   container: {
    flex: 1,
+   paddingTop:60
   },
   item: {
     padding: 10,
