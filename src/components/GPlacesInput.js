@@ -24,11 +24,9 @@ class GPlacesInput extends Component {
       console.log(name);
       this.props.setLocationDetails({ name, address, locationAddress, latitude, longitude })
 
-      //IMPORT AND PASS THIS FUNCTION TO ANOTHER ACTION CREATOR TO GET DETAILS FOR INDIVIDUAL USERS
-      //REVIEWS
-      // RNGooglePlaces.lookUpPlaceByID(placeID)
-      //   .then((results) => console.log(results,'results'))
-      //   .catch((error) => console.log(error.message));
+      RNGooglePlaces.getCurrentPlace()
+      .then((results) => console.log('this is where Im at', results))
+      .catch((error) => console.log(error.message));
 
     })
     .catch(error => console.log(error.message));

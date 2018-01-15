@@ -9,6 +9,7 @@ import {
 import MapView, { Marker, Callout, PROVIDER_GOOGLE } from 'react-native-maps';
 import { connect } from 'react-redux'
 import { Container, Icon } from 'native-base';
+import RNGooglePlaces from 'react-native-google-places';
 
 import { Card, CardSection, Input, Button, Toolbar } from './common'
 
@@ -32,13 +33,13 @@ toggleState=()=>{
     this.reviewModal()
   }
 
-handleReviewText=(text)=>{
+handleReviewText(text){
   this.props.addTextToReview(text)
 }
 
 submitReview=()=>{
-  let { userID, userReview } = this.props
-  this.props.postReview({userID, userReview})
+  let { userID, userReview, lat, long, name, address  } = this.props
+  this.props.postReview({ userID, userReview, lat, long, name, address })
   this.toggleState()
 }
 
@@ -50,7 +51,7 @@ reviewModal(){
           <TextInput
             style={{height:18, width:290, fontSize:18, marginBottom:25, marginTop:15}}
             placeholder="Leave a review"
-            onChangeText={this.handleReviewText()}
+            onChangeText={this.handleReviewText.bind(this)}
           />
         </CardSection>
         <CardSection style={{borderColor:'transparent'}}>
@@ -143,7 +144,7 @@ const mapStateToProps = ({ auth, locationInfo, reviews}) => {
   const { userID } = auth
   const { name, address, lat, long, website } = locationInfo
   const { userReview } = reviews
-  return { name, address, lat, long, website, userReview, userID}
+  return { name, address, lat, long, website, userReview, userID }
 }
 
 export default connect(mapStateToProps, { setLocatioinDetails, addTextToReview, postReview })(Map)

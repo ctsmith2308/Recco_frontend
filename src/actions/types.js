@@ -22,6 +22,7 @@ export const SET_LOCATION_DETAILS = 'set_location_details'
 export const ADD_REVIEW_TEXT = 'add_review_text'
 
 // Placeholder ACTIONS
+export const DUMMY_ACTION = 'dummy_action'
 export const LIST_USERS = 'list_users'
 
 // Listview ACTIONS
