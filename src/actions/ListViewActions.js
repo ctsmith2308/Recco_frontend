@@ -59,9 +59,10 @@ export const grabFoodiesReviews = (id) =>{
     axios.get(url)
     .then((response) =>{
       console.log('here is the res', response);
+      let reviewsArr = response.data
       dispatch({
-        type: REVIEWS_LIST
-        // payload:'some payload'/// get a list here to render
+        type: REVIEWS_LIST,
+        payload: reviewsArr/// get a list here to render
       })
     })
   }

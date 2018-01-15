@@ -22,7 +22,7 @@ export default (state = INITIAL_STATE, action) => {
     case GRAB_FOODIES:
       return { ...state, myFoodies: action.payload }
     case REVIEWS_LIST:
-      return { ...state }
+      return { ...state , reviewList: action.payload }
     default:
       return state
   }
