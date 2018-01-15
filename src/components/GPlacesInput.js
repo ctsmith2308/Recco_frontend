@@ -16,16 +16,10 @@ import { setLocationDetails } from '../actions'
 
 class GPlacesInput extends Component {
   openSearchModal() {
-    console.log('i was clicked');
     RNGooglePlaces.openAutocompleteModal()
     .then((place) => {
       let { name, address, locationAddress, latitude, longitude } = place
       this.props.setLocationDetails({ name, address, locationAddress, latitude, longitude })
-
-      // RNGooglePlaces.getCurrentPlace()
-      // .then((results) => console.log('this is where Im at', results))
-      // .catch((error) => console.log(error.message));
-
     })
     .catch(error => console.log(error.message));
   }

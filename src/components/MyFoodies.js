@@ -40,7 +40,7 @@ class MyFoodies extends Component{
               <View style={{width:65}}>
                 <Button
                  onPress={()=>this.removeFoodie(item.user_id)}>
-                  <Icon name="ios-person-add-outline"></Icon>
+                  <Icon name="ios-close"></Icon>
                  </Button>
               </View>
             </CardSection>
@@ -69,8 +69,8 @@ const styles ={
     height: 50,
     width:50,
     borderRadius: 25,
-    borderColor: 'black',
-    borderWidth: 1,
+    borderColor: '#8DD9D8',
+    borderWidth: 2,
     marginLeft:15,
     marginRight:15,
     marginBottom:3

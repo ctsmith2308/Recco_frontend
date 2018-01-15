@@ -9,11 +9,9 @@ import { setLocationDetails } from '../actions'
 class ReviewsList extends Component{
 
 helperFunction=( name, address, lat, long)=>{
-  // console.log('this is the type', typeof(lat))
   let latitude = Number(lat)
   let longitude = Number(long)
-  // console.log(typeof(toNumLat));
-    this.props.setLocationDetails({ name, address, latitude, longitude})
+  this.props.setLocationDetails({ name, address, latitude, longitude})
   Actions.map()
 }
 

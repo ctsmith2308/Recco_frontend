@@ -12,16 +12,15 @@ class TabNavigator extends Component{
 
   render(){
     return(
-      <Container>
+      <Container >
       <Header hasTabs />
              <Tabs
              tabBarUnderlineStyle={{backgroundColor:'transparent'}}
-             initialPage={1}
+             initialPage={0}
              tabBarPosition='bottom'
              >
-               <Tab heading="Search"
-               >
-                 <ListFoodies />
+               <Tab heading="Search">
+                 <ListFoodies/>
                </Tab>
                <Tab heading="Favs">
                  <MyFoodies />

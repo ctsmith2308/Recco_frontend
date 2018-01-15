@@ -15,18 +15,17 @@ class ListFoodies extends React.PureComponent {
   }
 
   helperFunction = (username, bio, friend_id ) => {
-    // console.log('here is the item',item );
-    //need to pass item.username, item.bio
     this.props.addFoodie(username, bio ,friend_id, this.props.userID)
   }
 
   render() {
     return (
-      <View style={styles.container}>
+      <View>
         <FlatList
+
           data={this.props.users}
           renderItem={ ({item}) =>
-            <CardSection style={{flexDirection:'row', flex:1}}>
+            <CardSection style={styles.headerContentStyle}>
               <View style ={styles.thumbnailContainerStyle}>
                 <Image style={styles.thumbnailStyle}/>
               </View>
@@ -36,24 +35,23 @@ class ListFoodies extends React.PureComponent {
               <View style={{width:65}}>
                 <Button
                  onPress={()=>this.helperFunction(item.username,item.bio, item.user_id)}>
-                  <Icon name="ios-person-add-outline"></Icon>
+                  <Icon name="ios-add"></Icon>
                  </Button>
               </View>
             </CardSection>
           }
           keyExtractor={(item, index) => index}
         />
-      </View>
+        </View>
     )
   }
 }
-
 
 const styles ={
   headerContentStyle: {
     flexDirection:'row',
     flex:1,
-    justifyContent:'space-around'
+    margin:5,
   },
   headerTextStyle:{
     fontSize:18,
@@ -63,8 +61,8 @@ const styles ={
     height: 50,
     width:50,
     borderRadius: 25,
-    borderColor: 'black',
-    borderWidth: 1,
+    borderColor: '#DD2131',
+    borderWidth: 2,
     marginLeft:15,
     marginRight:15,
     marginBottom:3

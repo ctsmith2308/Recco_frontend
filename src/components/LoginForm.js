@@ -33,7 +33,7 @@ class LoginForm extends Component {
       return <Spinner size="large"/>
     }
     return (
-      <Button  style={{color:'red'}} onPress={this.onButtonPress.bind(this)}>
+      <Button style={{color:'red'}} onPress={this.onButtonPress.bind(this)}>
         Login
       </Button>
     )

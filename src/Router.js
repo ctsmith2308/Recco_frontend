@@ -10,7 +10,7 @@ import TabNavigator from './components/TabNavigator'
 
 const RouterComponent=()=>{
   return (
-    <Router sceneStyle = {{ backgroundColor:'#8DD9D8',paddingTop:0 }}>
+    <Router sceneStyle = {{ backgroundColor:'#8DD9D8', paddingTop:0 }}>
 
       <Scene key="auth">
         <Scene key="login"

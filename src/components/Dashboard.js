@@ -81,7 +81,7 @@ getPhotosFromGallery=()=>{
       )
     } else {
       return (
-        <View>
+        <View style={{backgroundColor:'#8DD9D8'}} >
           <Card>
             <CardSection style={styles.thumbnailContainerStyle}>
               <TouchableOpacity onPress={()=>{this.getPhotosFromGallery()}}>
@@ -90,7 +90,7 @@ getPhotosFromGallery=()=>{
                 />
               </TouchableOpacity>
             </CardSection>
-            <CardSection>
+            <CardSection style={{backgroundColor:'black', margin:10, borderColor:'transparent'}}>
               <Input
               label='username'
               placeholder={this.props.placeholderUsername || 'username' }
@@ -99,7 +99,7 @@ getPhotosFromGallery=()=>{
               value={this.usernameValue()}
               />
             </CardSection>
-            <CardSection>
+            <CardSection style={{backgroundColor:'black', margin:10}}>
               <Input
               label='bio'
               placeholder={this.props.placeholderBio || 'I love tacos and long walks on the beach' }
@@ -128,7 +128,7 @@ const styles = {
     height:200,
     width:200,
     borderRadius: 100,
-    borderColor: 'black',
+    borderColor: '#8DD9D8',
     borderWidth: 4
   },
   container: {
