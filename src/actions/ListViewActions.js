@@ -1,7 +1,7 @@
 import { Actions } from 'react-native-router-flux'
 import  axios  from 'axios'
 
-import { GRAB_FOODIES, DUMMY_ACTION, SET_FOODIE_ID } from './types'
+import { SET_CURRENT_FOODIE_REVIEW, GRAB_FOODIES, DUMMY_ACTION, SET_FOODIE_ID } from './types'
 
 export const listUsers = () => {
   let url = 'http://localhost:3000/dashboard'
@@ -49,4 +49,13 @@ export const grabFoodies = ({ userID }) => {
       })
     })
   }
+}
+
+export const setSelectedReviewsOnMap = () =>{
+return (dispatch)=>{
+  return({
+    type: SET_CURRENT_FOODIE_REVIEW,
+    payload: 'im the test payload'
+  })
+}
 }

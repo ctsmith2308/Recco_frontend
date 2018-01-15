@@ -4,7 +4,7 @@ import { View, Text, FlatList, Image, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import { Card, CardSection, Input, Button, Toolbar } from './common'
 
-import { grabFoodies } from '../actions'
+import { grabFoodies, setSelectedReviewsOnMap } from '../actions'
 
 class MyFoodies extends Component{
 
@@ -15,8 +15,8 @@ class MyFoodies extends Component{
 
 
   helperFunction = (friend_id ) => {
-    console.log('Im the helper function');
-    // this.props.addFoodie(friend_id, this.props.userID)
+    console.log('Im the friendID', friend_id);
+    this.props.setSelectedReviewsOnMap()
   }
   render() {
     return (
@@ -97,4 +97,4 @@ const mapStateToProps = ({ auth, getUserlist }) => {
   return { userID, myFoodies }
 }
 
-export default connect(mapStateToProps, { grabFoodies })(MyFoodies)
+export default connect(mapStateToProps, { grabFoodies, setSelectedReviewsOnMap })(MyFoodies)

@@ -3,8 +3,8 @@ import { SET_LOCATION_DETAILS } from '../actions/types'
 const INITIAL_STATE = {
   name:'',
   address:'',
-  lat:null,
-  long:null,
+  lat: null,
+  long: null,
   website:'no website',
   placeID: null
 }
