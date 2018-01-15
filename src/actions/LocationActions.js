@@ -1,9 +1,12 @@
 import {
   SET_LOCATION_DETAILS,
-  // SET_CURRENT_FOODIE_REVIEW_LOCATIONS
 } from './types'
 
+import { Actions } from 'react-native-router-flux'
+
+
 export const setLocationDetails = ({ name, address, latitude, longitude, website }) => {
+  console.log('this is the lat in action creator' , latitude);
   return (dispatch) => {
     dispatch({
       type: SET_LOCATION_DETAILS,
@@ -11,13 +14,3 @@ export const setLocationDetails = ({ name, address, latitude, longitude, website
     })
   }
 }
-
-// export const setSelectedReviewsOnMap = () =>{
-//   return (dispatch)=>{
-//     console.log('im the action creator');
-//     dispatch({
-//       type: SET_CURRENT_FOODIE_REVIEW_LOCATIONS,
-//       payload: 'im the new payload'
-//     })
-//   }
-// }

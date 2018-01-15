@@ -16,7 +16,7 @@ class TabNavigator extends Component{
       <Header hasTabs />
              <Tabs
              tabBarUnderlineStyle={{backgroundColor:'transparent'}}
-             initialPage={2}
+             initialPage={1}
              tabBarPosition='bottom'
              >
                <Tab heading="Search"

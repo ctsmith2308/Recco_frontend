@@ -3,21 +3,27 @@ import { Container, Header, Content, Tab, Tabs, Icon } from 'native-base';
 import { View, Text, FlatList, Image, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import { Card, CardSection, Input, Button, Toolbar } from './common'
-
-// import { actioncreators go here } from '../actions'
+import { Actions } from 'react-native-router-flux'
+import { setLocationDetails } from '../actions'
 
 class ReviewsList extends Component{
 
-helperFunction=()=>{
-  console.log('i was pressed');
+helperFunction=( name, address, lat, long)=>{
+  // console.log('this is the type', typeof(lat))
+  let latitude = Number(lat)
+  let longitude = Number(long)
+  // console.log(typeof(toNumLat));
+    this.props.setLocationDetails({ name, address, latitude, longitude})
+  Actions.map()
 }
+
   render() {
     return (
       <View style={styles.container}>
         <FlatList
           data={this.props.reviewList}
           renderItem={ ({item}) =>
-            <TouchableOpacity onPress = {()=>this.helperFunction()}>
+            <TouchableOpacity onPress = {()=>this.helperFunction(item.name, item.address, item.lat, item.long)}>
               <CardSection style={{flexDirection:'row', flex:1}}>
                 <View style={{width:200}}>
                   <Text style={styles.headerTextStyle}>{item.name}</Text>
@@ -88,4 +94,4 @@ const mapStateToProps = ({ getUserlist })=>{
   return { reviewList }
 }
 
-export default connect(mapStateToProps)(ReviewsList)
+export default connect(mapStateToProps, { setLocationDetails })(ReviewsList)

@@ -33,6 +33,10 @@ const RouterComponent=()=>{
           component={ ReviewsList }
           title= "Reviews"
         />
+      <Scene key='map'
+          component={ Map }
+          title="Map"
+        />
     </Router>
   )
 }
@@ -41,13 +45,7 @@ export default RouterComponent
 
 
 //
-// <Scene key='map'>
-//   <Scene
-//     key="mapView"
-//     component={ Map }
-//     title="Map"
-//   />
-// </Scene>
+
 //
 // <Scene key="userDash">
 //   <Scene
