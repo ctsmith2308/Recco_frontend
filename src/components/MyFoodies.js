@@ -13,11 +13,15 @@ class MyFoodies extends Component{
     this.props.grabFoodies({userID})
   }
 
-
-  helperFunction = (friend_id ) => {
-    console.log('Im the friendID', friend_id);
+  passReviewsToMap=()=>{
     this.props.setSelectedReviewsOnMap()
   }
+
+  helperFunction = (friend_id ) => {
+    console.log('Im the friendID', friend_id)
+    //this function will remove a foodie in the future = get to it in a bit
+  }
+
   render() {
     return (
 
@@ -25,7 +29,7 @@ class MyFoodies extends Component{
         <FlatList
           data={this.props.myFoodies}
           renderItem={ ({item}) =>
-          <TouchableOpacity>
+          <TouchableOpacity onPress = {this.passReviewsToMap()}>
             <CardSection style={{flexDirection:'row', flex:1}}>
               <View style ={styles.thumbnailContainerStyle}>
                 <Image style={styles.thumbnailStyle}/>

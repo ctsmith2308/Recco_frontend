@@ -50,12 +50,3 @@ export const grabFoodies = ({ userID }) => {
     })
   }
 }
-
-export const setSelectedReviewsOnMap = () =>{
-return (dispatch)=>{
-  return({
-    type: SET_CURRENT_FOODIE_REVIEW,
-    payload: 'im the test payload'
-  })
-}
-}

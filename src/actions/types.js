@@ -27,4 +27,4 @@ export const DUMMY_ACTION = 'dummy_action'
 // Listview ACTIONS
 export const SET_FOODIE_ID = 'set_foodie_id'
 export const GRAB_FOODIES = 'grab_foodies'
-export const SET_CURRENT_FOODIE_REVIEW = 'set_current_foodie_review'
+export const SET_CURRENT_FOODIE_REVIEW_LOCATIONS = 'set_current_foodie_review_locations'

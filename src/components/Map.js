@@ -64,10 +64,7 @@ reviewModal(){
   }
 }
 
-
-
   render() {
-
     return (
       <View style={styles.container}>
 
