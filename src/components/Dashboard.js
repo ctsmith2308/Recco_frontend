@@ -112,12 +112,12 @@ getPhotosFromGallery=()=>{
               {this.renderIf(this.props.previousLogIn)}
             </CardSection>
           </Card>
-          <Toolbar/>
         </View>
       )
     }
   }
 }
+// <Toolbar/>
 const styles = {
   thumbnailContainerStyle:{
     justifyContent:'center',

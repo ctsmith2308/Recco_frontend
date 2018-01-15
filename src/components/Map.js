@@ -104,13 +104,13 @@ reviewModal(){
         </CardSection>
 
 
-       <Toolbar/>
 
       </View>
     )
   }
 }
 
+// <Toolbar/>
 
 const styles = StyleSheet.create({
   container: {

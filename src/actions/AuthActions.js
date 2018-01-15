@@ -80,7 +80,8 @@ const loginUserSuccess = (dispatch, userID, idToken) => {
   // Actions.userDash()
   // Actions.tabBar()
   // Actions.foodieSearch()
-  Actions.myFoodies()
+  // Actions.myFoodies()
+  Actions.navigator()
 }
 
 const loginUserSuccessToDash = (dispatch, userID, idToken) => {

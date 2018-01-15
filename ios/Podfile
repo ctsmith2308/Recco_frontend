@@ -28,4 +28,6 @@ target 'Recco' do
   pod 'GooglePlaces'
   pod 'GooglePlacePicker'
 
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
 end

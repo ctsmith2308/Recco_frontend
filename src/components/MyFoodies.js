@@ -50,11 +50,11 @@ class MyFoodies extends Component{
           keyExtractor={(item, index) => index}
         />
 
-        <Toolbar/>
       </View>
     )
   }
 }
+// <Toolbar/>
 
 const styles ={
   headerContentStyle: {

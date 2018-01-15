@@ -41,11 +41,11 @@ class ListFoodies extends React.PureComponent {
           }
           keyExtractor={(item, index) => index}
         />
-        <Toolbar/>
       </View>
     )
   }
 }
+// <Toolbar/>
 
 const styles ={
   headerContentStyle: {

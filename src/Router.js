@@ -6,6 +6,7 @@ import Map from './components/Map'
 import SearchFoodies from './components/SearchFoodies'
 import MyFoodies from './components/MyFoodies'
 import ReviewsList from './components/ReviewsList'
+import TabNavigator from './components/TabNavigator'
 
 const RouterComponent=()=>{
   return (
@@ -50,6 +51,13 @@ const RouterComponent=()=>{
         <Scene
           key="list"
           component={ ReviewsList }
+          title= "Reviews"
+        />
+      </Scene>
+      <Scene key="navigator">
+        <Scene
+          key="list"
+          component={ TabNavigator }
           title= "Reviews"
         />
       </Scene>
