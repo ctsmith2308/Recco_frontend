@@ -20,8 +20,6 @@ export const listUsers = () => {
 
 export const addFoodie = ( username, bio, friend_id, user_id ) => {
   return(dispatch)=>{
-    // console.log('im the bio in the actions', bio);
-    //need to pass item.username, item.bio to set state
     let url = 'http://localhost:3000/friends'
     let body = {
       userID: user_id,
@@ -64,7 +62,7 @@ export const grabFoodiesReviews = (id) =>{
         type: REVIEWS_LIST,
         payload: reviewsArr
       })
-      Actions.dashboard()
     })
+    Actions.listOfReviews()
   }
 }

@@ -29,7 +29,6 @@ helperFunction=()=>{
           }
           keyExtractor={(item, index) => index}
         />
-        <Toolbar/>
       </View>
     )
   }

@@ -11,6 +11,7 @@ import TabNavigator from './components/TabNavigator'
 const RouterComponent=()=>{
   return (
     <Router sceneStyle = {{ backgroundColor:'#8DD9D8',paddingTop:0 }}>
+
       <Scene key="auth">
         <Scene key="login"
           hideNavBar
@@ -19,41 +20,7 @@ const RouterComponent=()=>{
           title="Please Login"
         />
       </Scene>
-      <Scene key='map'>
-        <Scene
-          key="mapView"
-          component={ Map }
-          title="Map"
-        />
-      </Scene>
-      <Scene key="userDash">
-        <Scene
-          key="dashboard"
-          component={ Dashboard }
-          title="Dashboard"
-        />
-      </Scene>
-      <Scene key="foodieSearch">
-        <Scene
-          key="foodies"
-          component={ SearchFoodies }
-          title="Search Foodies"
-        />
-      </Scene>
-      <Scene key="myFoodies">
-        <Scene
-          key="favorites"
-          component={ MyFoodies }
-          title= "My Foodies"
-        />
-      </Scene>
-      <Scene key="listReview">
-        <Scene
-          key="list"
-          component={ ReviewsList }
-          title= "Reviews"
-        />
-      </Scene>
+
       <Scene key="navigator">
         <Scene
           hideNavBar
@@ -62,7 +29,55 @@ const RouterComponent=()=>{
           component={ TabNavigator }
         />
       </Scene>
+
+      <Scene key="listOfReviews"
+          component={ ReviewsList }
+          title= "Reviews"
+        />
     </Router>
   )
 }
 export default RouterComponent
+
+
+
+//
+// <Scene key='map'>
+//   <Scene
+//     key="mapView"
+//     component={ Map }
+//     title="Map"
+//   />
+// </Scene>
+//
+// <Scene key="userDash">
+//   <Scene
+//     key="dashboard"
+//     component={ Dashboard }
+//     title="Dashboard"
+//   />
+// </Scene>
+//
+// <Scene key="foodieSearch">
+//   <Scene
+//     key="foodies"
+//     component={ SearchFoodies }
+//     title="Search Foodies"
+//   />
+// </Scene>
+//
+// <Scene key="myFoodies">
+//   <Scene
+//     key="favorites"
+//     component={ MyFoodies }
+//     title= "My Foodies"
+//   />
+// </Scene>
+//
+// <Scene key="listOfReviews">
+//   <Scene
+//     key="list"
+//     component={ ReviewsList }
+//     title= "Reviews"
+//   />
+// </Scene>
