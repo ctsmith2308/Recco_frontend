@@ -76,11 +76,11 @@ const loginUserSuccess = (dispatch, userID, idToken) => {
     type: LOGIN_USER_SUCCESS,
     payload: { userID, idToken }
   })
-  Actions.map()
+  // Actions.map()
   // Actions.userDash()
   // Actions.tabBar()
   // Actions.foodieSearch()
-  // Actions.myFoodies()
+  Actions.myFoodies()
 }
 
 const loginUserSuccessToDash = (dispatch, userID, idToken) => {

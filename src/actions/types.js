@@ -28,5 +28,5 @@ export const LIST_USERS = 'list_users'
 // Listview ACTIONS
 export const SET_FOODIE_ID = 'set_foodie_id'
 export const GRAB_FOODIES = 'grab_foodies'
-export const FOODIES_REVIEWS_LIST = 'foodies_reviews_list'
+export const REVIEWS_LIST = 'reviews_list'
 export const SET_CURRENT_FOODIE_REVIEW_LOCATIONS = 'set_current_foodie_review_locations'

@@ -19,7 +19,7 @@ class MyFoodies extends Component{
     // this.props.setSelectedReviewsOnMap()
   }
 
-  helperFunction = (friend_id ) => {
+  removeFoodie = (friend_id ) => {
     console.log('Im the friendID', friend_id)
     //this function will remove a foodie in the future = get to it in a bit
   }
@@ -41,7 +41,7 @@ class MyFoodies extends Component{
               </View>
               <View style={{width:65}}>
                 <Button
-                 onPress={()=>this.helperFunction(item.user_id)}>
+                 onPress={()=>this.removeFoodie(item.user_id)}>
                   <Icon name="ios-person-add-outline"></Icon>
                  </Button>
               </View>

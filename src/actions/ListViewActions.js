@@ -1,7 +1,7 @@
 import { Actions } from 'react-native-router-flux'
 import  axios  from 'axios'
 
-import { GRAB_FOODIES, LIST_USERS, SET_FOODIE_ID, FOODIES_REVIEWS_LIST } from './types'
+import { GRAB_FOODIES, LIST_USERS, SET_FOODIE_ID, REVIEWS_LIST } from './types'
 
 export const listUsers = () => {
   let url = 'http://localhost:3000/dashboard'
@@ -53,13 +53,16 @@ export const grabFoodies = ( userID ) => {
 
 export const grabFoodiesReviews = (id) =>{
   return (dispatch)=>{
-    console.log('im id in action creator', id);
+    console.log('im foodie id in action creator', id);
     let url = `http://localhost:3000/reviews/${id}`
     //get id and make ajax call
-    axios.get()
-    dispatch({
-      type:FOODIES_REVIEWS_LIST,
-      payload:'some payload'/// get a list here to render
+    axios.get(url)
+    .then((response) =>{
+      console.log('here is the res', response);
+      dispatch({
+        type: REVIEWS_LIST
+        // payload:'some payload'/// get a list here to render
+      })
     })
   }
 }
