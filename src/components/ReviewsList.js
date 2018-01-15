@@ -11,7 +11,6 @@ class ReviewsList extends Component{
 helperFunction=()=>{
   console.log('i was pressed');
 }
-
   render() {
     return (
       <View style={styles.container}>
@@ -20,11 +19,11 @@ helperFunction=()=>{
           renderItem={ ({item}) =>
             <TouchableOpacity onPress = {()=>this.helperFunction()}>
               <CardSection style={{flexDirection:'row', flex:1}}>
-                <View style ={styles.thumbnailContainerStyle}>
-                  <Image style={styles.thumbnailStyle}/>
-                </View>
                 <View style={{width:200}}>
                   <Text style={styles.headerTextStyle}>{item.name}</Text>
+                  <Text style={styles.locationStyle}>{item.address}</Text>
+                  <Text style={styles.reviewStyle}>{item.user_review}</Text>
+
                 </View>
               </CardSection>
             </TouchableOpacity>
@@ -44,8 +43,15 @@ const styles ={
     justifyContent:'space-around'
   },
   headerTextStyle:{
+    fontSize:25,
+    marginTop: 3,
+    fontWeight:'bold'
+  },
+  locationStyle:{
+    fontSize:12
+  },
+  reviewStyle:{
     fontSize:18,
-    marginTop: 3
   },
   thumbnailStyle:{
     height: 50,
