@@ -14,7 +14,6 @@ class MyFoodies extends Component{
   }
 
   foodieReviewListHelperFn=(id)=>{
-    console.log('this is the id you clicked', id);
     this.props.grabFoodiesReviews(id)
     // this.props.setSelectedReviewsOnMap()
   }

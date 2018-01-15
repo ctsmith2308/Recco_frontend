@@ -5,6 +5,7 @@ import Dashboard from './components/Dashboard'
 import Map from './components/Map'
 import SearchFoodies from './components/SearchFoodies'
 import MyFoodies from './components/MyFoodies'
+import ReviewsList from './components/ReviewsList'
 
 const RouterComponent=()=>{
   return (
@@ -43,6 +44,13 @@ const RouterComponent=()=>{
           key="favorites"
           component={ MyFoodies }
           title= "My Foodies"
+        />
+      </Scene>
+      <Scene key="reviewsList">
+        <Scene
+          key="list"
+          component={ ReviewsList }
+          title= "Reviews"
         />
       </Scene>
     </Router>
