@@ -8,7 +8,6 @@ const INITIAL_STATE = {
   lat: null,
   long: null,
   website:'no website',
-  placeID: null
 }
 
 export default (state = INITIAL_STATE, action)=>{
@@ -23,7 +22,6 @@ export default (state = INITIAL_STATE, action)=>{
         lat:action.payload.latitude,
         long:action.payload.longitude,
         website:action.payload.website,
-        placeID: action.payload.placeID
      }
     case SET_CURRENT_FOODIE_REVIEW_LOCATIONS:
       return {

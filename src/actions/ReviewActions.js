@@ -10,13 +10,12 @@ export const addTextToReview=(text)=>{
   }
 }
 
-export const postReview = ({ userID, userReview, placeID }) => {
+export const postReview = ({ userID, userReview }) => {
   return (dispatch) => {
     let url = 'http://localhost:3000/reviews'
     let body = {
       userID,
       userReview,
-      placeID
     }
     axios.post(url, body)
       .then(res => {

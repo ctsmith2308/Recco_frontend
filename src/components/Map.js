@@ -7,7 +7,6 @@ import {
   TextInput
 } from 'react-native';
 import MapView, { Marker, Callout, PROVIDER_GOOGLE } from 'react-native-maps';
-
 import { connect } from 'react-redux'
 import { Container, Icon } from 'native-base';
 
@@ -33,26 +32,25 @@ toggleState=()=>{
     this.reviewModal()
   }
 
-handleReviewText(text){
+handleReviewText=(text)=>{
   this.props.addTextToReview(text)
 }
 
 submitReview=()=>{
-  let { userID,userReview, placeID } = this.props
-  this.props.postReview({userID, userReview, placeID})
+  let { userID, userReview } = this.props
+  this.props.postReview({userID, userReview})
   this.toggleState()
 }
 
 reviewModal(){
   if(this.state.toggleModal){
-    // console.log('state changed', this.state.toggleModal);
     return (
       <CardSection style={{width:320, height:140, flexDirection:'column'}}>
         <CardSection style={{flexDirection:'row', borderColor:'transparent'}}>
           <TextInput
             style={{height:18, width:290, fontSize:18, marginBottom:25, marginTop:15}}
             placeholder="Leave a review"
-            onChangeText={this.handleReviewText.bind(this)}
+            onChangeText={this.handleReviewText()}
           />
         </CardSection>
         <CardSection style={{borderColor:'transparent'}}>
@@ -143,10 +141,9 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = ({ auth, locationInfo, reviews}) => {
   const { userID } = auth
-  const { name, address, lat, long, website, placeID } = locationInfo
+  const { name, address, lat, long, website } = locationInfo
   const { userReview } = reviews
-  console.log(lat, long);
-  return { name, address, lat, long, website, placeID, userReview, userID}
+  return { name, address, lat, long, website, userReview, userID}
 }
 
 export default connect(mapStateToProps, { setLocatioinDetails, addTextToReview, postReview })(Map)

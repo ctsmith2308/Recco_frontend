@@ -10,7 +10,7 @@ class MyFoodies extends Component{
 
   componentWillMount=()=>{
     let userID = this.props.userID
-    this.props.grabFoodies({userID})
+    this.props.grabFoodies( userID )
   }
 
   foodieReviewListHelperFn=(id)=>{

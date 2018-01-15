@@ -1,6 +1,4 @@
 
-// AIzaSyCX47ovc9WkJUsdTXsSIn1k5q8Xz6d3jjk
-
 import React, { Component } from 'react';
 import {
   Platform,
@@ -21,8 +19,10 @@ class GPlacesInput extends Component {
     console.log('i was clicked');
     RNGooglePlaces.openAutocompleteModal()
     .then((place) => {
-      let { name, address, locationAddress, latitude, longitude, website, placeID } = place
-      this.props.setLocationDetails({name, address, locationAddress, latitude, longitude, website, placeID})
+      console.log('here is the place info', place );
+      let { name, address, locationAddress, latitude, longitude } = place
+      console.log(name);
+      this.props.setLocationDetails({ name, address, locationAddress, latitude, longitude })
 
       //IMPORT AND PASS THIS FUNCTION TO ANOTHER ACTION CREATOR TO GET DETAILS FOR INDIVIDUAL USERS
       //REVIEWS
@@ -76,8 +76,8 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps=({ locationInfo })=>{
-  let { name, address, latitude, longitude, website, placeID } = locationInfo
-  return { name, address, latitude, longitude, website, placeID }
+  let { name, address, latitude, longitude, website } = locationInfo
+  return { name, address, latitude, longitude, website }
 }
 
 export default connect( mapStateToProps, {setLocationDetails})(GPlacesInput)

@@ -1,12 +1,12 @@
 import {
   GRAB_FOODIES,
-  DUMMY_ACTION,
+  LIST_USERS,
   SET_FOODIE_ID,
   FOODIES_REVIEWS_LIST,
  } from '../actions/types'
 
 const INITIAL_STATE = {
-  users:[],
+  users:null,
   currentFoodieId: null,
   myFoodies:null,
   foodieReviewList:null
@@ -14,7 +14,7 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch(action.type){
-    case DUMMY_ACTION:
+    case LIST_USERS:
       return { ...state, users:action.payload }
     case SET_FOODIE_ID:
       return { ...state, currentFoodieId:action.payload }

@@ -18,11 +18,11 @@ export const NO_PREV_LOGIN = 'no_prev_login'
 //Location ACTIONS
 export const SET_LOCATION_DETAILS = 'set_location_details'
 
-//
+//Reviews ACTIONS
 export const ADD_REVIEW_TEXT = 'add_review_text'
 
 // Placeholder ACTIONS
-export const DUMMY_ACTION = 'dummy_action'
+export const LIST_USERS = 'list_users'
 
 // Listview ACTIONS
 export const SET_FOODIE_ID = 'set_foodie_id'

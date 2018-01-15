@@ -1,7 +1,7 @@
 import { Actions } from 'react-native-router-flux'
 import  axios  from 'axios'
 
-import { GRAB_FOODIES, DUMMY_ACTION, SET_FOODIE_ID, FOODIES_REVIEWS_LIST } from './types'
+import { GRAB_FOODIES, LIST_USERS, SET_FOODIE_ID, FOODIES_REVIEWS_LIST } from './types'
 
 export const listUsers = () => {
   let url = 'http://localhost:3000/dashboard'
@@ -11,8 +11,8 @@ export const listUsers = () => {
       let userArray = data.data
       console.log('here is the data from listview', userArray);
       dispatch({
-        type: DUMMY_ACTION,
-        payload:userArray
+        type: LIST_USERS,
+        payload: userArray
       })
     })
   }
@@ -27,7 +27,7 @@ export const addFoodie = ( friend_id, user_id ) => {
     }
     axios.post(url, body)
     .then((res)=>{
-      console.log(res);
+      console.log('got a response from addFOODIE, dispatching action now', res);
       dispatch({
         type: SET_FOODIE_ID,
         payload: friend_id
@@ -36,7 +36,7 @@ export const addFoodie = ( friend_id, user_id ) => {
   }
 }
 
-export const grabFoodies = ({ userID }) => {
+export const grabFoodies = ( userID ) => {
   return (dispatch)=>{
     let url = `http://localhost:3000/friends/${userID}`
     axios.get(url)
@@ -54,7 +54,9 @@ export const grabFoodies = ({ userID }) => {
 export const grabFoodiesReviews = (id) =>{
   return (dispatch)=>{
     console.log('im id in action creator', id);
+    let url = `http://localhost:3000/reviews/${id}`
     //get id and make ajax call
+    axios.get()
     dispatch({
       type:FOODIES_REVIEWS_LIST,
       payload:'some payload'/// get a list here to render
