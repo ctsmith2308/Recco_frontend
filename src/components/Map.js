@@ -47,7 +47,7 @@ submitReview=()=>{
 reviewModal(){
   if(this.state.toggleModal){
     return (
-      <CardSection style={{width:320, height:140, flexDirection:'column'}}>
+      <CardSection style={{width:320, height:100, flexDirection:'column'}}>
         <CardSection style={{flexDirection:'row', borderColor:'transparent'}}>
           <TextInput
             style={{height:18, width:290, fontSize:18, marginBottom:25, marginTop:15}}
@@ -56,8 +56,8 @@ reviewModal(){
           />
         </CardSection>
         <CardSection style={{borderColor:'transparent'}}>
-          <Button onPress={()=> this.submitReview()}>Submit</Button>
-          <Button onPress={()=> this.toggleState()}>Close</Button>
+          <Button onPress={()=> this.submitReview()}><Icon style={{color:'#FC4442'}} name="ios-megaphone-outline"></Icon></Button>
+          <Button onPress={()=> this.toggleState()}><Icon style={{color:'#FC4442'}} name="ios-close"></Icon></Button>
         </CardSection>
       </CardSection>
     )
@@ -86,10 +86,8 @@ reviewModal(){
               <CardSection style={{borderColor:'transparent',flexDirection:'column',alignItems:'center'}}>
                 <Text style={{marginRight:5,marginBottom:3,fontSize:15,fontWeight:'bold'}}>{this.props.name}</Text>
                 <Text>{this.props.address}</Text>
-                <Text>{this.props.website}</Text>
-                <Icon name="md-star-outline" />
               </CardSection>
-              <CardSection style={{borderColor:'transparent', paddingBottom:10, alignItems:'flex-end'}}>
+              <CardSection style={{borderColor:'transparent', paddingTop:25, marginBottom:5, alignItems:'flex-end'}}>
                 <Button onPress={()=>this.toggleState()}>Leave a Recco</Button>
               </CardSection>
             </View>
@@ -100,7 +98,7 @@ reviewModal(){
         <Card>
           {this.reviewModal()}
         </Card>
-        <CardSection style={{width:50, height:52, marginTop:100, marginBottom:10, borderColor:'black', borderWidth:2, borderRadius:10}}>
+        <CardSection style={{width:200, height:52, marginTop:100, marginBottom:10, borderColor:'#B7F5DE', borderWidth:1, borderRadius:10}}>
           <GPlacesInput/>
         </CardSection>
       </View>

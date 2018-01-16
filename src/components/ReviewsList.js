@@ -8,7 +8,7 @@ import { setLocationDetails } from '../actions'
 
 class ReviewsList extends Component{
 
-helperFunction=( name, address, lat, long)=>{
+foodieReviewListHelperFn=( name, address, lat, long)=>{
   let latitude = Number(lat)
   let longitude = Number(long)
   this.props.setLocationDetails({ name, address, latitude, longitude})
@@ -21,15 +21,21 @@ helperFunction=( name, address, lat, long)=>{
         <FlatList
           data={this.props.reviewList}
           renderItem={ ({item}) =>
-            <TouchableOpacity onPress = {()=>this.helperFunction(item.name, item.address, item.lat, item.long)}>
-              <CardSection style={{flexDirection:'row', flex:1}}>
-                <View style={{width:200}}>
+
+              <CardSection style={styles.headerContentStyle}>
+                <View style={{width:300}}>
                   <Text style={styles.headerTextStyle}>{item.name}</Text>
                   <Text style={styles.locationStyle}>{item.address}</Text>
-                  <Text style={styles.reviewStyle}>{item.user_review}</Text>
+                  <Text style={{fontSize:18, fontWeight:'bold', padding:5}}>My Recco:</Text>
+                  <Text style={styles.reviewStyle}>"{item.user_review}"</Text>
                 </View>
-              </CardSection>
-            </TouchableOpacity>
+                <View style={{width:65, height:65}}>
+                  <Button
+                    onPress={()=>this.foodieReviewListHelperFn(item.name, item.address, item.lat, item.long)}>
+                    <Icon style={{color:'#DD2131'}}name="ios-pin"></Icon>
+                    </Button>
+                 </View>
+               </CardSection>
           }
           keyExtractor={(item, index) => index}
         />
@@ -40,20 +46,26 @@ helperFunction=( name, address, lat, long)=>{
 
 const styles ={
   headerContentStyle: {
-    flexDirection:'row',
-    flex:1,
-    justifyContent:'space-around'
+      flexDirection:'row',
+      flex:1,
+      margin:5,
+      alignItems:'center',
+      borderColor:'#B7F5DE',
+      borderWidth:0.5
   },
   headerTextStyle:{
     fontSize:25,
     marginTop: 3,
-    fontWeight:'bold'
+    fontWeight:'bold',
+    marginLeft:5
   },
   locationStyle:{
-    fontSize:12
+    fontSize:12,
+    marginLeft:5
   },
   reviewStyle:{
     fontSize:18,
+    marginLeft:5
   },
   thumbnailStyle:{
     height: 50,

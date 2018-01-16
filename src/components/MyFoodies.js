@@ -29,23 +29,22 @@ class MyFoodies extends Component{
         <FlatList
           data={this.props.myFoodies}
           renderItem={ ({item}) =>
-          <TouchableOpacity onPress = {()=>this.foodieReviewListHelperFn(item.user_id)}>
-            <CardSection style={{flexDirection:'row', flex:1}}>
+            <CardSection style={{flexDirection:'row', flex:1,borderColor:'#B7F5DE', borderWidth:0.5}}>
               <View style ={styles.thumbnailContainerStyle}>
                 <Image style={styles.thumbnailStyle}
                 source={{uri:item.image_url}}/>
               </View>
-              <View style={{width:200}}>
+              <View style={{width:195}}>
                 <Text style={styles.headerTextStyle}>{item.username}</Text>
               </View>
-              <View style={{width:65}}>
+              <View style={{width:70}}>
                 <Button
-                 onPress={()=>this.removeFoodie(item.user_id)}>
-                  <Icon name="ios-close"></Icon>
+                 onPress={()=>this.foodieReviewListHelperFn(item.user_id)}>
+                  <Icon
+                  style={{color:'#FC4442'}} name="ios-list-outline"></Icon>
                  </Button>
               </View>
             </CardSection>
-            </TouchableOpacity>
           }
           keyExtractor={(item, index) => index}
         />
@@ -54,7 +53,6 @@ class MyFoodies extends Component{
     )
   }
 }
-// <Toolbar/>
 
 const styles ={
   headerContentStyle: {
@@ -70,8 +68,8 @@ const styles ={
     height: 50,
     width:50,
     borderRadius: 25,
-    borderColor: '#8DD9D8',
-    borderWidth: 2,
+    // borderColor: '#8DD9D8',
+    // borderWidth: 2,
     marginLeft:15,
     marginRight:15,
     marginBottom:3

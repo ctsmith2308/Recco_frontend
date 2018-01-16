@@ -17,19 +17,19 @@ class TabNavigator extends Component{
              <Tabs
 
              tabBarUnderlineStyle={{backgroundColor:'transparent'}}
-             initialPage={1}
+             initialPage={2 }
              tabBarPosition='bottom'
              >
-               <Tab heading={<TabHeading><Icon style={styles.iconStyle} name="ios-person-add-outline" /></TabHeading>}>
+               <Tab heading={<TabHeading><Icon style={styles.iconStyle} name="ios-search" /></TabHeading>}>
                  <ListFoodies/>
                </Tab>
                <Tab heading={<TabHeading><Icon style={styles.iconStyle} name="ios-people" /></TabHeading>}>
                  <MyFoodies />
                </Tab>
-               <Tab heading={<TabHeading><Icon style={styles.iconStyle} name="ios-compass-outline" /></TabHeading>}>
+               <Tab heading={<TabHeading><Icon style={styles.iconStyle} name="ios-map-outline" /></TabHeading>}>
                <Map />
                </Tab>
-               <Tab heading={<TabHeading><Icon style={styles.iconStyle} name="ios-person" /></TabHeading>}>
+               <Tab heading={<TabHeading><Icon style={styles.iconStyle} name="ios-settings" /></TabHeading>}>
                <Dashboard />
                </Tab>
              </Tabs>

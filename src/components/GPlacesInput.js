@@ -34,7 +34,7 @@ class GPlacesInput extends Component {
           style={styles.button}
           onPress={() => this.openSearchModal()}
         >
-        <Icon style={{color:'black'}} name="ios-search" />
+        <Text style={{marginLeft:40}}>Place a Search</Text>
         </TouchableOpacity>
       </View>
     );

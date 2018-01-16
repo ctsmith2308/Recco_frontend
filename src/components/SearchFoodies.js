@@ -22,7 +22,6 @@ class ListFoodies extends React.PureComponent {
     return (
       <View>
         <FlatList
-
           data={this.props.users}
           renderItem={ ({item}) =>
             <CardSection style={styles.headerContentStyle}>
@@ -31,13 +30,14 @@ class ListFoodies extends React.PureComponent {
                   style={styles.thumbnailStyle}
                   source={{uri:item.image_url}}/>
               </View>
-              <View style={{width:200}}>
+              <View style={{width:165}}>
                 <Text style={styles.headerTextStyle}>{item.username}</Text>
               </View>
-              <View style={{width:65}}>
+              <View style={{width:100, alignItems:'center'}}>
                 <Button
-                 onPress={()=>this.helperFunction(item.username,item.bio, item.user_id)}>
-                  <Icon name="ios-add"></Icon>
+                  style={{borderColor:'red', borderWidth:2, alignItems:'center', paddingTop:25}}
+                  onPress={()=>this.helperFunction(item.username,item.bio, item.user_id)}>
+                  Follow
                  </Button>
               </View>
             </CardSection>
@@ -53,7 +53,9 @@ const styles ={
   headerContentStyle: {
     flexDirection:'row',
     flex:1,
-    margin:5,
+    alignItems:'center',
+    borderColor:'#B7F5DE',
+    borderWidth:0.5
   },
   headerTextStyle:{
     fontSize:18,
@@ -63,8 +65,8 @@ const styles ={
     height: 50,
     width:50,
     borderRadius: 25,
-    borderColor: '#8DD9D8',
-    borderWidth: 2,
+    // borderColor: '#8DD9D8',
+    // borderWidth: 2,
     marginLeft:15,
     marginRight:15,
     marginBottom:3

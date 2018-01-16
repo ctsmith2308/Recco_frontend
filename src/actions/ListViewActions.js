@@ -16,24 +16,6 @@ export const listUsers = () => {
     })
   }
 }
-//
-// export const addFoodie = ( username, bio, friend_id, user_id ) => {
-//   return(dispatch)=>{
-//     let url = 'http://localhost:3000/friends'
-//     let body = {
-//       userID: user_id,
-//       friendID: friend_id
-//     }
-//     let add = { user_id: friend_id, bio, username }
-//     axios.post(url, body)
-//     .then((res)=>{
-//       dispatch({
-//         type: ADD_FOODIE_TO_STATE,
-//         payload: add
-//       })
-//     })
-//   }
-// }
 
 //copied from above
 export const addFoodie = ( username, bio, friend_id, user_id ) => {
