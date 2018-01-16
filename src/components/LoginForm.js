@@ -1,7 +1,8 @@
 
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, Image } from 'react-native'
 import { connect } from 'react-redux'
+import { Container, Header, Content, Tab, Tabs, Icon } from 'native-base';
 import { Card, CardSection, Input, Button, Spinner } from './common'
 import { emailChanged, passwordChanged, loginUser, loginUserFail } from '../actions'
 
@@ -43,7 +44,11 @@ class LoginForm extends Component {
     return(
       <View>
         <Text style={styles.titleStyle}>Recco</Text>
-          {this.renderError()}
+        <Image
+          style={{marginLeft:95, marginBottom:25, height:200, width:200}}
+          source={require('../../bullhorn.png')}
+          />
+            {this.renderError()}
         <CardSection style={styles.inputStyle}>
           <Input
             label="Email"
@@ -83,7 +88,7 @@ const mapStateToProps = state => {
 const styles = {
   titleStyle:{
     fontFamily:'Avenir-Heavy',
-    marginTop:75,
+    marginTop:35,
     fontWeight:'bold',
     color:'#FC4442',
     textShadowColor: 'grey',
@@ -91,7 +96,7 @@ const styles = {
     textShadowRadius: 10,
     alignSelf:'center',
     fontSize:125,
-    marginBottom:50
+    // marginBottom:50
   },
   inputStyle:{
     backgroundColor:'rgba(0,0,0, 0.15)',
