@@ -12,8 +12,7 @@ import {
   DUMMY_ACTION
 } from './types'
 import NativeModules from 'NativeModules';
-// let NativeModules =require('NativeModules');
-// import NativeModules from 'react-native-image-to-base64'
+
 import axios from 'axios'
 
 export const getUserInfo=({ userID }) => {
@@ -21,15 +20,17 @@ export const getUserInfo=({ userID }) => {
     let url = 'http://localhost:3000/dashboard/'
     axios.get(url + userID)
     .then((res)=>{
-      let { username, bio } = res.data
+      console.log('here is the backend res', res);
+      let { username, bio, image_url } = res.data
       if(!username){
         dispatch({
           type: NO_PREV_LOGIN
         })
       } else {
+        console.log('im dispatching SET_USER_INFO');
         dispatch({
           type: SET_USER_INFO,
-          payload: { username, bio }
+          payload: { username, bio, image_url }
         })
       }
     })

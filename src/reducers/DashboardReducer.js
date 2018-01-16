@@ -11,7 +11,7 @@ import {
  } from '../actions/types'
 
 const INITIAL_STATE = {
-  imageURI: 'http://localhost:3000/images/avatar.png',
+  imageURI: '../avatar.png',
   username: '',
   bio: '',
   placeholderUsername: '',
@@ -34,8 +34,10 @@ export default (state = INITIAL_STATE, action) => {
     case ADD_BIO:
       return { ...state, bio: action.payload }
     case SET_USER_INFO:
+    console.log(action.payload.image_url);
       return { ...state, bio:action.payload.bio, username: action.payload.username,
         placeholderUsername: action.payload.username, placeholderBio: action.payload.bio,
+        imageURI:action.payload.image_url,
         previousLogIn: !state.previousLogIn
       }
     case INVERT_PREV_LOGIN:
