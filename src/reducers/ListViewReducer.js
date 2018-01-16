@@ -8,7 +8,7 @@ import {
 const INITIAL_STATE = {
   users:null,
   currentFoodieId: null,
-  myFoodies:null,
+  myFoodies:[],
   foodieReviewList:null,
   reviewList:null
 }
@@ -27,3 +27,16 @@ export default (state = INITIAL_STATE, action) => {
       return state
   }
 }
+
+
+// router.get('/:id', function(req, res, next){
+//   knex('friends')
+//   .where('friends.user_id', req.params.id)
+//   .join('dashboard','friends.friend_id','dashboard.user_id')
+//   .join('photos','photos.user_id','dashboard.user_id')
+//   .select('dashboard.user_id','dashboard.bio','dashboard.username','image_url')
+//   .then((response)=>{
+//     console.log(response);
+//     res.send(response)
+//   })
+// })

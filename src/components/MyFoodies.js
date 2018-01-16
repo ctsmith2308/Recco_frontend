@@ -32,7 +32,8 @@ class MyFoodies extends Component{
           <TouchableOpacity onPress = {()=>this.foodieReviewListHelperFn(item.user_id)}>
             <CardSection style={{flexDirection:'row', flex:1}}>
               <View style ={styles.thumbnailContainerStyle}>
-                <Image style={styles.thumbnailStyle}/>
+                <Image style={styles.thumbnailStyle}
+                source={{uri:item.image_url}}/>
               </View>
               <View style={{width:200}}>
                 <Text style={styles.headerTextStyle}>{item.username}</Text>

@@ -17,7 +17,7 @@ class TabNavigator extends Component{
              <Tabs
 
              tabBarUnderlineStyle={{backgroundColor:'transparent'}}
-             initialPage={2}
+             initialPage={1}
              tabBarPosition='bottom'
              >
                <Tab heading={<TabHeading><Icon style={styles.iconStyle} name="ios-person-add-outline" /></TabHeading>}>
