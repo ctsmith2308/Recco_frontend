@@ -18,7 +18,7 @@ class MyFoodies extends Component{
   }
 
   removeFoodie = (friend_id ) => {
-    console.log('Im the friendID', friend_id)
+    // console.log('Im the friendID', friend_id)
     //this function will remove a foodie in the future = get to it in a bit
   }
 

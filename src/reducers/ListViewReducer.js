@@ -14,6 +14,7 @@ const INITIAL_STATE = {
 }
 
 export default (state = INITIAL_STATE, action) => {
+  console.log(action.type);
   switch(action.type){
     case LIST_USERS:
       return { ...state, users:action.payload }
@@ -27,16 +28,3 @@ export default (state = INITIAL_STATE, action) => {
       return state
   }
 }
-
-
-// router.get('/:id', function(req, res, next){
-//   knex('friends')
-//   .where('friends.user_id', req.params.id)
-//   .join('dashboard','friends.friend_id','dashboard.user_id')
-//   .join('photos','photos.user_id','dashboard.user_id')
-//   .select('dashboard.user_id','dashboard.bio','dashboard.username','image_url')
-//   .then((response)=>{
-//     console.log(response);
-//     res.send(response)
-//   })
-// })

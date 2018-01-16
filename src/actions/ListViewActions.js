@@ -16,24 +16,51 @@ export const listUsers = () => {
     })
   }
 }
+//
+// export const addFoodie = ( username, bio, friend_id, user_id ) => {
+//   return(dispatch)=>{
+//     let url = 'http://localhost:3000/friends'
+//     let body = {
+//       userID: user_id,
+//       friendID: friend_id
+//     }
+//     let add = { user_id: friend_id, bio, username }
+//     axios.post(url, body)
+//     .then((res)=>{
+//       dispatch({
+//         type: ADD_FOODIE_TO_STATE,
+//         payload: add
+//       })
+//     })
+//   }
+// }
 
+//copied from above
 export const addFoodie = ( username, bio, friend_id, user_id ) => {
   return(dispatch)=>{
-    let url = 'http://localhost:3000/friends'
+    let postUrl = 'http://localhost:3000/friends'
+    let getUrl = `http://localhost:3000/photos/${friend_id}`
     let body = {
       userID: user_id,
       friendID: friend_id
     }
-    let add = { user_id: friend_id, bio, username }
-    axios.post(url, body)
-    .then((res)=>{
-      dispatch({
-        type: ADD_FOODIE_TO_STATE,
-        payload: add
+    axios.post(postUrl, body)
+    .then(()=>{
+    })
+    .then(()=>{
+      axios.get(getUrl)
+      .then((response)=>{
+        let image_url = response.data.image_url
+        let add = { user_id: friend_id, bio, username, image_url }
+        dispatch({
+          type: ADD_FOODIE_TO_STATE,
+          payload: add
+        })
       })
     })
   }
 }
+
 
 export const grabFoodies = ( userID ) => {
   return (dispatch)=>{
