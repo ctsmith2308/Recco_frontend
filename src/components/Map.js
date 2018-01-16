@@ -4,7 +4,8 @@ import {
   StyleSheet,
   Text,
   View,
-  TextInput
+  TextInput,
+  TouchableOpacity
 } from 'react-native';
 import MapView, { Marker, Callout, PROVIDER_GOOGLE } from 'react-native-maps';
 import { connect } from 'react-redux'
@@ -99,12 +100,9 @@ reviewModal(){
         <Card>
           {this.reviewModal()}
         </Card>
-        <CardSection style={{width:300, height:50,marginTop:100, marginBottom:10}}>
+        <CardSection style={{width:50, height:52, marginTop:100, marginBottom:10, borderColor:'black', borderWidth:2, borderRadius:10}}>
           <GPlacesInput/>
         </CardSection>
-
-
-
       </View>
     )
   }

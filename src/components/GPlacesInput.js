@@ -8,6 +8,9 @@ import {
   TextInput,
   TouchableOpacity
 } from 'react-native';
+
+import { Container, Header, Content, Tab, Tabs, Icon } from 'native-base';
+
 import MapView, { Marker, Callout, PROVIDER_GOOGLE } from 'react-native-maps';
 import RNGooglePlaces from 'react-native-google-places';
 import { connect } from 'react-redux'
@@ -31,7 +34,7 @@ class GPlacesInput extends Component {
           style={styles.button}
           onPress={() => this.openSearchModal()}
         >
-          <Text>Pick a Place</Text>
+        <Icon style={{color:'black'}} name="ios-search" />
         </TouchableOpacity>
       </View>
     );
@@ -40,12 +43,14 @@ class GPlacesInput extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    justifyContent: 'flex-end',
+    // position: 'absolute',
+    // marginTop:1,
+    marginLeft:8,
+    // top: 0,
+    // left: 0,
+    // right: 0,
+    // bottom: 0,
+    justifyContent:'center',
     alignItems: 'center',
   },
   map: {

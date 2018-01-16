@@ -55,13 +55,13 @@ bioValue=()=>{
 renderIf(condition){
   if(condition){
     return (
-      <Button onPress={()=>{this.toggleButton()}}>
+      <Button style={{backgroundColor:'red'}} onPress={()=>{this.toggleButton()}}>
         Edit
       </Button>
     )
   }else{
     return (
-    <Button onPress={()=>this.handleUserInfo()}>
+    <Button style={{backgroundColor:'red'}} onPress={()=>this.handleUserInfo()}>
       Looks Good!
     </Button>
     )
@@ -82,7 +82,7 @@ getPhotosFromGallery=()=>{
     } else {
       return (
         <View style={{backgroundColor:'#8DD9D8'}} >
-          <Card>
+          <Card style={{borderColor:'#8DD9D8'}}>
             <CardSection style={styles.thumbnailContainerStyle}>
               <TouchableOpacity onPress={()=>{this.getPhotosFromGallery()}}>
                 <Image
@@ -90,7 +90,7 @@ getPhotosFromGallery=()=>{
                 />
               </TouchableOpacity>
             </CardSection>
-            <CardSection style={{backgroundColor:'black', margin:10, borderColor:'transparent'}}>
+            <CardSection style={{backgroundColor:'black', margin:10, opacity:10}}>
               <Input
               label='username'
               placeholder={this.props.placeholderUsername || 'username' }
@@ -123,12 +123,13 @@ const styles = {
     justifyContent:'center',
     alignItems:'center',
     padding: 15,
+    backgroundColor:'#8DD9D8'
   },
   thumbnailStyle:{
     height:200,
     width:200,
     borderRadius: 100,
-    borderColor: '#8DD9D8',
+    borderColor: '#DD2131',
     borderWidth: 4
   },
   container: {

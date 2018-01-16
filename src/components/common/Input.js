@@ -21,12 +21,13 @@ const Input = ({label, value, onChangeText, placeholder, secureTextEntry, editab
 }
 const styles = {
   inputStyle:{
-    color:'white',
+    color:'black',
     paddingRight:5,
     paddingLeft:5,
     fontSize:18,
     lineHeight:23,
     flex:2,
+    
   },
   labelStyle:{
     color:'white',

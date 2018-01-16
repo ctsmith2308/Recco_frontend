@@ -2,7 +2,7 @@
 
 import React, {Component} from 'react'
 import {View, Text} from 'react-native'
-import { Container, Header, Content, Tab, Tabs } from 'native-base';
+import { Container, Header, Content, Tab, Tabs, TabHeading, Icon} from 'native-base';
 import Map from './Map';
 import Dashboard from './Dashboard';
 import ListFoodies from './SearchFoodies'
@@ -12,23 +12,24 @@ class TabNavigator extends Component{
 
   render(){
     return(
-      <Container >
+      <Container>
       <Header hasTabs />
              <Tabs
+
              tabBarUnderlineStyle={{backgroundColor:'transparent'}}
-             initialPage={0}
+             initialPage={2}
              tabBarPosition='bottom'
              >
-               <Tab heading="Search">
+               <Tab heading={<TabHeading><Icon style={styles.iconStyle} name="ios-person-add-outline" /></TabHeading>}>
                  <ListFoodies/>
                </Tab>
-               <Tab heading="Favs">
+               <Tab heading={<TabHeading><Icon style={styles.iconStyle} name="ios-people" /></TabHeading>}>
                  <MyFoodies />
                </Tab>
-               <Tab heading="Map">
+               <Tab heading={<TabHeading><Icon style={styles.iconStyle} name="ios-compass-outline" /></TabHeading>}>
                <Map />
                </Tab>
-               <Tab heading="Dash">
+               <Tab heading={<TabHeading><Icon style={styles.iconStyle} name="ios-person" /></TabHeading>}>
                <Dashboard />
                </Tab>
              </Tabs>
@@ -36,4 +37,12 @@ class TabNavigator extends Component{
     )
   }
 }
+
+
+const styles ={
+  iconStyle:{
+    color:'black'
+  }
+}
 export default TabNavigator
+// <Tab heading={ <TabHeading><Icon name="camera" /><Text>Camera</Text></TabHeading>}>

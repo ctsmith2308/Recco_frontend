@@ -63,7 +63,7 @@ const styles ={
     height: 50,
     width:50,
     borderRadius: 25,
-    borderColor: '#DD2131',
+    borderColor: '#8DD9D8',
     borderWidth: 2,
     marginLeft:15,
     marginRight:15,

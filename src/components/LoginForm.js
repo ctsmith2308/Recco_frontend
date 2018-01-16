@@ -55,6 +55,7 @@ class LoginForm extends Component {
 
         <CardSection style={styles.inputStyle}>
           <Input
+          style={{color:'black'}}
             secureTextEntry
             label="Password"
             placeholder="password"
@@ -93,8 +94,12 @@ const styles = {
     marginBottom:50
   },
   inputStyle:{
-    backgroundColor:'#000000',
-    margin:5
+    backgroundColor:'rgba(0,0,0, 0.15)',
+    margin:10,
+    borderRadius:3,
+    textShadowColor: 'black',
+    textShadowOffset: {width: -5, height: 5},
+    textShadowRadius: 25,
   },
   errorTextStyle:{
     fontSize:20,
