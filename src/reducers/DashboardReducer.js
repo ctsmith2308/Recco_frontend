@@ -44,8 +44,8 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, previousLogIn: !state.previousLogIn, editable: !state.editable }
     case NO_PREV_LOGIN:
       return { ...state , editable: true }
-    case DUMMY_ACTION:
-      return { ...state, showPhotoGallery:!state.showPhotoGallery }
+    // case SET_IMAGE:
+    //   return { ...state, imageURI: action.payload, showPhotoGallery:!state.showPhotoGallery }
     default:
       return state
   }

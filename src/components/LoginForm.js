@@ -97,9 +97,9 @@ const styles = {
     backgroundColor:'rgba(0,0,0, 0.15)',
     margin:10,
     borderRadius:3,
-    textShadowColor: '#F0E19E',
-    textShadowOffset: {width: -5, height: 5},
-    textShadowRadius: 25,
+    // textShadowColor: '#F0E19E',
+    // textShadowOffset: {width: -5, height: 5},
+    // textShadowRadius: 25,
   },
   errorTextStyle:{
     fontSize:20,

@@ -1,7 +1,6 @@
 import { CameraRoll } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import {
-  SET_IMAGE,
   ACCESS_PHOTOS,
   ADD_USERNAME,
   ADD_BIO,
@@ -9,7 +8,7 @@ import {
   SET_USER_INFO,
   INVERT_PREV_LOGIN,
   NO_PREV_LOGIN,
-  DUMMY_ACTION
+  SET_IMAGE
 } from './types'
 import NativeModules from 'NativeModules';
 
@@ -83,7 +82,8 @@ export const setImage = ({ userID, uri }) => {
         axios.post('http://localhost:3000/photos', postBody )
         .then((response)=>{
             dispatch({
-            type:DUMMY_ACTION
+            type:SET_IMAGE,
+            payload: uri
           })
         })
       })

@@ -84,7 +84,7 @@ reviewModal(){
             <MapView.Callout>
             <View style={styles.popUp}>
               <CardSection style={{borderColor:'transparent',flexDirection:'column',alignItems:'center'}}>
-                <Text style={{marginRight:5,marginBottom:3,fontSize:15,fontWeight:'bold'}}>{this.props.name}</Text>
+                <Text style={{marginRight:5,marginBottom:8,marginTop:8, fontSize:15,fontWeight:'bold'}}>{this.props.name}</Text>
                 <Text>{this.props.address}</Text>
               </CardSection>
               <CardSection style={{borderColor:'transparent', paddingTop:25, marginBottom:5, alignItems:'flex-end'}}>
