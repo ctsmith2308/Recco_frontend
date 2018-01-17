@@ -7,11 +7,12 @@ import {
   INVERT_PREV_LOGIN,
   NO_PREV_LOGIN,
   ACCESS_PHOTOS,
-  DUMMY_ACTION
+  DUMMY_ACTION,
+  LOGOUT
  } from '../actions/types'
 
 const INITIAL_STATE = {
-  imageURI: '../avatar.png',
+  imageURI:'',
   username: '',
   bio: '',
   placeholderUsername: '',
@@ -44,8 +45,8 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, previousLogIn: !state.previousLogIn, editable: !state.editable }
     case NO_PREV_LOGIN:
       return { ...state , editable: true }
-    // case SET_IMAGE:
-    //   return { ...state, imageURI: action.payload, showPhotoGallery:!state.showPhotoGallery }
+    case LOGOUT:
+      return {  ...state, ...INITIAL_STATE  }
     default:
       return state
   }

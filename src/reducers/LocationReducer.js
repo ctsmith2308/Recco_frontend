@@ -1,4 +1,4 @@
-import { SET_LOCATION_DETAILS, SET_CURRENT_FOODIE_REVIEW_LOCATIONS } from '../actions/types'
+import { SET_LOCATION_DETAILS, SET_CURRENT_FOODIE_REVIEW_LOCATIONS, LOGOUT } from '../actions/types'
 
 const INITIAL_STATE = {
   coordinates:null,
@@ -27,6 +27,8 @@ export default (state = INITIAL_STATE, action)=>{
       return {
         ...state, placeHolderCoord: action.payload
       }
+    case LOGOUT:
+      return {...state, ...INITIAL_STATE}
     default:
       return state
   }

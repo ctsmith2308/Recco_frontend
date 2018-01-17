@@ -3,11 +3,11 @@ import { View, Image, TouchableOpacity, CameraRoll } from 'react-native'
 // import { Container, Header, Content, Footer, FooterTab, Button, Text, Icon} from 'native-base';
 import { Container } from 'native-base';
 
-import {Actions} from 'react-native-router-flux'
+import { Actions } from 'react-native-router-flux'
 
 import { connect } from 'react-redux'
 import { Card, CardSection, Input, Button, Toolbar } from './common'
-
+import { logout } from '../actions'
 import ViewPhotos from './common/ViewPhotos'
 
 import {
@@ -50,6 +50,10 @@ usernameValue=()=>{
 
 bioValue=()=>{
   if(this.props.editable) return this.props.bio
+}
+
+logOUT=()=>{
+  this.props.logout()
 }
 
 renderIf(condition){
@@ -111,6 +115,9 @@ getPhotosFromGallery=()=>{
             </CardSection>
             <CardSection style={{marginBottom:150, backgroundColor:'#B7F5DE'}}>
               {this.renderIf(this.props.previousLogIn)}
+              <Button style={{backgroundColor:'red'}} onPress={()=>{ this.logOUT() }}>
+                Logout
+              </Button>
             </CardSection>
           </Card>
         </View>
@@ -158,4 +165,4 @@ const mapStateToProps = ({ auth, dashboard }) => {
   return { token, userID,imageURI, username, bio, placeholderUsername, placeholderBio, previousLogIn, editable, photoArray, showPhotoGallery, updating }
 }
 
-export default connect(mapStateToProps, { createUsername, createBio, submitUserInfo, getUserInfo, changeEditable, buttonToggler, accessPhotos })(Dashboard)
+export default connect(mapStateToProps, { createUsername, createBio, submitUserInfo, getUserInfo, changeEditable, buttonToggler, accessPhotos, logout })(Dashboard)

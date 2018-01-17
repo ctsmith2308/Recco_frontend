@@ -2,7 +2,7 @@ import firebase from 'firebase'
 import { Actions } from 'react-native-router-flux'
 import axios from 'axios'
 
-import { EMAIL_CHANGED, PASSWORD_CHANGED, LOGIN_USER_SUCCESS, LOGIN_USER_FAIL, LOGIN_USER, TO_DASHBOARD, TO_MAP} from './types'
+import { EMAIL_CHANGED, PASSWORD_CHANGED, LOGIN_USER_SUCCESS, LOGIN_USER_FAIL, LOGIN_USER, TO_DASHBOARD, TO_MAP, LOGOUT} from './types'
 
 export const emailChanged=(text)=>{
   return {
@@ -18,10 +18,19 @@ export const passwordChanged=(text)=>{
   }
 }
 
+export const logout = () =>{
+  return (dispatch)=>{
+    dispatch({
+      type:LOGOUT
+    })
+    Actions.auth()
+  }
+}
+
 export const loginUser = ({ email, password }) => {
   const url = 'http://localhost:3000/users'
   return (dispatch) => {
-    dispatch({type: LOGIN_USER});
+    dispatch({type: LOGIN_USER})
     firebase.auth().signInWithEmailAndPassword(email, password)
     .then(user => { firebase.auth().currentUser.getIdToken(true)
       .then((idToken) => {
@@ -89,7 +98,7 @@ const loginUserSuccessToDash = (dispatch, userID, idToken) => {
     type: LOGIN_USER_SUCCESS,
     payload: { userID, idToken }
   })
-Actions.navigator()  // Action.tabBar()
+Actions.navigator()
 
 }
 

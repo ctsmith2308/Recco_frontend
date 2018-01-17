@@ -1,4 +1,4 @@
-import { EMAIL_CHANGED, PASSWORD_CHANGED, LOGIN_USER_SUCCESS, LOGIN_USER_FAIL, LOGIN_USER, TO_DASHBOARD ,TO_MAP } from '../actions/types'
+import { EMAIL_CHANGED, PASSWORD_CHANGED, LOGIN_USER_SUCCESS, LOGIN_USER_FAIL, LOGIN_USER, TO_DASHBOARD ,TO_MAP, LOGOUT } from '../actions/types'
 
 const INITIAL_STATE = {
   email:'',
@@ -51,6 +51,10 @@ export default (state = INITIAL_STATE, action)=>{
         ...state,
         loggingIn: true,
         error: ''
+      }
+    case LOGOUT:
+      return {
+        ...state, ...INITIAL_STATE
       }
     default:
       return state
