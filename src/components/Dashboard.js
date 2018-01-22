@@ -23,8 +23,8 @@ import {
 class Dashboard extends Component{
 
 componentDidMount(){
-  let { userID } = this.props
-  this.props.getUserInfo({ userID })
+  let { userID, token } = this.props
+  this.props.getUserInfo({ userID, token })
 }
 
 handleUsername(text){

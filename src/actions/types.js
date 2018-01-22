@@ -1,11 +1,10 @@
-// LOGIN IN ACTIONS
+//LOGIN IN ACTIONS
 export const EMAIL_CHANGED = 'email_changed'
 export const PASSWORD_CHANGED = 'password_changed'
 export const LOGIN_USER_SUCCESS = 'login_user_success'
 export const LOGIN_USER_FAIL = 'login_user_fail'
 export const LOGIN_USER = 'login_user'
 export const LOGOUT = 'logout'
-
 
 //DASHBOARD ACTIONS
 export const SET_IMAGE = 'set_image'
@@ -22,11 +21,11 @@ export const SET_LOCATION_DETAILS = 'set_location_details'
 //Reviews ACTIONS
 export const ADD_REVIEW_TEXT = 'add_review_text'
 
-// Placeholder ACTIONS
+//Placeholder ACTIONS
 export const DUMMY_ACTION = 'dummy_action'
-export const LIST_USERS = 'list_users'
 
-// Listview ACTIONS
+//Listview ACTIONS
+export const LIST_USERS = 'list_users'
 export const ADD_FOODIE_TO_STATE = 'add_foodie_to_state'
 export const GRAB_FOODIES = 'grab_foodies'
 export const REVIEWS_LIST = 'reviews_list'

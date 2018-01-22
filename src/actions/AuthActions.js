@@ -34,13 +34,11 @@ export const loginUser = ({ email, password }) => {
     firebase.auth().signInWithEmailAndPassword(email, password)
     .then(user => { firebase.auth().currentUser.getIdToken(true)
       .then((idToken) => {
-        console.log('here is the idToken', idToken);
         //wrap this in a new function later
         axios.get(url + "/" + idToken)
         .then((response) => {
           let userID = response.data.user_id
           let idToken = response.data.userToken
-          let url = 'http://localhost:3000/dashboard/'
           loginUserSuccess(dispatch, userID, idToken)
         })
         .catch(function (error) {
@@ -53,7 +51,6 @@ export const loginUser = ({ email, password }) => {
     .catch((error) => {
       firebase.auth().createUserWithEmailAndPassword(email, password)
         .then(user => {
-          console.log('email', email);
           firebase.auth().currentUser.getIdToken(true)
             .then((idToken) => {
               //put this in a new function later
@@ -67,12 +64,10 @@ export const loginUser = ({ email, password }) => {
                 loginUserSuccessToDash(dispatch, userID, idToken)
               })
               .catch((error) => {
-                console.log('this is the error' , error);
               });
               //close new function here
             })
             .catch((error) => {
-              console.log('error from new user creation', error);
             });
         })
       .catch(() => loginUserFail(dispatch))
@@ -85,11 +80,6 @@ const loginUserSuccess = (dispatch, userID, idToken) => {
     type: LOGIN_USER_SUCCESS,
     payload: { userID, idToken }
   })
-  // Actions.map()
-  // Actions.userDash()
-  // Actions.tabBar()
-  // Actions.foodieSearch()
-  // Actions.myFoodies()
   Actions.navigator()
 }
 
@@ -99,7 +89,6 @@ const loginUserSuccessToDash = (dispatch, userID, idToken) => {
     payload: { userID, idToken }
   })
 Actions.navigator()
-
 }
 
 const loginUserFail = (dispatch) => {

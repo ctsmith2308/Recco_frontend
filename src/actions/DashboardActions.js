@@ -11,22 +11,20 @@ import {
   SET_IMAGE
 } from './types'
 import NativeModules from 'NativeModules';
-
 import axios from 'axios'
 
-export const getUserInfo=({ userID }) => {
+//checks out
+export const getUserInfo=({ userID, token }) => {
   return (dispatch) => {
     let url = 'http://localhost:3000/dashboard/'
-    axios.get(url + userID)
+    axios.get(url + userID, {headers:{'x-access-token': token }})
     .then((res)=>{
-      console.log('here is the backend res', res);
       let { username, bio, image_url } = res.data
       if(!username){
         dispatch({
           type: NO_PREV_LOGIN
         })
       } else {
-        console.log('im dispatching SET_USER_INFO');
         dispatch({
           type: SET_USER_INFO,
           payload: { username, bio, image_url }
@@ -50,47 +48,41 @@ export const accessPhotos = () => {
     })
   }
 }
-
-export const setImage = ({ userID, uri }) => {
+//checks out!
+export const setImage = ({ userID, token, uri }) => {
   return(dispatch)=>{
-    let link;
-    let postBody;
-    let myAPIUrl = 'http://localhost/3000/photos'
 
     NativeModules.RNImageToBase64.getBase64String(uri, (err, base64) => {
-
-      let url = "https://api.imgur.com/3/image"
+      let imgurUrl = "https://api.imgur.com/3/image"
       let body = JSON.stringify({
         image: base64,
         type: 'base64'
       })
       let clientId = 'a0d07d8b8078282'
-      axios.post(url, body , {
+      axios.post(imgurUrl, body , {
           headers: {
               'Authorization': `Client-ID ${clientId}`,
               'content-type': 'application/json'
           }
       })
-      .then((res) => {
-        link = res.data.data.link
-        postBody = {
+      .then((response) => {
+        let myAPIUrl = 'http://localhost:3000/photos'
+        let link = response.data.data.link
+        let postBody = {
           userID,
-          url: link
+          url: link,
         }
-      })
-      .then(()=>{
-        axios.post('http://localhost:3000/photos', postBody )
-        .then((response)=>{
-            dispatch({
-            type:SET_IMAGE,
-            payload: uri
+        axios.post(myAPIUrl, postBody, { headers: {'x-access-token': token}})
+          .then((response)=>{
+              dispatch({
+              type: SET_IMAGE,
+              payload: uri
+            })
           })
-        })
       })
     })
   }
 }
-
 
 export const createUsername = (text) => {
   return {
@@ -106,6 +98,7 @@ export const createBio = (text) => {
   }
 }
 
+//checks out!!!
 export const submitUserInfo = ({ token, userID, username, bio }) => {
   return (dispatch) => {
     let url = 'http://localhost:3000/users/username'

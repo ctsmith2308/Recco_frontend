@@ -23,13 +23,11 @@ export const postReview = ({ userID, userReview, lat, long, name, address }) => 
     }
     axios.post(url, body)
       .then(res => {
-        console.log('here it is from the backend', res);
         dispatch({
           type: DUMMY_ACTION
         })
       })
       .catch( error => {
-        console.log('this is an error', error);
         dispatch({
           type: DUMMY_ACTION
         })

@@ -24,7 +24,7 @@ const INITIAL_STATE = {
 }
 
 export default (state = INITIAL_STATE, action) => {
-  console.log('this is the action', action);
+  // console.log('this is the action', action);
   switch(action.type){
     case ACCESS_PHOTOS:
     return { ...state, photoArray: action.payload, showPhotoGallery: !state.showPhotoGallery }
@@ -35,7 +35,6 @@ export default (state = INITIAL_STATE, action) => {
     case ADD_BIO:
       return { ...state, bio: action.payload }
     case SET_USER_INFO:
-    console.log(action.payload.image_url);
       return { ...state, bio:action.payload.bio, username: action.payload.username,
         placeholderUsername: action.payload.username, placeholderBio: action.payload.bio,
         imageURI:action.payload.image_url,

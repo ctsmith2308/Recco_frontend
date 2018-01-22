@@ -11,11 +11,12 @@ import { listUsers, addFoodie } from '../actions'
 class ListFoodies extends React.PureComponent {
 
   componentWillMount=()=>{
-     this.props.listUsers()
+     let token = this.props.token
+     this.props.listUsers({token})
   }
 
   helperFunction = (username, bio, friend_id ) => {
-    this.props.addFoodie(username, bio ,friend_id, this.props.userID)
+    this.props.addFoodie(username, bio ,friend_id, this.props.userID, this.props.token)
   }
 
   render() {
@@ -92,12 +93,11 @@ const styles ={
 }
 
 const mapStateToProps = ({ getUserlist, auth }) => {
-  let { userID } = auth
+  let { userID, token } = auth
   let { users } = getUserlist
-  // console.log('here is the userlist', users);
-  // console.log('current userID', userID);
 
-  return { users, userID }
+
+  return { users, userID, token }
 }
 
 export default connect(mapStateToProps, { listUsers, addFoodie })(ListFoodies)

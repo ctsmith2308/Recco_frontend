@@ -19,7 +19,8 @@ class ViewPhotos extends Component {
 
 passPhotoToPlaceholder=({ uri })=>{
 let userID = this.props.userID
-this.props.setImage({ userID, uri })
+let token = this.props.token
+this.props.setImage({ userID, token, uri })
 }
   state = {
     ds: new ListView.DataSource({
@@ -35,7 +36,7 @@ this.props.setImage({ userID, uri })
         onPress={()=>{this.passPhotoToPlaceholder( { uri } )}}>
         <Image
           source={{ uri: rowData.node.image.uri }}
-          style={styles.image} />
+          style={ styles.image } />
       </TouchableHighlight>
     )
   }
@@ -73,8 +74,8 @@ const styles = StyleSheet.create({
   }
 })
 const mapStateToProps = ({ dashboard, auth }) => {
-  let { userID } = auth
-  return { dashboard, userID }
+  let { userID, token } = auth
+  return { dashboard, userID, token }
 }
 
 export default connect(mapStateToProps, { setImage })(ViewPhotos);
