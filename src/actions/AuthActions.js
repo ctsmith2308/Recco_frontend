@@ -62,8 +62,10 @@ export const loginUser = ({ email, password }) => {
               })
               .then((response) => {
                 let userID = response.data.user_id
+                let email = response.data.email
                 let idToken = response.data.userToken
-                loginUserSuccessToDash(dispatch, userID, idToken)
+                console.log('here is the new user email', email);
+                loginUserSuccessToDash(dispatch, userID, email, idToken)
               })
               .catch((error) => {
               });
@@ -85,10 +87,10 @@ const loginUserSuccess = (dispatch, userID, email, idToken) => {
   Actions.navigator()
 }
 
-const loginUserSuccessToDash = (dispatch, userID, idToken) => {
+const loginUserSuccessToDash = (dispatch, userID, email, idToken) => {
   dispatch({
     type: LOGIN_USER_SUCCESS,
-    payload: { userID, idToken }
+    payload: { userID, email, idToken }
   })
 Actions.navigator()
 }
