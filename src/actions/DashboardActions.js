@@ -1,25 +1,28 @@
 import { CameraRoll } from 'react-native'
 import { Actions } from 'react-native-router-flux'
+import NativeModules from 'NativeModules';
+import axios from 'axios'
+
 import {
   ACCESS_PHOTOS,
+  ADD_NAME,
   ADD_USERNAME,
   ADD_BIO,
   SEND_USER_INFO,
   SET_USER_INFO,
   INVERT_PREV_LOGIN,
   NO_PREV_LOGIN,
-  SET_IMAGE
+  SET_IMAGE,
+  USERNAME_ALREADY_EXISTS
 } from './types'
-import NativeModules from 'NativeModules';
-import axios from 'axios'
 
-//checks out
 export const getUserInfo=({ userID, token }) => {
   return (dispatch) => {
     let url = 'http://localhost:3000/dashboard/'
-    axios.get(url + userID, {headers:{'x-access-token': token }})
+    axios.get(url + userID, { headers:{'x-access-token': token }})
     .then((res)=>{
-      let { username, bio, image_url } = res.data
+      console.log('im the name ==> ',res.data.name);
+      let { username, bio, name, image_url } = res.data
       if(!username){
         dispatch({
           type: NO_PREV_LOGIN
@@ -27,7 +30,7 @@ export const getUserInfo=({ userID, token }) => {
       } else {
         dispatch({
           type: SET_USER_INFO,
-          payload: { username, bio, image_url }
+          payload: { username, bio, name, image_url }
         })
       }
     })
@@ -48,7 +51,6 @@ export const accessPhotos = () => {
     })
   }
 }
-//checks out!
 export const setImage = ({ userID, token, uri }) => {
   return(dispatch)=>{
 
@@ -84,6 +86,12 @@ export const setImage = ({ userID, token, uri }) => {
   }
 }
 
+export const createName = (text)=>{
+  return {
+    type: ADD_NAME,
+    payload: text
+  }
+}
 export const createUsername = (text) => {
   return {
     type: ADD_USERNAME,
@@ -98,22 +106,32 @@ export const createBio = (text) => {
   }
 }
 
-//checks out!!!
-export const submitUserInfo = ({ token, userID, username, bio }) => {
+export const submitUserInfo = ({ token, userID, username, bio, name }) => {
   return (dispatch) => {
     let url = 'http://localhost:3000/users/username'
-    let reqBody = { token, userID, username, bio }
+    let reqBody = { token, userID, username, bio, name }
     axios.post(url, reqBody)
       .then((res) => {
         dispatch({
           type: INVERT_PREV_LOGIN,
+        })
       })
-    })
+      .catch((error)=>{
+        dispatch({
+          type: USERNAME_ALREADY_EXISTS
+        })
+      })
   }
 }
 
 export const buttonToggler = () => {
   return {
     type: INVERT_PREV_LOGIN,
+  }
+}
+
+export const toggleUserName = () =>{
+  return {
+      type: USERNAME_ALREADY_EXISTS
   }
 }

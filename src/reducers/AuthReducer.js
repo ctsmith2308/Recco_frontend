@@ -5,7 +5,7 @@ const INITIAL_STATE = {
   password:'',
   userID: null,
   loggingIn: false,
-  error: '',
+  error: null,
   token: null,
   previousLogIn: false
 }
@@ -27,6 +27,7 @@ export default (state = INITIAL_STATE, action)=>{
         ...state,
         ...INITIAL_STATE,
         userID: action.payload.userID,
+        email: action.payload.email,
         token: action.payload.idToken
       }
     case TO_MAP:

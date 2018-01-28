@@ -15,8 +15,8 @@ class ListFoodies extends React.PureComponent {
      this.props.listUsers({token})
   }
 
-  helperFunction = (username, bio, friend_id ) => {
-    this.props.addFoodie(username, bio ,friend_id, this.props.userID, this.props.token)
+  helperFunction = (username, bio, name, friend_id ) => {
+    this.props.addFoodie(username, bio, name, friend_id, this.props.userID, this.props.token)
   }
 
   render() {
@@ -33,11 +33,12 @@ class ListFoodies extends React.PureComponent {
               </View>
               <View style={{width:165}}>
                 <Text style={styles.headerTextStyle}>{item.username}</Text>
+                <Text style={styles.headerTextStyle}>{item.name}</Text>
               </View>
               <View style={{width:100, alignItems:'center'}}>
                 <Button
                   style={{borderColor:'red', borderWidth:2, alignItems:'center', paddingTop:25}}
-                  onPress={()=>this.helperFunction(item.username,item.bio, item.user_id)}>
+                  onPress={()=>this.helperFunction(item.username,item.bio,item.name,item.user_id)}>
                   Follow
                  </Button>
               </View>

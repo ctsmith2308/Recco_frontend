@@ -16,7 +16,7 @@ class TabNavigator extends Component{
       <Header hasTabs />
              <Tabs
              tabBarUnderlineStyle={{backgroundColor:'transparent'}}
-             initialPage={2}
+             initialPage={3}
              tabBarPosition='bottom'
              >
                <Tab heading={<TabHeading><Icon style={styles.iconStyle} name="ios-search" /></TabHeading>}>

@@ -37,9 +37,11 @@ export const loginUser = ({ email, password }) => {
         //wrap this in a new function later
         axios.get(url + "/" + idToken)
         .then((response) => {
+          console.log('im the success case and here is the respons ==>', response);
           let userID = response.data.user_id
+          let email = response.data.email
           let idToken = response.data.userToken
-          loginUserSuccess(dispatch, userID, idToken)
+          loginUserSuccess(dispatch, userID, email, idToken)
         })
         .catch(function (error) {
         });
@@ -75,10 +77,10 @@ export const loginUser = ({ email, password }) => {
   }
 }
 
-const loginUserSuccess = (dispatch, userID, idToken) => {
+const loginUserSuccess = (dispatch, userID, email, idToken) => {
   dispatch({
     type: LOGIN_USER_SUCCESS,
-    payload: { userID, idToken }
+    payload: { userID, email, idToken }
   })
   Actions.navigator()
 }

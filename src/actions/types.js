@@ -9,11 +9,13 @@ export const LOGOUT = 'logout'
 //DASHBOARD ACTIONS
 export const SET_IMAGE = 'set_image'
 export const ACCESS_PHOTOS = 'access_photos'
+export const ADD_NAME = 'add_name'
 export const ADD_USERNAME = 'add_username'
 export const ADD_BIO = 'add_bio'
 export const SET_USER_INFO = 'bio_info'
 export const INVERT_PREV_LOGIN = 'invert_prev_login'
 export const NO_PREV_LOGIN = 'no_prev_login'
+export const USERNAME_ALREADY_EXISTS ='username_already_exists'
 
 //Location ACTIONS
 export const SET_LOCATION_DETAILS = 'set_location_details'

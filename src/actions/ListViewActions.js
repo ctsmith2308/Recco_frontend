@@ -2,12 +2,12 @@ import { Actions } from 'react-native-router-flux'
 import  axios  from 'axios'
 
 import { GRAB_FOODIES, LIST_USERS, ADD_FOODIE_TO_STATE, REVIEWS_LIST } from './types'
-//checks out
 export const listUsers = ({token}) => {
   let url = 'http://localhost:3000/dashboard'
   return(dispatch)=>{
     axios.get(url, { headers: {'x-access-token': token} })
     .then((data)=>{
+      console.log('here is a list of all the users ', data);
       let userArray = data.data
       dispatch({
         type: LIST_USERS,
@@ -37,8 +37,7 @@ export const addFoodie = ( username, bio, friend_id, user_id, token ) => {
         })
       })
     })
-    .catch(error => console.log(error);
-    })
+
   }
 }
 // need to pass token to API

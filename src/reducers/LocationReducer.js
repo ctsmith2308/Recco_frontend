@@ -3,8 +3,8 @@ import { SET_LOCATION_DETAILS, SET_CURRENT_FOODIE_REVIEW_LOCATIONS, LOGOUT } fro
 const INITIAL_STATE = {
   coordinates:null,
   placeHolderCoord: null,
-  name:'',
-  address:'',
+  name:null,
+  address:null,
   lat: null,
   long: null,
   website:'no website',
