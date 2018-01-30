@@ -3,21 +3,23 @@ import {
   LIST_USERS,
   ADD_FOODIE_TO_STATE,
   REVIEWS_LIST,
-  LOGOUT
+  LOGOUT,
+  SEARCH_USERS
  } from '../actions/types'
 
 const INITIAL_STATE = {
   users:null,
+  filteredUsers:null,
   currentFoodieId: null,
   myFoodies:[],
   foodieReviewList:null,
-  reviewList:null
+  reviewList:null,
 }
 
 export default (state = INITIAL_STATE, action) => {
   switch(action.type){
     case LIST_USERS:
-      return { ...state, users:action.payload }
+      return { ...state, users:action.payload, filteredUsers:action.payload}
     case ADD_FOODIE_TO_STATE:
       return { ...state, myFoodies: [...state.myFoodies, action.payload ] }
     case GRAB_FOODIES:
@@ -25,7 +27,9 @@ export default (state = INITIAL_STATE, action) => {
     case REVIEWS_LIST:
       return { ...state , reviewList: action.payload }
     case LOGOUT:
-      return {...state, ...INITIAL_STATE}
+      return { ...state, ...INITIAL_STATE }
+    case SEARCH_USERS:
+      return { ...state, filteredUsers: action.payload }
     default:
       return state
   }

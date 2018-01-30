@@ -10,21 +10,15 @@ class MyFoodies extends Component{
 
   componentWillMount=()=>{
     let userID = this.props.userID
-    this.props.grabFoodies( userID )
+    this.props.grabFoodies( userID, this.props.token )
   }
 
   foodieReviewListHelperFn=(id)=>{
     this.props.grabFoodiesReviews(id)
   }
 
-  removeFoodie = (friend_id ) => {
-    // console.log('Im the friendID', friend_id)
-    //this function will remove a foodie in the future = get to it in a bit
-  }
-
   render() {
     return (
-
       <View style={styles.container}>
         <FlatList
           data={this.props.myFoodies}
@@ -34,8 +28,9 @@ class MyFoodies extends Component{
                 <Image style={styles.thumbnailStyle}
                 source={{uri:item.image_url}}/>
               </View>
-              <View style={{width:195}}>
+              <View style={{width:195,marginTop:3}}>
                 <Text style={styles.headerTextStyle}>{item.username}</Text>
+                <Text style={styles.headerTextStyle}>{item.name}</Text>
               </View>
               <View style={{width:70}}>
                 <Button
@@ -48,7 +43,6 @@ class MyFoodies extends Component{
           }
           keyExtractor={(item, index) => index}
         />
-
       </View>
     )
   }
@@ -68,8 +62,6 @@ const styles ={
     height: 50,
     width:50,
     borderRadius: 25,
-    // borderColor: '#8DD9D8',
-    // borderWidth: 2,
     marginLeft:15,
     marginRight:15,
     marginBottom:3
@@ -95,9 +87,9 @@ const styles ={
 }
 
 const mapStateToProps = ({ auth, getUserlist }) => {
-  let { userID } = auth
+  let { userID, token } = auth
   let { myFoodies } = getUserlist
-  return { userID, myFoodies }
+  return { userID, myFoodies, token }
 }
 
 export default connect(mapStateToProps, { grabFoodies, setSelectedReviewsOnMap, grabFoodiesReviews })(MyFoodies)

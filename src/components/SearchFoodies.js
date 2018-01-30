@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { Container, Header, Content, Footer, FooterTab, Icon} from 'native-base';
-
+import { SearchBar } from 'react-native-elements'
 import { View, Text, FlatList, Image } from 'react-native'
 import { connect } from 'react-redux'
 import { Card, CardSection, Input, Button, Toolbar, RenderUserRow } from './common'
 
-import { listUsers, addFoodie } from '../actions'
+import { listUsers, addFoodie, searchBarInput } from '../actions'
 
 
 class ListFoodies extends React.PureComponent {
@@ -15,15 +15,23 @@ class ListFoodies extends React.PureComponent {
      this.props.listUsers({token})
   }
 
-  helperFunction = (username, bio, name, friend_id ) => {
-    this.props.addFoodie(username, bio, name, friend_id, this.props.userID, this.props.token)
+  handleFollow = (username, bio, friend_id, name ) => {
+    this.props.addFoodie(username, bio, friend_id, this.props.userID, this.props.token, name)
+  }
+
+  handleSearchInput=(text)=>{
+    this.props.searchBarInput(text, this.props.users)
   }
 
   render() {
     return (
-      <View>
+      <View style={{height:'100%'}}>
+      <SearchBar
+        placeholder="Search"
+        onChangeText={this.handleSearchInput}
+        lightTheme/>
         <FlatList
-          data={this.props.users}
+          data={this.props.filteredUsers}
           renderItem={ ({item}) =>
             <CardSection style={styles.headerContentStyle}>
               <View style ={styles.thumbnailContainerStyle}>
@@ -38,7 +46,7 @@ class ListFoodies extends React.PureComponent {
               <View style={{width:100, alignItems:'center'}}>
                 <Button
                   style={{borderColor:'red', borderWidth:2, alignItems:'center', paddingTop:25}}
-                  onPress={()=>this.helperFunction(item.username,item.bio,item.name,item.user_id)}>
+                  onPress={()=>this.handleFollow(item.username, item.bio, item.user_id, item.name)}>
                   Follow
                  </Button>
               </View>
@@ -95,12 +103,9 @@ const styles ={
 
 const mapStateToProps = ({ getUserlist, auth }) => {
   let { userID, token } = auth
-  let { users } = getUserlist
+  let { users, filteredUsers } = getUserlist
 
-
-  return { users, userID, token }
+  return { users, userID, token, filteredUsers }
 }
 
-export default connect(mapStateToProps, { listUsers, addFoodie })(ListFoodies)
-
-///////////////////////////////////////////////////////////////////////////////
+export default connect(mapStateToProps, { listUsers, addFoodie, searchBarInput })(ListFoodies)

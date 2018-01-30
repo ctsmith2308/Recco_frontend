@@ -7,7 +7,7 @@ import ReduxThunk from 'redux-thunk' // ReduxThunk allows you to call an action 
 import firebase from 'firebase'
 import reducers from './src/reducers'
 import { config } from './config'
-import { Header } from './src/components/common'
+// import { Header } from './src/components/common'
 import Router from './src/Router'
 
 export default class App extends Component{

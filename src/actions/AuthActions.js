@@ -37,7 +37,7 @@ export const loginUser = ({ email, password }) => {
         //wrap this in a new function later
         axios.get(url + "/" + idToken)
         .then((response) => {
-          console.log('im the success case and here is the respons ==>', response);
+          // console.log('im the success case and here is the respons ==>', response);
           let userID = response.data.user_id
           let email = response.data.email
           let idToken = response.data.userToken
