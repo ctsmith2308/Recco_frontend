@@ -8,12 +8,12 @@ import {
  } from '../actions/types'
 
 const INITIAL_STATE = {
-  users:null,
-  filteredUsers:null,
+  users: null,
+  filteredUsers: null,
   currentFoodieId: null,
-  myFoodies:[],
-  foodieReviewList:null,
-  reviewList:null,
+  myFoodies: [],
+  foodieReviewList: null,
+  reviewList: null,
 }
 
 export default (state = INITIAL_STATE, action) => {

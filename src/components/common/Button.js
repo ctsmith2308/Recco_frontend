@@ -23,11 +23,9 @@ const styles = {
   buttonStyle:{
     alignItems:'center',
     flex:1,
-    // borderColor:'#3E333F',
     alignSelf:'stretch',
     backgroundColor:'#fff',
     borderRadius: 5,
-    // borderWidth: 1,
     marginLeft:5,
     marginRight:5
   }

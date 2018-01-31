@@ -3,10 +3,9 @@ import { Container, Header, Content, Footer, FooterTab, Icon} from 'native-base'
 import { SearchBar } from 'react-native-elements'
 import { View, Text, FlatList, Image } from 'react-native'
 import { connect } from 'react-redux'
+import  axios  from 'axios'
 import { Card, CardSection, Input, Button, Toolbar, RenderUserRow } from './common'
-
 import { listUsers, addFoodie, searchBarInput } from '../actions'
-
 
 class ListFoodies extends React.PureComponent {
 
@@ -15,12 +14,30 @@ class ListFoodies extends React.PureComponent {
      this.props.listUsers({token})
   }
 
-  handleFollow = (username, bio, friend_id, name ) => {
+  addFriend = (username, bio, friend_id, name ) => {
     this.props.addFoodie(username, bio, friend_id, this.props.userID, this.props.token, name)
   }
 
   handleSearchInput=(text)=>{
     this.props.searchBarInput(text, this.props.users)
+  }
+
+  toggleFollowButton(itemID, itemUsername, itemBio, itemUser_id, itemName){
+    let url = 'http://localhost:3000/friends/following'
+    let postBody = { userID: this.props.userID, friendID: itemID }
+    let result = axios.post(url, postBody, { headers:{'x-access-token': this.props.token }})
+    .then((response) => response
+    )
+    console.log('here is the response', result)
+    // console.log('here is the response', value._55);
+
+      return (
+          <Button
+          style={{borderColor:'red', borderWidth:2, alignItems:'center', paddingTop:25}}
+          onPress={()=>this.addFriend(itemUsername, itemBio, itemUser_id, itemName)}>
+           Follow
+         </Button>
+      )
   }
 
   render() {
@@ -44,11 +61,7 @@ class ListFoodies extends React.PureComponent {
                 <Text style={styles.headerTextStyle}>{item.name}</Text>
               </View>
               <View style={{width:100, alignItems:'center'}}>
-                <Button
-                  style={{borderColor:'red', borderWidth:2, alignItems:'center', paddingTop:25}}
-                  onPress={()=>this.handleFollow(item.username, item.bio, item.user_id, item.name)}>
-                  Follow
-                 </Button>
+                {this.toggleFollowButton(item.user_id, item.username, item.bio, item.user_id, item.name)}
               </View>
             </CardSection>
           }
@@ -75,8 +88,6 @@ const styles ={
     height: 50,
     width:50,
     borderRadius: 25,
-    // borderColor: '#8DD9D8',
-    // borderWidth: 2,
     marginLeft:15,
     marginRight:15,
     marginBottom:3
