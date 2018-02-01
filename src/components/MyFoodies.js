@@ -11,6 +11,9 @@ class MyFoodies extends Component{
   componentWillMount=()=>{
     let userID = this.props.userID
     this.props.grabFoodies( userID, this.props.token )
+    // console.log('foodie list', this.props.myFoodies);
+
+    
   }
 
   foodieReviewListHelperFn=(id)=>{

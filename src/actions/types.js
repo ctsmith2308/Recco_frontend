@@ -25,7 +25,7 @@ export const ADD_REVIEW_TEXT = 'add_review_text'
 
 //Placeholder ACTIONS
 export const DUMMY_ACTION = 'dummy_action'
-
+export const DUMMY = 'dummy'
 //Listview ACTIONS
 export const LIST_USERS = 'list_users'
 export const ADD_FOODIE_TO_STATE = 'add_foodie_to_state'

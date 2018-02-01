@@ -64,7 +64,6 @@ export const loginUser = ({ email, password }) => {
                 let userID = response.data.user_id
                 let email = response.data.email
                 let idToken = response.data.userToken
-                console.log('here is the new user email', email);
                 loginUserSuccessToDash(dispatch, userID, email, idToken)
               })
               .catch((error) => {

@@ -5,37 +5,34 @@ import { View, Text, FlatList, Image } from 'react-native'
 import { connect } from 'react-redux'
 import  axios  from 'axios'
 import { Card, CardSection, Input, Button, Toolbar, RenderUserRow } from './common'
-import { listUsers, addFoodie, searchBarInput } from '../actions'
+import { listUsers, addFoodie, searchBarInput, grabFoodies, toggleFriends } from '../actions'
 
 class ListFoodies extends React.PureComponent {
 
   componentWillMount=()=>{
-     let token = this.props.token
-     this.props.listUsers({token})
-  }
-
-  addFriend = (username, bio, friend_id, name ) => {
-    this.props.addFoodie(username, bio, friend_id, this.props.userID, this.props.token, name)
+     this.props.listUsers(this.props.token)
+     this.props.grabFoodies( this.props.userID, this.props.token )
   }
 
   handleSearchInput=(text)=>{
     this.props.searchBarInput(text, this.props.users)
   }
 
-  toggleFollowButton(itemID, itemUsername, itemBio, itemUser_id, itemName){
-    let url = 'http://localhost:3000/friends/following'
-    let postBody = { userID: this.props.userID, friendID: itemID }
-    let result = axios.post(url, postBody, { headers:{'x-access-token': this.props.token }})
-    .then((response) => response
-    )
-    console.log('here is the response', result)
-    // console.log('here is the response', value._55);
+  toggleAddDeleteFriend=(itemUser_id)=>{
+    this.props.toggleFriends(itemUser_id, this.props.userID, this.props.token)
+  }
 
-      return (
+  toggleFollowButton(itemUser_id){
+    let text;
+    let filterFriends = this.props.myFoodies.filter( x => {
+      return x.user_id === itemUser_id
+    })
+    filterFriends.length > 0 ? text = 'unfollow': text = 'follow'
+    return (
           <Button
           style={{borderColor:'red', borderWidth:2, alignItems:'center', paddingTop:25}}
-          onPress={()=>this.addFriend(itemUsername, itemBio, itemUser_id, itemName)}>
-           Follow
+          onPress={()=>this.toggleAddDeleteFriend( itemUser_id )}>
+          {text}
          </Button>
       )
   }
@@ -61,7 +58,7 @@ class ListFoodies extends React.PureComponent {
                 <Text style={styles.headerTextStyle}>{item.name}</Text>
               </View>
               <View style={{width:100, alignItems:'center'}}>
-                {this.toggleFollowButton(item.user_id, item.username, item.bio, item.user_id, item.name)}
+                {this.toggleFollowButton(item.user_id)}
               </View>
             </CardSection>
           }
@@ -114,9 +111,9 @@ const styles ={
 
 const mapStateToProps = ({ getUserlist, auth }) => {
   let { userID, token } = auth
-  let { users, filteredUsers } = getUserlist
+  let { users, filteredUsers, myFoodies } = getUserlist
 
-  return { users, userID, token, filteredUsers }
+  return { users, userID, token, filteredUsers, myFoodies }
 }
 
-export default connect(mapStateToProps, { listUsers, addFoodie, searchBarInput })(ListFoodies)
+export default connect(mapStateToProps, { listUsers, addFoodie, searchBarInput, grabFoodies, toggleFriends })(ListFoodies)
