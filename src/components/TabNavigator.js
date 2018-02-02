@@ -13,7 +13,6 @@ class TabNavigator extends Component{
   render(){
     return(
       <Container>
-      <Header hasTabs />
              <Tabs
              tabBarUnderlineStyle={{backgroundColor:'transparent'}}
              initialPage={3}
@@ -44,4 +43,3 @@ const styles ={
   }
 }
 export default TabNavigator
-// <Tab heading={ <TabHeading><Icon name="camera" /><Text>Camera</Text></TabHeading>}>

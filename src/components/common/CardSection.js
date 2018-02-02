@@ -15,8 +15,11 @@ const styles = {
     backgroundColor: '#fff',
     justifyContent: 'flex-start',
     flexDirection: 'row',
-    borderColor: '#ddd',
-    position: 'relative'
+    position: 'relative',
+    shadowOffset: {width: 0, height:3},
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
   }
 }
 export { CardSection }

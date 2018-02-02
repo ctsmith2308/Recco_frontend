@@ -59,16 +59,15 @@ class LoginForm extends Component {
         </CardSection>
 
         <CardSection style={styles.inputStyle}>
-          <Input
-          style={{color:'black'}}
-            secureTextEntry
-            label="Password"
-            placeholder="password"
-            onChangeText={this.onPasswordChange.bind(this)}
-            value={this.props.password}
-          />
+            <Input
+              secureTextEntry
+              label="Password"
+              placeholder="password"
+              onChangeText={this.onPasswordChange.bind(this)}
+              value={this.props.password}
+            />
         </CardSection>
-        <CardSection style={{backgroundColor:'transparent', borderColor:'transparent'}}>
+        <CardSection style={{backgroundColor:'transparent', marginTop: 10}}>
           {this.renderButton()}
         </CardSection>
       </View>
@@ -96,15 +95,14 @@ const styles = {
     textShadowRadius: 10,
     alignSelf:'center',
     fontSize:125,
-    // marginBottom:50
   },
   inputStyle:{
-    backgroundColor:'rgba(0,0,0, 0.15)',
-    margin:10,
-    borderRadius:3,
-    // textShadowColor: '#F0E19E',
-    // textShadowOffset: {width: -5, height: 5},
-    // textShadowRadius: 25,
+    marginBottom:10,
+    marginLeft:10,
+    marginRight:10,
+    textShadowColor: '#F0E19E',
+    textShadowOffset: {width: -5, height: 5},
+    textShadowRadius: 100,
   },
   errorTextStyle:{
     fontSize:20,

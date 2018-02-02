@@ -7,16 +7,16 @@ const Input = ({label, value, onChangeText, placeholder, secureTextEntry, editab
     <View style={containerStyle}>
       <Text style={labelStyle}>{label}</Text>
       <TextInput
-      multiline={multiline}
-      numberOfLines={4}
-      autoCapitalize='none'
-      secureTextEntry={secureTextEntry}
-      placeholder={placeholder}
-      autoCorrect={false}
-      style={inputStyle}
-      value={value}
-      onChangeText= {onChangeText}
-      editable={editable}
+        multiline={multiline}
+        numberOfLines={4}
+        autoCapitalize='none'
+        secureTextEntry={secureTextEntry}
+        placeholder={placeholder}
+        autoCorrect={false}
+        style={inputStyle}
+        value={value}
+        onChangeText= {onChangeText}
+        editable={editable}
       />
     </View>
   )
@@ -27,11 +27,11 @@ const styles = {
     paddingRight:5,
     paddingLeft:5,
     fontSize:18,
-    lineHeight:23,
+    lineHeight:50,
     flex:2,
   },
   labelStyle:{
-    color:'white',
+    color:'black',
     fontSize:18,
     paddingLeft:20,
     flex:1
@@ -41,6 +41,7 @@ const styles = {
     flex:1,
     flexDirection:'row',
     alignItems:'center',
+    backgroundColor:'white'
   }
 }
 export {Input}

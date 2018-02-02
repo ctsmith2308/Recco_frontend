@@ -110,6 +110,7 @@ reviewModal(){
 
 const styles = StyleSheet.create({
   container: {
+    marginTop:30,
     position: 'absolute',
     top: 0,
     left: 0,

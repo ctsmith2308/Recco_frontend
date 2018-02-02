@@ -24,7 +24,7 @@ class ListFoodies extends React.PureComponent {
 
   render() {
     return (
-      <View style={{height:'100%'}}>
+      <View style={styles.container}>
       <SearchBar
         placeholder="Search"
         onChangeText={this.handleSearchInput}
@@ -32,6 +32,7 @@ class ListFoodies extends React.PureComponent {
         <FlatList
           data={this.props.filteredUsers}
           renderItem={ ({item}) =>
+          <Card>
             <CardSection style={styles.headerContentStyle}>
               <View style ={styles.thumbnailContainerStyle}>
                 <Image
@@ -44,12 +45,13 @@ class ListFoodies extends React.PureComponent {
               </View>
               <View style={{width:100, alignItems:'center'}}>
                 <Button
-                style={{borderColor:'red', borderWidth:2, alignItems:'center', paddingTop:25}}
+                style={{borderWidth:2, alignItems:'center', paddingTop:25}}
                 onPress={() => { this.addDeleteFriend( item.user_id )} }>
                 { item.friend_id ? 'unfollow' : 'follow' }
                </Button>
               </View>
             </CardSection>
+            </Card>
           }
           keyExtractor={(item, index) => index}
         />
@@ -94,7 +96,11 @@ const styles ={
     width:null
   },
   container: {
+   marginTop:30,
+   // paddingTop: 1,
    flex: 1,
+   height:'100%',
+   backgroundColor:'#B7F5DE'
   },
   item: {
     padding: 10,

@@ -22,12 +22,13 @@ class MyFoodies extends Component{
         <FlatList
           data={this.props.myFoodies}
           renderItem={ ({item}) =>
-            <CardSection style={{flexDirection:'row', flex:1,borderColor:'#F5F5F5', borderWidth:0.5}}>
+          <Card>
+            <CardSection style={styles.headerContentStyle}>
               <View style ={styles.thumbnailContainerStyle}>
                 <Image style={styles.thumbnailStyle}
                 source={{uri:item.image_url}}/>
               </View>
-              <View style={{width:195,marginTop:3}}>
+              <View style={{width:190}}>
                 <Text style={styles.usernameTextStyle}>{item.username}</Text>
                 <Text style={styles.nameTextStyle}>{item.name}</Text>
               </View>
@@ -35,10 +36,11 @@ class MyFoodies extends Component{
                 <Button
                  onPress={()=>this.foodieReviewListHelperFn(item.user_id)}>
                   <Icon
-                  style={{color:'#FC4442'}} name="ios-list-outline"></Icon>
+                  style={{color:'black'}} name="ios-list-outline"></Icon>
                  </Button>
               </View>
             </CardSection>
+            </Card>
           }
           keyExtractor={(item, index) => index}
         />
@@ -46,6 +48,7 @@ class MyFoodies extends Component{
     )
   }
 }
+
 
 const styles ={
   outerBorder:{
@@ -57,7 +60,9 @@ const styles ={
   headerContentStyle: {
     flexDirection:'row',
     flex:1,
-    justifyContent:'space-around'
+    alignItems:'center',
+    borderColor:'#F5F5F5',
+    borderWidth:0.5
   },
   usernameTextStyle:{
     fontSize:18,
@@ -87,7 +92,11 @@ const styles ={
     width:null
   },
   container: {
+   marginTop:30,
+   paddingTop: 1,
    flex: 1,
+   height:'100%',
+   backgroundColor:'#B7F5DE'
   },
   item: {
     padding: 10,

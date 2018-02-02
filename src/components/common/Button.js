@@ -14,7 +14,7 @@ const Button =({onPress, children })=>{
 
 const styles = {
   textStyle:{
-    color:'#DD2131',
+    color:'black',
     fontSize:16,
     fontWeight:'600',
     paddingTop:18,

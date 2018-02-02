@@ -56,7 +56,6 @@ nameValue=()=>{
 usernameValue=()=>{
   if(this.props.editable) return this.props.username
 }
-
 emailValue=()=>{
   if(this.props.editable) return this.props.email
 }
@@ -86,13 +85,13 @@ toggleAlert=()=>{
 renderIf(condition){
   if(condition){
     return (
-      <Button style={{backgroundColor:'red'}} onPress={()=>{this.toggleButton()}}>
+      <Button onPress={()=>{this.toggleButton()}}>
         Edit
       </Button>
     )
   }else{
     return (
-    <Button style={{backgroundColor:'red'}} onPress={()=>this.handleUserInfo()}>
+    <Button onPress={()=>this.handleUserInfo()}>
       Looks Good!
     </Button>
     )
@@ -112,8 +111,8 @@ getPhotosFromGallery=()=>{
       )
     } else {
       return (
-        <View style={{backgroundColor:'#B7F5DE'}}>
-          <Card style={{backgroundColor:'white'}}>
+        <View style ={styles.container}>
+          <Card>
             <CardSection style={styles.thumbnailContainerStyle}>
               <TouchableOpacity onPress={()=>{this.getPhotosFromGallery()}}>
                 <Image
@@ -122,58 +121,55 @@ getPhotosFromGallery=()=>{
                 />
               </TouchableOpacity>
             </CardSection>
-            <CardSection style={{backgroundColor:'rgba(0,0,0, 0.15)', margin:10}}>
+            <CardSection style={styles.inputStyle}>
               <Input
-              label='name'
-              placeholder={this.props.name||'name'}
-              onChangeText={this.handleName.bind(this)}
-              editable={this.props.editable}
-              value={this.nameValue()}
+                multiline={false}
+                label='Name'
+                placeholder={this.props.name||'name'}
+                onChangeText={this.handleName.bind(this)}
+                editable={this.props.editable}
+                value={this.nameValue()}
               />
             </CardSection>
-            <CardSection style={{backgroundColor:'rgba(0,0,0, 0.15)', margin:10}}>
+            <CardSection style={styles.inputStyle}>
               <Input
-              label='username'
-              placeholder={this.props.username || 'username' }
-              onChangeText= {this.handleUsername.bind(this)}
-              editable={this.props.editable}
-              value={this.usernameValue()}
+                multiline={false}
+                label='Username'
+                placeholder={this.props.username || 'username' }
+                onChangeText= {this.handleUsername.bind(this)}
+                editable={this.props.editable}
+                value={this.usernameValue()}
               />
             </CardSection>
-            <CardSection style={{backgroundColor:'rgba(0,0,0, 0.15)', margin:10}}>
+            <CardSection style={styles.inputStyle}>
               <Input
-              label='email'
-              placeholder={this.props.email || 'email'}
-              onChangeText={this.handleBio.bind(this)}
-              editable={this.props.editable}
-              value={this.emailValue()}
+                multiline={false}
+                label='Email'
+                placeholder={this.props.email || 'email'}
+                onChangeText={this.handleBio.bind(this)}
+                editable={this.props.editable}
+                value={this.emailValue()}
               />
             </CardSection>
-            <CardSection style={{backgroundColor:'rgba(0,0,0, 0.15)', margin:10}}>
+            <CardSection style={styles.bioStyle}>
               <Input
-              multiline={false}
-              label='phone'
-              placeholder={'000-000-0000'}
-              onChangeText={()=>{console.log('i was clicked')}}
-              editable={this.props.editable}
+                multiline={true}
+                numberOfLines={4}
+                label='Bio'
+                placeholder={ this.props.bio || 'I love tacos and long walks on the beach' }
+                onChangeText={ this.handleBio.bind(this) }
+                editable={ this.props.editable }
+                value={this.bioValue()}
               />
             </CardSection>
-            <CardSection style={{backgroundColor:'rgba(0,0,0, 0.15)', margin:10}}>
-            <TextArea
-            multiline={true}
-            numberOfLines={4}
-            label='bio'
-            placeholder={this.props.bio || 'I love tacos and long walks on the beach' }
-            onChangeText={this.handleBio.bind(this)}
-            editable={this.props.editable}
-            />
+            <CardSection style={styles.buttonStyle}>
+            {this.renderIf(this.props.previousLogIn)}
+            {this.usernameExists(this.props.existingUsername)}
             </CardSection>
-            <CardSection style={{marginBottom:150, backgroundColor:'#B7F5DE'}}>
-              {this.renderIf(this.props.previousLogIn)}
-              {this.usernameExists(this.props.existingUsername)}
-              <Button style={{backgroundColor:'red'}} onPress={()=>{ this.logOUT() }}>
-                Logout
-              </Button>
+            <CardSection style={styles.buttonStyle}>
+              <Button onPress={()=>{ this.logOUT() }}>
+               Logout
+             </Button>
             </CardSection>
           </Card>
         </View>
@@ -182,35 +178,43 @@ getPhotosFromGallery=()=>{
   }
 }
 
+
 const styles = {
+  container: {
+    marginTop:30,
+    flex: 1,
+    height:'100%',
+    backgroundColor:'#B7F5DE'
+  },
   thumbnailContainerStyle:{
     justifyContent:'center',
     alignItems:'center',
     padding: 15,
-    backgroundColor:'white'
+    backgroundColor:'white',
+    marginBottom:5,
+    marginLeft: 5,
+    marginRight: 5
   },
   thumbnailStyle:{
     height:100,
     width:100,
-    borderRadius: 50,
-    borderColor: '#DD2131',
-    borderWidth: 4
+    borderRadius: 50
   },
-  container: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
+  inputStyle:{
+    marginBottom:5,
+    marginLeft: 5,
+    marginRight: 5
   },
-  map: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
+  bioStyle:{
+    marginBottom:75,
+    marginLeft: 5,
+    marginRight: 5
+  },
+  buttonStyle:{
+    marginBottom:10,
+    marginLeft:5,
+    marginRight:5,
+    borderRadius:5
   }
 }
 
