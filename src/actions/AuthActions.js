@@ -7,7 +7,7 @@ import { EMAIL_CHANGED, PASSWORD_CHANGED, LOGIN_USER_SUCCESS, LOGIN_USER_FAIL, L
 export const emailChanged=(text)=>{
   return {
     type: EMAIL_CHANGED,
-    payload:text
+    payload: text
   }
 }
 

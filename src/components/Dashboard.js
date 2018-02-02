@@ -68,7 +68,6 @@ logOUT=()=>{
   this.props.logout()
 }
 toggleAlert=()=>{
-  // console.log('i was clicked');
   this.props.toggleUserName()
 }
 
@@ -78,11 +77,8 @@ toggleAlert=()=>{
       Alert.alert(
         '',
         'Username already exists',
-        // [
          { text:'OK',
            onPress: this.toggleAlert() },
-        // ],
-        // { cancelable: false }
       )
     )
   }

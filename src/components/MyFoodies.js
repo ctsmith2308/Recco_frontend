@@ -9,11 +9,7 @@ import { grabFoodies, setSelectedReviewsOnMap, grabFoodiesReviews } from '../act
 class MyFoodies extends Component{
 
   componentWillMount=()=>{
-    let userID = this.props.userID
-    this.props.grabFoodies( userID, this.props.token )
-    // console.log('foodie list', this.props.myFoodies);
-
-    
+   this.props.grabFoodies(this.props.userID, this.props.token)
   }
 
   foodieReviewListHelperFn=(id)=>{
@@ -26,14 +22,14 @@ class MyFoodies extends Component{
         <FlatList
           data={this.props.myFoodies}
           renderItem={ ({item}) =>
-            <CardSection style={{flexDirection:'row', flex:1,borderColor:'#B7F5DE', borderWidth:0.5}}>
+            <CardSection style={{flexDirection:'row', flex:1,borderColor:'#F5F5F5', borderWidth:0.5}}>
               <View style ={styles.thumbnailContainerStyle}>
                 <Image style={styles.thumbnailStyle}
                 source={{uri:item.image_url}}/>
               </View>
               <View style={{width:195,marginTop:3}}>
-                <Text style={styles.headerTextStyle}>{item.username}</Text>
-                <Text style={styles.headerTextStyle}>{item.name}</Text>
+                <Text style={styles.usernameTextStyle}>{item.username}</Text>
+                <Text style={styles.nameTextStyle}>{item.name}</Text>
               </View>
               <View style={{width:70}}>
                 <Button
@@ -52,13 +48,24 @@ class MyFoodies extends Component{
 }
 
 const styles ={
+  outerBorder:{
+    padding:1,
+    borderRadius:200,
+    borderColor:'#F5F5F5',
+    borderWidth:0.5
+  },
   headerContentStyle: {
     flexDirection:'row',
     flex:1,
     justifyContent:'space-around'
   },
-  headerTextStyle:{
+  usernameTextStyle:{
     fontSize:18,
+    marginTop: 3
+  },
+  nameTextStyle:{
+    color: '#989898',
+    fontSize:15,
     marginTop: 3
   },
   thumbnailStyle:{

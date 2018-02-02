@@ -18,23 +18,8 @@ class ListFoodies extends React.PureComponent {
     this.props.searchBarInput(text, this.props.users)
   }
 
-  toggleAddDeleteFriend=(itemUser_id)=>{
+  addDeleteFriend=(itemUser_id)=>{
     this.props.toggleFriends(itemUser_id, this.props.userID, this.props.token)
-  }
-
-  toggleFollowButton(itemUser_id){
-    let text;
-    let filterFriends = this.props.myFoodies.filter( x => {
-      return x.user_id === itemUser_id
-    })
-    filterFriends.length > 0 ? text = 'unfollow': text = 'follow'
-    return (
-          <Button
-          style={{borderColor:'red', borderWidth:2, alignItems:'center', paddingTop:25}}
-          onPress={()=>this.toggleAddDeleteFriend( itemUser_id )}>
-          {text}
-         </Button>
-      )
   }
 
   render() {
@@ -54,11 +39,15 @@ class ListFoodies extends React.PureComponent {
                   source={{uri:item.image_url}}/>
               </View>
               <View style={{width:165}}>
-                <Text style={styles.headerTextStyle}>{item.username}</Text>
-                <Text style={styles.headerTextStyle}>{item.name}</Text>
+                <Text style={styles.usernameTextStyle}>{item.username}</Text>
+                <Text style={styles.nameTextStyle}>{item.name}</Text>
               </View>
               <View style={{width:100, alignItems:'center'}}>
-                {this.toggleFollowButton(item.user_id)}
+                <Button
+                style={{borderColor:'red', borderWidth:2, alignItems:'center', paddingTop:25}}
+                onPress={() => { this.addDeleteFriend( item.user_id )} }>
+                { item.friend_id ? 'unfollow' : 'follow' }
+               </Button>
               </View>
             </CardSection>
           }
@@ -74,11 +63,16 @@ const styles ={
     flexDirection:'row',
     flex:1,
     alignItems:'center',
-    borderColor:'#B7F5DE',
+    borderColor:'#F5F5F5',
     borderWidth:0.5
   },
-  headerTextStyle:{
+  usernameTextStyle:{
     fontSize:18,
+    marginTop: 3
+  },
+  nameTextStyle:{
+    color: '#989898',
+    fontSize:15,
     marginTop: 3
   },
   thumbnailStyle:{
