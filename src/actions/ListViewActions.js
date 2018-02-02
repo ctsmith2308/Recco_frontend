@@ -3,21 +3,24 @@ import  axios  from 'axios'
 
 import { GRAB_FOODIES, LIST_USERS, ADD_FOODIE_TO_STATE, REVIEWS_LIST, SEARCH_USERS, DUMMY } from './types'
 
-export const listUsers = (token) => {
+export const listUsers = (token, userID) => {
   let url = 'http://localhost:3000/dashboard'
   return(dispatch) => {
     axios.get(url, { headers: {'x-access-token': token} })
     .then((data)=>{
       let userArray = data.data
+      let removeLoggedInUser = userArray.filter( users => {
+        return users.user_id !== userID
+      })
       dispatch({
         type: LIST_USERS,
-        payload: userArray
+        payload: removeLoggedInUser
       })
     })
   }
 }
 
-export const grabFoodies = ( userID, token ) => {
+export const grabFoodies = ( token, userID ) => {
   return (dispatch) => {
     let url = `http://localhost:3000/friends/${userID}`
     axios.get(url, { headers:{'x-access-token': token}})
@@ -40,7 +43,7 @@ export const toggleFriends = (itemUser_id, userID, token) => {
     axios.post('http://localhost:3000/friends', postBody, { headers:{'x-access-token': token}})
     .then(()=>{
       updateFriendState(dispatch, userID, token)
-      updateUsersState(dispatch, token)
+      updateUsersState(dispatch, userID, token)
     })
   }
 }
@@ -49,6 +52,7 @@ export const updateFriendState = (dispatch, userID, token) => {
     let url = `http://localhost:3000/friends/${userID}`
     axios.get(url, { headers:{'x-access-token': token}})
     .then((data)=>{
+      console.log('this is the logged in userID on press in FriendState', userID);
       let foodieList = data.data
       dispatch({
         type: GRAB_FOODIES,
@@ -57,14 +61,17 @@ export const updateFriendState = (dispatch, userID, token) => {
     })
 }
 
-const updateUsersState = (dispatch, token) => {
+const updateUsersState = (dispatch, userID, token) => {
     let url = 'http://localhost:3000/dashboard'
       axios.get(url, { headers: {'x-access-token': token} })
       .then((data)=>{
         let userArray = data.data
+        let removeLoggedInUser = userArray.filter( users => {
+          return users.user_id !== userID
+        })
         dispatch({
           type: LIST_USERS,
-          payload: userArray
+          payload: removeLoggedInUser
         })
       })
   }

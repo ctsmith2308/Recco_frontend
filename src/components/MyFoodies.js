@@ -9,7 +9,7 @@ import { grabFoodies, setSelectedReviewsOnMap, grabFoodiesReviews } from '../act
 class MyFoodies extends Component{
 
   componentWillMount=()=>{
-   this.props.grabFoodies(this.props.userID, this.props.token)
+  this.props.grabFoodies( this.props.token, this.props.userID )
   }
 
   foodieReviewListHelperFn=(id)=>{

@@ -10,8 +10,8 @@ import { listUsers, addFoodie, searchBarInput, grabFoodies, toggleFriends } from
 class ListFoodies extends React.PureComponent {
 
   componentWillMount=()=>{
-     this.props.listUsers(this.props.token)
-     this.props.grabFoodies( this.props.userID, this.props.token )
+     this.props.listUsers( this.props.token, this.props.userID )
+     this.props.grabFoodies( this.props.token, this.props.userID )
   }
 
   handleSearchInput=(text)=>{
