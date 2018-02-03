@@ -39,7 +39,7 @@ handleReviewText(text){
 }
 
 submitReview=()=>{
-  let { userID, userReview, lat, long, name, address  } = this.props
+  let { userID, userReview, lat, long, name, address, phoneNumber  } = this.props
   this.props.postReview({ userID, userReview, lat, long, name, address })
   this.toggleState()
 }
@@ -77,15 +77,16 @@ reviewModal(){
            longitudeDelta: 0.0414,
           }}
         >
-
           <MapView.Marker
             coordinate={{latitude: Number(this.props.lat), longitude: Number(this.props.long)}}
           >
             <MapView.Callout>
             <View style={styles.popUp}>
-              <CardSection style={{borderColor:'transparent',flexDirection:'column',alignItems:'center'}}>
-                <Text style={{marginRight:5,marginBottom:8,marginTop:8, fontSize:15,fontWeight:'bold'}}>{this.props.name}</Text>
-                <Text>{this.props.address}</Text>
+              <CardSection style={{borderColor:'transparent',flexDirection:'column'}}>
+                <Text style={{marginRight:5,marginBottom:8,marginTop:8, fontSize:25,fontWeight:'bold'}}>{this.props.name}</Text>
+                <Text style={styles.addressDetails}>{this.props.address}</Text>
+                <Text style={styles.addressDetails}>{this.props.website}</Text>
+                <Text style={styles.addressDetails}>{this.props.phoneNumber}</Text>
               </CardSection>
               <CardSection style={{borderColor:'transparent', paddingTop:25, marginBottom:5, alignItems:'flex-end'}}>
                 <Button onPress={()=>this.toggleState()}>Leave a Recco</Button>
@@ -106,7 +107,6 @@ reviewModal(){
   }
 }
 
-// <Toolbar/>
 
 const styles = StyleSheet.create({
   container: {
@@ -127,21 +127,24 @@ const styles = StyleSheet.create({
     bottom: 0,
   },
   popUp:{
-    alignItems:'center',
     width:300,
     height:145
   },
   popUpText:{
     marginBottom:5
+  },
+  addressDetails:{
+    fontSize:15,
+    color: '#989898',
   }
 });
 
 
 const mapStateToProps = ({ auth, locationInfo, reviews}) => {
   const { userID } = auth
-  const { name, address, lat, long, website } = locationInfo
+  const { name, address, lat, long, website, phoneNumber } = locationInfo
   const { userReview } = reviews
-  return { name, address, lat, long, website, userReview, userID }
+  return { name, address, lat, long, website, userReview, userID, phoneNumber }
 }
 
 export default connect(mapStateToProps, { setLocatioinDetails, addTextToReview, postReview })(Map)

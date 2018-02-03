@@ -3,11 +3,12 @@ import { SET_LOCATION_DETAILS, SET_CURRENT_FOODIE_REVIEW_LOCATIONS, LOGOUT } fro
 const INITIAL_STATE = {
   coordinates:null,
   placeHolderCoord: null,
-  name:null,
-  address:null,
+  name:'',
+  address:'',
   lat: null,
   long: null,
-  website:'no website',
+  website:'',
+  phoneNumber:''
 }
 
 export default (state = INITIAL_STATE, action)=>{
@@ -21,6 +22,7 @@ export default (state = INITIAL_STATE, action)=>{
         lat:action.payload.latitude,
         long:action.payload.longitude,
         website:action.payload.website,
+        phoneNumber:action.payload.phoneNumber
      }
     case SET_CURRENT_FOODIE_REVIEW_LOCATIONS:
       return {

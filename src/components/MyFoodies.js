@@ -63,6 +63,17 @@ class MyFoodies extends Component{
 }
 
 
+// <CardSection style={styles.headerContentStyle}>
+// <View style={{width:200}}>
+//   <Text style={styles.usernameTextStyle}>{this.props.name}</Text>
+//   <Text style={styles.nameTextStyle}>{this.props.address}</Text>
+//   <Text style={styles.nameTextStyle}>{this.props.website}</Text>
+// </View>
+// </CardSection>
+
+
+
+
 const styles ={
   outerBorder:{
     padding:1,
