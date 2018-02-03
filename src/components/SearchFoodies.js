@@ -97,7 +97,6 @@ const styles ={
   },
   container: {
    marginTop:30,
-   // paddingTop: 1,
    flex: 1,
    height:'100%',
    backgroundColor:'#B7F5DE'

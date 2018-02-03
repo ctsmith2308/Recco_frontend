@@ -100,9 +100,9 @@ const styles = {
     marginBottom:10,
     marginLeft:10,
     marginRight:10,
-    textShadowColor: '#F0E19E',
-    textShadowOffset: {width: -5, height: 5},
-    textShadowRadius: 100,
+    // textShadowColor: '#F0E19E',
+    // textShadowOffset: {width: -5, height: 5},
+    // textShadowRadius: 100,
   },
   errorTextStyle:{
     fontSize:20,

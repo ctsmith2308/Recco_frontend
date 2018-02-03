@@ -1,7 +1,7 @@
 import { Actions } from 'react-native-router-flux'
 import  axios  from 'axios'
 
-import { GRAB_FOODIES, LIST_USERS, ADD_FOODIE_TO_STATE, REVIEWS_LIST, SEARCH_USERS, DUMMY } from './types'
+import { GRAB_FOODIES, LIST_USERS, ADD_FOODIE_TO_STATE, REVIEWS_LIST, SEARCH_USERS, SEARCH_FRIENDS, DUMMY } from './types'
 
 export const listUsers = (token, userID) => {
   let url = 'http://localhost:3000/dashboard'
@@ -99,6 +99,18 @@ export const searchBarInput = (text, users) => {
     dispatch({
       type: SEARCH_USERS,
       payload: updateFiltered
+    })
+  }
+}
+
+export const searchFriendsInput = (text, friends) => {
+  return (dispatch)=>{
+    let myFriends = friends.filter(user => {
+    return (user.username.toLowerCase().includes(text.toLowerCase()) || user.name.toLowerCase().includes(text.toLowerCase()))
+    })
+    dispatch({
+      type: SEARCH_FRIENDS,
+      payload: myFriends
     })
   }
 }

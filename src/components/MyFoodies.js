@@ -2,9 +2,11 @@ import React, { Component } from 'react'
 import { Container, Header, Content, Tab, Tabs, Icon } from 'native-base';
 import { View, Text, FlatList, Image, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
+import { SearchBar } from 'react-native-elements'
+
 import { Card, CardSection, Input, Button, Toolbar } from './common'
 
-import { grabFoodies, setSelectedReviewsOnMap, grabFoodiesReviews } from '../actions'
+import { grabFoodies, setSelectedReviewsOnMap, grabFoodiesReviews, searchFriendsInput } from '../actions'
 
 class MyFoodies extends Component{
 
@@ -16,11 +18,22 @@ class MyFoodies extends Component{
     this.props.grabFoodiesReviews(id)
   }
 
+  handleSearchInput=(text)=>{
+    this.props.searchFriendsInput(text, this.props.myFoodies)
+  }
+
   render() {
     return (
       <View style={styles.container}>
+      <View style={styles.headerContentStyle}>
+        <Text style={{fontSize:18}}>Following</Text>
+      </View>
+      <SearchBar
+        placeholder="Search"
+        onChangeText={this.handleSearchInput}
+        lightTheme/>
         <FlatList
-          data={this.props.myFoodies}
+          data={this.props.filteredFoodies}
           renderItem={ ({item}) =>
           <Card>
             <CardSection style={styles.headerContentStyle}>
@@ -58,11 +71,9 @@ const styles ={
     borderWidth:0.5
   },
   headerContentStyle: {
-    flexDirection:'row',
-    flex:1,
+    backgroundColor:'white',
     alignItems:'center',
-    borderColor:'#F5F5F5',
-    borderWidth:0.5
+    padding: 10,
   },
   usernameTextStyle:{
     fontSize:18,
@@ -93,7 +104,6 @@ const styles ={
   },
   container: {
    marginTop:30,
-   paddingTop: 1,
    flex: 1,
    height:'100%',
    backgroundColor:'#B7F5DE'
@@ -107,8 +117,8 @@ const styles ={
 
 const mapStateToProps = ({ auth, getUserlist }) => {
   let { userID, token } = auth
-  let { myFoodies } = getUserlist
-  return { userID, myFoodies, token }
+  let { myFoodies, filteredFoodies } = getUserlist
+  return { userID, myFoodies, token, filteredFoodies }
 }
 
-export default connect(mapStateToProps, { grabFoodies, setSelectedReviewsOnMap, grabFoodiesReviews })(MyFoodies)
+export default connect(mapStateToProps, { grabFoodies, setSelectedReviewsOnMap, grabFoodiesReviews, searchFriendsInput })(MyFoodies)
