@@ -21,18 +21,18 @@ foodieReviewListHelperFn=( name, address, lat, long)=>{
         <FlatList
           data={this.props.reviewList}
           renderItem={ ({item}) =>
-
               <CardSection style={styles.headerContentStyle}>
-                <View style={{width:300}}>
+                <View style={{width:290, paddingBottom:10}}>
                   <Text style={styles.headerTextStyle}>{item.name}</Text>
                   <Text style={styles.locationStyle}>{item.address}</Text>
-                  <Text style={{fontSize:18, fontWeight:'bold', padding:5}}>My Recco:</Text>
+                  <Card>
                   <Text style={styles.reviewStyle}>"{item.user_review}"</Text>
+                  </Card>
                 </View>
                 <View style={{width:65, height:65}}>
                   <Button
                     onPress={()=>this.foodieReviewListHelperFn(item.name, item.address, item.lat, item.long)}>
-                    <Icon style={{color:'#DD2131'}}name="ios-pin"></Icon>
+                    <Icon style={{color:'#36454f'}}name="ios-pin"></Icon>
                     </Button>
                  </View>
                </CardSection>
@@ -44,28 +44,32 @@ foodieReviewListHelperFn=( name, address, lat, long)=>{
   }
 }
 
+
+
 const styles ={
   headerContentStyle: {
-      flexDirection:'row',
-      flex:1,
-      margin:5,
-      alignItems:'center',
-      borderColor:'#B7F5DE',
-      borderWidth:0.5
+    flexDirection:'row',
+    flex:1,
+    margin:5,
+    alignItems:'center',
+    borderColor:'#B7F5DE',
+    borderWidth:0.5
   },
   headerTextStyle:{
-    fontSize:25,
+    fontSize:20,
     marginTop: 3,
     fontWeight:'bold',
-    marginLeft:5
+    marginLeft:6
   },
   locationStyle:{
-    fontSize:12,
-    marginLeft:5
+    fontSize:14,
+    marginLeft:6,
+    color: '#989898',
   },
   reviewStyle:{
-    fontSize:18,
-    marginLeft:5
+    marginTop:5,
+    fontSize:15,
+    marginLeft:6
   },
   thumbnailStyle:{
     height: 50,
@@ -89,7 +93,8 @@ const styles ={
   },
   container: {
    flex: 1,
-   paddingTop:60
+   paddingTop:70,
+   backgroundColor:'#B7F5DE'
   },
   item: {
     padding: 10,

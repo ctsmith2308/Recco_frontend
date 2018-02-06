@@ -44,10 +44,7 @@ class LoginForm extends Component {
     return(
       <View>
         <Text style={styles.titleStyle}>Recco</Text>
-        <Image
-          style={{marginLeft:95, marginBottom:25, height:200, width:200}}
-          source={require('../../bullhorn.png')}
-          />
+
             {this.renderError()}
         <CardSection style={styles.inputStyle}>
           <Input
@@ -87,22 +84,19 @@ const mapStateToProps = state => {
 const styles = {
   titleStyle:{
     fontFamily:'Avenir-Heavy',
-    marginTop:35,
+    marginTop:100,
     fontWeight:'bold',
-    color:'#FC4442',
-    textShadowColor: 'grey',
-    textShadowOffset: {width: -5, height: 5},
-    textShadowRadius: 10,
+    color:'#36454f',
+    // textShadowColor: 'grey',
+    // textShadowOffset: {width: -5, height: 5},
+    // textShadowRadius: 10,
     alignSelf:'center',
     fontSize:125,
   },
   inputStyle:{
     marginBottom:10,
     marginLeft:10,
-    marginRight:10,
-    // textShadowColor: '#F0E19E',
-    // textShadowOffset: {width: -5, height: 5},
-    // textShadowRadius: 100,
+    marginRight:10
   },
   errorTextStyle:{
     fontSize:20,

@@ -10,7 +10,8 @@ import TabNavigator from './components/TabNavigator'
 
 const RouterComponent=()=>{
   return (
-    <Router sceneStyle = {{ backgroundColor:'#B7F5DE', paddingTop:0 }}>
+    <Router sceneStyle = {{ backgroundColor:'#B7F5DE', paddingTop:0 }}
+    navigationBarStyle={{ backgroundColor: 'white' }}>
       <Scene key="auth">
         <Scene key="login"
           hideNavBar
@@ -34,46 +35,9 @@ const RouterComponent=()=>{
         />
       <Scene key='map'
           component={ Map }
-          title="Map"
+          title="Location"
         />
     </Router>
   )
 }
 export default RouterComponent
-
-
-
-//
-
-//
-// <Scene key="userDash">
-//   <Scene
-//     key="dashboard"
-//     component={ Dashboard }
-//     title="Dashboard"
-//   />
-// </Scene>
-//
-// <Scene key="foodieSearch">
-//   <Scene
-//     key="foodies"
-//     component={ SearchFoodies }
-//     title="Search Foodies"
-//   />
-// </Scene>
-//
-// <Scene key="myFoodies">
-//   <Scene
-//     key="favorites"
-//     component={ MyFoodies }
-//     title= "My Foodies"
-//   />
-// </Scene>
-//
-// <Scene key="listOfReviews">
-//   <Scene
-//     key="list"
-//     component={ ReviewsList }
-//     title= "Reviews"
-//   />
-// </Scene>

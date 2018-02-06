@@ -16,9 +16,9 @@ const styles = {
     justifyContent: 'flex-start',
     flexDirection: 'row',
     position: 'relative',
-    shadowOffset: {width: 0, height:3},
-    shadowColor: '#000',
-    shadowOpacity: 0.1,
+    shadowOffset: {width: -5, height:3},
+    shadowColor: '#36454f',
+    shadowOpacity: 0.3,
     shadowRadius: 5,
   }
 }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Image, TouchableOpacity, CameraRoll, Alert } from 'react-native'
+import { View, Image, TouchableOpacity, CameraRoll, Alert, Text } from 'react-native'
 import { Container } from 'native-base';
 
 import { Actions } from 'react-native-router-flux'
@@ -62,7 +62,6 @@ emailValue=()=>{
 bioValue=()=>{
   if(this.props.editable) return this.props.bio
 }
-
 logOUT=()=>{
   this.props.logout()
 }
@@ -112,6 +111,9 @@ getPhotosFromGallery=()=>{
     } else {
       return (
         <View style ={styles.container}>
+        <View style={styles.headerContentStyle}>
+          <Text style={{fontSize:18}}>Dashboard</Text>
+        </View>
           <Card>
             <CardSection style={styles.thumbnailContainerStyle}>
               <TouchableOpacity onPress={()=>{this.getPhotosFromGallery()}}>
@@ -178,7 +180,6 @@ getPhotosFromGallery=()=>{
   }
 }
 
-
 const styles = {
   container: {
     marginTop:30,
@@ -200,13 +201,20 @@ const styles = {
     width:100,
     borderRadius: 50
   },
+  headerContentStyle: {
+    backgroundColor:'white',
+    alignItems:'center',
+    paddingBottom:10,
+    borderBottomWidth: 0.5,
+    borderColor:'grey'
+  },
   inputStyle:{
     marginBottom:5,
     marginLeft: 5,
     marginRight: 5
   },
   bioStyle:{
-    marginBottom:75,
+    marginBottom:45,
     marginLeft: 5,
     marginRight: 5
   },

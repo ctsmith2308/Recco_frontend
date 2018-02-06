@@ -21,7 +21,6 @@ export const getUserInfo=({ userID, token }) => {
     let url = 'http://localhost:3000/dashboard/'
     axios.get(url + userID, { headers:{'x-access-token': token }})
     .then((res)=>{
-      // console.log('im the name ==> ',res.data.name);
       let { username, bio, name, image_url } = res.data
       if(!username){
         dispatch({

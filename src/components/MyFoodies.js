@@ -36,7 +36,7 @@ class MyFoodies extends Component{
           data={this.props.filteredFoodies}
           renderItem={ ({item}) =>
           <Card>
-            <CardSection style={styles.headerContentStyle}>
+            <CardSection style={styles.header1ContentStyle}>
               <View style ={styles.thumbnailContainerStyle}>
                 <Image style={styles.thumbnailStyle}
                 source={{uri:item.image_url}}/>
@@ -49,7 +49,7 @@ class MyFoodies extends Component{
                 <Button
                  onPress={()=>this.foodieReviewListHelperFn(item.user_id)}>
                   <Icon
-                  style={{color:'black'}} name="ios-list-outline"></Icon>
+                  style={{color:'#404242'}} name="ios-list-outline"></Icon>
                  </Button>
               </View>
             </CardSection>
@@ -62,18 +62,6 @@ class MyFoodies extends Component{
   }
 }
 
-
-// <CardSection style={styles.headerContentStyle}>
-// <View style={{width:200}}>
-//   <Text style={styles.usernameTextStyle}>{this.props.name}</Text>
-//   <Text style={styles.nameTextStyle}>{this.props.address}</Text>
-//   <Text style={styles.nameTextStyle}>{this.props.website}</Text>
-// </View>
-// </CardSection>
-
-
-
-
 const styles ={
   outerBorder:{
     padding:1,
@@ -81,19 +69,31 @@ const styles ={
     borderColor:'#F5F5F5',
     borderWidth:0.5
   },
+  header1ContentStyle: {
+    backgroundColor:'white',
+    alignItems:'center',
+    padding: 1,
+    paddingTop:3,
+    paddingBottom:3,
+    borderBottomWidth: 0.5,
+    borderColor:'grey'
+  },
   headerContentStyle: {
     backgroundColor:'white',
     alignItems:'center',
-    padding: 10,
+    padding: 1,
+    paddingBottom:10,
+    borderBottomWidth: 0.5,
+    borderColor:'grey'
   },
   usernameTextStyle:{
     fontSize:18,
-    marginTop: 3
+    marginTop: 1
   },
   nameTextStyle:{
     color: '#989898',
     fontSize:15,
-    marginTop: 3
+    marginTop: 1
   },
   thumbnailStyle:{
     height: 50,
@@ -101,10 +101,10 @@ const styles ={
     borderRadius: 25,
     marginLeft:15,
     marginRight:15,
-    marginBottom:3
+    marginBottom:1,
   },
   thumbnailContainerStyle:{
-    marginTop:3,
+    marginTop:2,
     justifyContent:'center',
     alignItems:'center',
   },

@@ -5,7 +5,8 @@ import {
   Text,
   View,
   TextInput,
-  TouchableOpacity
+  TouchableOpacity,
+  Linking
 } from 'react-native';
 import MapView, { Marker, Callout, PROVIDER_GOOGLE } from 'react-native-maps';
 import { connect } from 'react-redux'
@@ -47,19 +48,21 @@ submitReview=()=>{
 reviewModal(){
   if(this.state.toggleModal){
     return (
-      <CardSection style={{width:320, height:100, flexDirection:'column'}}>
-        <CardSection style={{flexDirection:'row', borderColor:'transparent'}}>
+      <Card>
+      <CardSection>
           <TextInput
-            style={{height:18, width:290, fontSize:18, marginBottom:25, marginTop:15}}
-            placeholder="Leave a review"
-            onChangeText={this.handleReviewText.bind(this)}
+            style={{width:300, fontSize:18}}
+            multiline={true}
+            maxLength = {126}
+            placeholder='Leave a review'
+            onChangeText= {this.handleReviewText.bind(this)}
           />
-        </CardSection>
-        <CardSection style={{borderColor:'transparent'}}>
-          <Button onPress={()=> this.submitReview()}><Icon style={{color:'#FC4442'}} name="ios-megaphone-outline"></Icon></Button>
-          <Button onPress={()=> this.toggleState()}><Icon style={{color:'#FC4442'}} name="ios-close"></Icon></Button>
-        </CardSection>
       </CardSection>
+      <CardSection>
+          <Button onPress={()=> this.submitReview()}>Submit</Button>
+          <Button onPress={()=> this.toggleState()}>Cancel</Button>
+      </CardSection>
+      </Card>
     )
   }
 }
@@ -67,7 +70,6 @@ reviewModal(){
   render() {
     return (
       <View style={styles.container}>
-
         <MapView
           style={ styles.map }
           region={{
@@ -82,15 +84,13 @@ reviewModal(){
           >
             <MapView.Callout>
             <View style={styles.popUp}>
-              <CardSection style={{borderColor:'transparent',flexDirection:'column'}}>
-                <Text style={{marginRight:5,marginBottom:8,marginTop:8, fontSize:25,fontWeight:'bold'}}>{this.props.name}</Text>
+              <Text style={styles.linkStyling} onPress={() => Linking.openURL(this.props.website)}>
+              {this.props.name}
+              </Text>
                 <Text style={styles.addressDetails}>{this.props.address}</Text>
-                <Text style={styles.addressDetails}>{this.props.website}</Text>
-                <Text style={styles.addressDetails}>{this.props.phoneNumber}</Text>
-              </CardSection>
-              <CardSection style={{borderColor:'transparent', paddingTop:25, marginBottom:5, alignItems:'flex-end'}}>
-                <Button onPress={()=>this.toggleState()}>Leave a Recco</Button>
-              </CardSection>
+                <TouchableOpacity>
+                <Button style={{marginTop:20, fontSize:15, borderColor:'red', borderWidth:2}} onPress={()=>this.toggleState()}>Leave a Review</Button>
+                </TouchableOpacity>
             </View>
             </MapView.Callout>
           </MapView.Marker>
@@ -99,7 +99,7 @@ reviewModal(){
         <Card>
           {this.reviewModal()}
         </Card>
-        <CardSection style={{width:200, height:52, marginTop:100, marginBottom:10, borderColor:'#B7F5DE', borderWidth:1, borderRadius:10}}>
+        <CardSection style={{width:200, height:52, marginTop:100, marginBottom:10, borderColor:'#36454f', borderWidth:0.5,      borderRadius:10}}>
           <GPlacesInput/>
         </CardSection>
       </View>
@@ -128,7 +128,8 @@ const styles = StyleSheet.create({
   },
   popUp:{
     width:300,
-    height:145
+    height:110,
+    alignItems: 'center'
   },
   popUpText:{
     marginBottom:5
@@ -136,7 +137,14 @@ const styles = StyleSheet.create({
   addressDetails:{
     fontSize:15,
     color: '#989898',
-  }
+  },
+  linkStyling:{
+    color:'#0000EE',
+    marginRight:5,
+    marginBottom:8,
+    marginTop:8,
+    fontSize:18,
+    fontWeight:'bold'}
 });
 
 

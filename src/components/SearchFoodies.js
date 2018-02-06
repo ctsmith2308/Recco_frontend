@@ -23,6 +23,7 @@ class ListFoodies extends React.PureComponent {
   }
 
   render() {
+    console.log('here is the user list', this.props.users);
     return (
       <View style={styles.container}>
       <SearchBar
@@ -45,7 +46,7 @@ class ListFoodies extends React.PureComponent {
               </View>
               <View style={{width:100, alignItems:'center'}}>
                 <Button
-                style={{borderWidth:2, alignItems:'center', paddingTop:25}}
+                style={{borderWidth:2, alignItems:'center', paddingTop:25, color:'#404242'}}
                 onPress={() => { this.addDeleteFriend( item.user_id )} }>
                 { item.friend_id ? 'unfollow' : 'follow' }
                </Button>
