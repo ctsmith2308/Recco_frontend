@@ -8,10 +8,10 @@ import { setLocationDetails } from '../actions'
 
 class ReviewsList extends Component{
 
-foodieReviewListHelperFn=( name, address, lat, long)=>{
+foodieReviewListHelperFn=( name, address, lat, long, website, phoneNumber)=>{
   let latitude = Number(lat)
   let longitude = Number(long)
-  this.props.setLocationDetails({ name, address, latitude, longitude})
+  this.props.setLocationDetails({ name, address, latitude, longitude, website, phoneNumber})
   Actions.map()
 }
 
@@ -31,7 +31,7 @@ foodieReviewListHelperFn=( name, address, lat, long)=>{
                 </View>
                 <View style={{width:65, height:65}}>
                   <Button
-                    onPress={()=>this.foodieReviewListHelperFn(item.name, item.address, item.lat, item.long)}>
+                    onPress={()=>this.foodieReviewListHelperFn(item.name, item.address, item.lat, item.long, item.website, item.phoneNumber)}>
                     <Icon style={{color:'#36454f'}}name="ios-pin"></Icon>
                     </Button>
                  </View>

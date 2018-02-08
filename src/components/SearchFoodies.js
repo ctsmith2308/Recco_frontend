@@ -23,7 +23,6 @@ class ListFoodies extends React.PureComponent {
   }
 
   render() {
-    console.log('here is the user list', this.props.users);
     return (
       <View style={styles.container}>
       <SearchBar

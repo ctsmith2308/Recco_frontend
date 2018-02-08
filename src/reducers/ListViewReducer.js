@@ -15,7 +15,6 @@ const INITIAL_STATE = {
   currentFoodieId: null,
   myFoodies: [],
   filteredFoodies: [],
-  foodieReviewList: null,
   reviewList: null,
 }
 

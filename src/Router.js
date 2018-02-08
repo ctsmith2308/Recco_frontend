@@ -10,8 +10,8 @@ import TabNavigator from './components/TabNavigator'
 
 const RouterComponent=()=>{
   return (
-    <Router sceneStyle = {{ backgroundColor:'#B7F5DE', paddingTop:0 }}
-    navigationBarStyle={{ backgroundColor: 'white' }}>
+    <Router
+      navigationBarStyle={{ backgroundColor: 'white' }}>
       <Scene key="auth">
         <Scene key="login"
           hideNavBar
@@ -20,7 +20,6 @@ const RouterComponent=()=>{
           title="Please Login"
         />
       </Scene>
-
       <Scene key="navigator">
         <Scene
           hideNavBar

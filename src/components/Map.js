@@ -17,7 +17,7 @@ import { Card, CardSection, Input, Button, Toolbar } from './common'
 
 import GPlacesInput from './GPlacesInput'
 
-import { setLocatioinDetails, addTextToReview, postReview } from '../actions'
+import { setLocatioinDetails, addTextToReview, postReview, addToFavorites} from '../actions'
 
 /// add AirMaps into xcode project refer to this link https://github.com/react-community/react-native-maps/blob/1e71a21f39e7b88554852951f773c731c94680c9/docs/installation.md#ios
 
@@ -40,9 +40,13 @@ handleReviewText(text){
 }
 
 submitReview=()=>{
-  let { userID, userReview, lat, long, name, address, phoneNumber  } = this.props
-  this.props.postReview({ userID, userReview, lat, long, name, address })
+  let { userID, userReview, lat, long, name, address, website, phoneNumber, token } = this.props
+  this.props.postReview({ userID, userReview, lat, long, name, address, website, phoneNumber, token })
   this.toggleState()
+}
+
+addFavorite=()=>{
+  this.props.addToFavorites(this.props.userID, this.props.locationInfo)
 }
 
 reviewModal(){
@@ -66,7 +70,6 @@ reviewModal(){
     )
   }
 }
-
   render() {
     return (
       <View style={styles.container}>
@@ -87,11 +90,12 @@ reviewModal(){
               <Text style={styles.linkStyling} onPress={() => Linking.openURL(this.props.website)}>
               {this.props.name}
               </Text>
-                <Text style={styles.addressDetails}>{this.props.address}</Text>
-                <TouchableOpacity>
-                <Button style={{marginTop:20, fontSize:15, borderColor:'red', borderWidth:2}} onPress={()=>this.toggleState()}>Leave a Review</Button>
-                </TouchableOpacity>
-            </View>
+              <TouchableOpacity onPress={()=>this.addFavorite()}>
+                <Icon style={{color:'#404242'}} name="md-star-outline"></Icon>
+               </TouchableOpacity>
+              <Text style={styles.addressDetails}>{this.props.address}</Text>
+                <Button style={{flex:1, marginTop:20, fontSize:15, borderColor:'red', borderWidth:2}} onPress={()=>this.toggleState()}>Leave a Recco</Button>
+              </View>
             </MapView.Callout>
           </MapView.Marker>
         </MapView>
@@ -127,9 +131,10 @@ const styles = StyleSheet.create({
     bottom: 0,
   },
   popUp:{
-    width:300,
-    height:110,
-    alignItems: 'center'
+    alignItems: 'center',
+    flex:2,
+    // width:400,
+    // height:135,
   },
   popUpText:{
     marginBottom:5
@@ -140,10 +145,10 @@ const styles = StyleSheet.create({
   },
   linkStyling:{
     color:'#0000EE',
-    marginRight:5,
-    marginBottom:8,
-    marginTop:8,
+    // marginBottom:5,
+    // marginTop:8,
     fontSize:18,
+    flex:2,
     fontWeight:'bold'}
 });
 
@@ -152,7 +157,7 @@ const mapStateToProps = ({ auth, locationInfo, reviews}) => {
   const { userID } = auth
   const { name, address, lat, long, website, phoneNumber } = locationInfo
   const { userReview } = reviews
-  return { name, address, lat, long, website, userReview, userID, phoneNumber }
+  return { name, address, lat, long, website, userReview, userID, phoneNumber, locationInfo }
 }
 
-export default connect(mapStateToProps, { setLocatioinDetails, addTextToReview, postReview })(Map)
+export default connect(mapStateToProps, { setLocatioinDetails, addTextToReview, postReview, addToFavorites })(Map)

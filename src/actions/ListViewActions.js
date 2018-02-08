@@ -76,10 +76,10 @@ const updateUsersState = (dispatch, userID, token) => {
       })
   }
 
-export const grabFoodiesReviews = (id) =>{
+export const grabFoodiesReviews = (id, token) =>{
   return (dispatch)=>{
     let url = `http://localhost:3000/reviews/${id}`
-    axios.get(url)
+    axios.get(url, { headers: {'x-access-token': token} })
     .then((response) =>{
       let reviewsArr = response.data
       dispatch({

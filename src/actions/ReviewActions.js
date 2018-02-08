@@ -10,7 +10,7 @@ export const addTextToReview=(text)=>{
   }
 }
 
-export const postReview = ({ userID, userReview, lat, long, name, address }) => {
+export const postReview = ({ userID, userReview, lat, long, name, address, website, phoneNumber, token }) => {
   return (dispatch) => {
     let url = 'http://localhost:3000/reviews'
     let body = {
@@ -20,8 +20,10 @@ export const postReview = ({ userID, userReview, lat, long, name, address }) => 
       long,
       name,
       address,
+      website,
+      phoneNumber
     }
-    axios.post(url, body)
+    axios.post(url, body, { headers: {'x-access-token': token}})
       .then(res => {
         dispatch({
           type: DUMMY_ACTION

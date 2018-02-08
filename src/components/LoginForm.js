@@ -28,7 +28,6 @@ class LoginForm extends Component {
       )
     }
   }
-
   renderButton(){
     if(this.props.loading){
       return <Spinner size="large"/>
@@ -39,12 +38,10 @@ class LoginForm extends Component {
       </Button>
     )
   }
-
   render(){
     return(
-      <View>
+      <View style={{backgroundColor:'white'}}>
         <Text style={styles.titleStyle}>Recco</Text>
-
             {this.renderError()}
         <CardSection style={styles.inputStyle}>
           <Input
@@ -64,11 +61,10 @@ class LoginForm extends Component {
               value={this.props.password}
             />
         </CardSection>
-        <CardSection style={{backgroundColor:'transparent', marginTop: 10}}>
+        <CardSection style={{backgroundColor:'transparent', marginTop: 10, marginBottom:200}}>
           {this.renderButton()}
         </CardSection>
       </View>
-
     )
   }
 }
@@ -87,9 +83,6 @@ const styles = {
     marginTop:100,
     fontWeight:'bold',
     color:'#36454f',
-    // textShadowColor: 'grey',
-    // textShadowOffset: {width: -5, height: 5},
-    // textShadowRadius: 10,
     alignSelf:'center',
     fontSize:125,
   },

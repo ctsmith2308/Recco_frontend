@@ -21,7 +21,6 @@ class GPlacesInput extends Component {
   openSearchModal() {
     RNGooglePlaces.openAutocompleteModal()
     .then((place) => {
-      // console.log('here are the place deets', place. );
       let { name, address, phoneNumber, website, latitude, longitude } = place
       this.props.setLocationDetails({ name, address, phoneNumber, website, latitude, longitude })
     })

@@ -15,7 +15,7 @@ class MyFoodies extends Component{
   }
 
   foodieReviewListHelperFn=(id)=>{
-    this.props.grabFoodiesReviews(id)
+    this.props.grabFoodiesReviews(id, this.props.token)
   }
 
   handleSearchInput=(text)=>{
@@ -23,44 +23,61 @@ class MyFoodies extends Component{
   }
 
   render() {
-    return (
-      <View style={styles.container}>
-      <View style={styles.headerContentStyle}>
-        <Text style={{fontSize:18}}>Following</Text>
-      </View>
-      <SearchBar
-        placeholder="Search"
-        onChangeText={this.handleSearchInput}
-        lightTheme/>
-        <FlatList
-          data={this.props.filteredFoodies}
-          renderItem={ ({item}) =>
-          <Card>
-            <CardSection style={styles.header1ContentStyle}>
-              <View style ={styles.thumbnailContainerStyle}>
-                <Image style={styles.thumbnailStyle}
-                source={{uri:item.image_url}}/>
-              </View>
-              <View style={{width:190}}>
-                <Text style={styles.usernameTextStyle}>{item.username}</Text>
-                <Text style={styles.nameTextStyle}>{item.name}</Text>
-              </View>
-              <View style={{width:70}}>
-                <Button
-                 onPress={()=>this.foodieReviewListHelperFn(item.user_id)}>
-                  <Icon
-                  style={{color:'#404242'}} name="ios-list-outline"></Icon>
-                 </Button>
-              </View>
-            </CardSection>
-            </Card>
-          }
-          keyExtractor={(item, index) => index}
-        />
-      </View>
-    )
+    if(this.props.filteredFoodies.length === 0){
+      return (
+        <View style={styles.container}>
+        <Image
+          style={{
+            marginTop:150,
+            alignSelf: 'center',
+            height: 200,
+            width: 200,
+          }}
+          source={require('../../noFriends.png')}/>
+          <Text style={{alignSelf:'center', fontSize:30, marginTop:15}}>No friends</Text>
+        </View>
+      )
+    } else {
+      return (
+        <View style={styles.container}>
+        <View style={styles.headerContentStyle}>
+          <Text style={{fontSize:18}}>Following</Text>
+        </View>
+        <SearchBar
+          placeholder="Search"
+          onChangeText={this.handleSearchInput}
+          lightTheme/>
+          <FlatList
+            data={this.props.filteredFoodies}
+            renderItem={ ({item}) =>
+            <Card>
+              <CardSection style={styles.header1ContentStyle}>
+                <View style ={styles.thumbnailContainerStyle}>
+                  <Image style={styles.thumbnailStyle}
+                  source={{uri:item.image_url}}/>
+                </View>
+                <View style={{width:190}}>
+                  <Text style={styles.usernameTextStyle}>{item.username}</Text>
+                  <Text style={styles.nameTextStyle}>{item.name}</Text>
+                </View>
+                <View style={{width:70}}>
+                  <Button
+                   onPress={()=>this.foodieReviewListHelperFn(item.user_id)}>
+                    <Icon
+                    style={{color:'#404242'}} name="ios-list-outline"></Icon>
+                   </Button>
+                </View>
+              </CardSection>
+              </Card>
+            }
+            keyExtractor={(item, index) => index}
+          />
+        </View>
+      )
+    }
   }
 }
+
 
 const styles ={
   outerBorder:{

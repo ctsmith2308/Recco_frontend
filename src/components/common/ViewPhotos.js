@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux'
-import RNFetchBlob from 'react-native-fetch-blob'
 
 import {
   Image,
