@@ -87,12 +87,12 @@ reviewModal(){
           >
             <MapView.Callout>
             <View style={styles.popUp}>
+            <TouchableOpacity onPress={()=>this.addFavorite()}>
+              <Icon style={{color:'#404242'}} name="md-star-outline"></Icon>
+             </TouchableOpacity>
               <Text style={styles.linkStyling} onPress={() => Linking.openURL(this.props.website)}>
               {this.props.name}
               </Text>
-              <TouchableOpacity onPress={()=>this.addFavorite()}>
-                <Icon style={{color:'#404242'}} name="md-star-outline"></Icon>
-               </TouchableOpacity>
               <Text style={styles.addressDetails}>{this.props.address}</Text>
                 <Button style={{flex:1, marginTop:20, fontSize:15, borderColor:'red', borderWidth:2}} onPress={()=>this.toggleState()}>Leave a Recco</Button>
               </View>
@@ -103,13 +103,14 @@ reviewModal(){
         <Card>
           {this.reviewModal()}
         </Card>
-        <CardSection style={{width:200, height:52, marginTop:100, marginBottom:10, borderColor:'#36454f', borderWidth:0.5,      borderRadius:10}}>
+        <CardSection style={{backgroundColor:'transparent'}}>
           <GPlacesInput/>
         </CardSection>
       </View>
     )
   }
 }
+
 
 
 const styles = StyleSheet.create({
@@ -133,8 +134,6 @@ const styles = StyleSheet.create({
   popUp:{
     alignItems: 'center',
     flex:2,
-    // width:400,
-    // height:135,
   },
   popUpText:{
     marginBottom:5
@@ -142,14 +141,15 @@ const styles = StyleSheet.create({
   addressDetails:{
     fontSize:15,
     color: '#989898',
+    marginBottom:10
   },
   linkStyling:{
     color:'#0000EE',
-    // marginBottom:5,
-    // marginTop:8,
     fontSize:18,
-    flex:2,
-    fontWeight:'bold'}
+    flex:1,
+    fontWeight:'bold',
+    marginBottom:5
+  }
 });
 
 

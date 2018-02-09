@@ -10,16 +10,22 @@ import { listUsers, addFoodie, searchBarInput, grabFoodies, toggleFriends, listF
 class ListFoodies extends React.PureComponent {
 
   render() {
-    // console.log('here is the username', this.props.profileInfo.info.bio);
     return (
       <View style={styles.container}>
       <Card>
-        <CardSection>
-          <View>
-            <Text style={{fontSize:25,marginLeft:10}}>{this.props.username}</Text>
-            <Text style={styles.nameTextStyle}>{this.props.profileInfo.usersName}</Text>
-            <Text style={{fontSize:18, marginLeft:10, marginBottom:10}}>{this.props.bio}</Text>
+        <CardSection style={styles.headerContentStyle}>
+          <View style ={styles.thumbnailContainerStyle}>
+            <Image
+              style={styles.thumbnailStyle}
+              source={{uri:this.props.photo}}/>
           </View>
+          <View style={{width:165}}>
+            <Text style={styles.usernameTextStyle}>{this.props.username}</Text>
+            <Text style={styles.nameTextStyle}>{this.props.profileInfo.usersName}</Text>
+          </View>
+        </CardSection>
+        <CardSection>
+        <Text style={{fontSize:18, marginLeft:10, marginTop:10}}>{this.props.bio}</Text>
         </CardSection>
         <CardSection style={{marginTop:10}}>
           <View>
@@ -49,7 +55,7 @@ class ListFoodies extends React.PureComponent {
 const styles ={
   headerContentStyle: {
     flexDirection:'column',
-    flex:2,
+    flex:1,
     borderColor:'#F5F5F5',
     marginTop:10
   },
@@ -62,12 +68,13 @@ const styles ={
     color: '#989898',
     fontSize:15,
     marginTop: 5,
-    marginBottom:10
+    marginBottom:10,
   },
   thumbnailStyle:{
-    height: 50,
-    width:50,
-    borderRadius: 25,
+    height: 75,
+    width:75,
+    borderRadius: 38,
+    marginTop:10,
     marginLeft:15,
     marginRight:15,
     marginBottom:3
@@ -86,7 +93,7 @@ const styles ={
    marginTop:65,
    flex: 1,
    height:'100%',
-   backgroundColor:'#B7F5DE'
+   backgroundColor:'white'
   }
 }
 
@@ -96,7 +103,8 @@ const mapStateToProps = ({ getUserlist, auth, userProfileInfo }) => {
   let { profileInfo } = userProfileInfo
   let bio = profileInfo.info[0].bio
   let username =  profileInfo.info[0].username
-  return { users, userID, token, filteredUsers, myFoodies, profileInfo, bio, username }
+  let photo =  profileInfo.info[0].image_url
+  return { users, userID, token, filteredUsers, myFoodies, profileInfo, bio, username, photo }
 }
 
 export default connect(mapStateToProps, { listUsers, addFoodie, searchBarInput, grabFoodies, toggleFriends, listFavorites })(ListFoodies)

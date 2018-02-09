@@ -31,10 +31,9 @@ class GPlacesInput extends Component {
     return (
       <View style={styles.container}>
         <TouchableOpacity
-          style={styles.button}
           onPress={() => this.openSearchModal()}
         >
-        <Text style={{marginLeft:40}}>Place a Search</Text>
+        <Text style={{color:'white', fontWeight:'bold'}}>Place a Search</Text>
         </TouchableOpacity>
       </View>
     );
@@ -43,15 +42,13 @@ class GPlacesInput extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    // position: 'absolute',
-    // marginTop:1,
-    marginLeft:8,
-    // top: 0,
-    // left: 0,
-    // right: 0,
-    // bottom: 0,
+
     justifyContent:'center',
-    alignItems: 'center',
+    alignItems:'center',
+    backgroundColor:'#C73415',
+    borderRadius:100,
+    width:200,
+    height:52
   },
   map: {
     position: 'absolute',
@@ -59,14 +56,6 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-  },
-  popUp:{
-    alignItems:'center',
-    width:300,
-    height:85
-  },
-  popUpText:{
-    marginBottom:5
   }
 });
 

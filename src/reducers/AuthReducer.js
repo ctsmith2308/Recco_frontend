@@ -1,7 +1,7 @@
 import { EMAIL_CHANGED, PASSWORD_CHANGED, LOGIN_USER_SUCCESS, LOGIN_USER_FAIL, LOGIN_USER, TO_DASHBOARD ,TO_MAP, LOGOUT } from '../actions/types'
 
 const INITIAL_STATE = {
-  email:'',
+  email:'mike@mike.com',
   password:'password',
   userID: null,
   loggingIn: false,

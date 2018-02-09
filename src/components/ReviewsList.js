@@ -30,10 +30,9 @@ foodieReviewListHelperFn=( name, address, lat, long, website, phoneNumber)=>{
                   </Card>
                 </View>
                 <View style={{width:65, height:65}}>
-                  <Button
-                    onPress={()=>this.foodieReviewListHelperFn(item.name, item.address, item.lat, item.long, item.website, item.phoneNumber)}>
-                    <Icon style={{color:'#36454f'}}name="ios-pin"></Icon>
-                    </Button>
+                <TouchableOpacity onPress={()=>this.foodieReviewListHelperFn(item.name, item.address, item.lat, item.long, item.website, item.phoneNumber)}>
+                    <Icon style={{marginLeft: 25, marginTop:10, color:'#36454f'}}name="ios-pin"></Icon>
+                </TouchableOpacity>
                  </View>
                </CardSection>
           }
@@ -94,7 +93,7 @@ const styles ={
   container: {
    flex: 1,
    paddingTop:70,
-   backgroundColor:'#B7F5DE'
+   backgroundColor:'white'
   },
   item: {
     padding: 10,
