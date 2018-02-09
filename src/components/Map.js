@@ -21,7 +21,6 @@ import { setLocatioinDetails, addTextToReview, postReview, addToFavorites} from 
 
 /// add AirMaps into xcode project refer to this link https://github.com/react-community/react-native-maps/blob/1e71a21f39e7b88554852951f773c731c94680c9/docs/installation.md#ios
 
-
 class Map extends Component {
 
 state = {
@@ -46,7 +45,8 @@ submitReview=()=>{
 }
 
 addFavorite=()=>{
-  this.props.addToFavorites(this.props.userID, this.props.locationInfo)
+  let { userID, locationInfo, token } = this.props
+  this.props.addToFavorites({userID, locationInfo, token})
 }
 
 reviewModal(){
@@ -154,10 +154,10 @@ const styles = StyleSheet.create({
 
 
 const mapStateToProps = ({ auth, locationInfo, reviews}) => {
-  const { userID } = auth
+  const { userID, token } = auth
   const { name, address, lat, long, website, phoneNumber } = locationInfo
   const { userReview } = reviews
-  return { name, address, lat, long, website, userReview, userID, phoneNumber, locationInfo }
+  return { name, address, lat, long, website, userReview, userID, phoneNumber, locationInfo, token }
 }
 
 export default connect(mapStateToProps, { setLocatioinDetails, addTextToReview, postReview, addToFavorites })(Map)

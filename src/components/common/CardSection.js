@@ -16,10 +16,11 @@ const styles = {
     justifyContent: 'flex-start',
     flexDirection: 'row',
     position: 'relative',
-    shadowOffset: {width: -5, height:3},
+    shadowOffset: {width: -8, height:3},
     shadowColor: '#36454f',
-    shadowOpacity: 0.3,
-    shadowRadius: 5,
+    shadowOpacity: 0.4,
+    shadowRadius: 8,
+    // borderRadius:50
   }
 }
 export { CardSection }

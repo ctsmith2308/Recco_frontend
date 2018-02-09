@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { Container, Header, Content, Footer, FooterTab, Icon} from 'native-base';
 import { SearchBar } from 'react-native-elements'
-import { View, Text, FlatList, Image } from 'react-native'
+import { View, Text, FlatList, Image,TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import  axios  from 'axios'
 import { Card, CardSection, Input, Button, Toolbar, RenderUserRow } from './common'
-import { listUsers, addFoodie, searchBarInput, grabFoodies, toggleFriends } from '../actions'
+import { listUsers, addFoodie, searchBarInput, grabFoodies, toggleFriends, grabProfileInfo } from '../actions'
 
 class ListFoodies extends React.PureComponent {
 
@@ -13,13 +13,16 @@ class ListFoodies extends React.PureComponent {
      this.props.listUsers( this.props.token, this.props.userID )
      this.props.grabFoodies( this.props.token, this.props.userID )
   }
-
   handleSearchInput=(text)=>{
     this.props.searchBarInput(text, this.props.users)
   }
 
   addDeleteFriend=(itemUser_id)=>{
     this.props.toggleFriends(itemUser_id, this.props.userID, this.props.token)
+  }
+
+  viewProfile=(id, name)=>{
+    this.props.grabProfileInfo(id, name, this.props.token)
   }
 
   render() {
@@ -32,6 +35,7 @@ class ListFoodies extends React.PureComponent {
         <FlatList
           data={this.props.filteredUsers}
           renderItem={ ({item}) =>
+          <TouchableOpacity onPress={()=>this.viewProfile(item.user_id,item.name )}>
           <Card>
             <CardSection style={styles.headerContentStyle}>
               <View style ={styles.thumbnailContainerStyle}>
@@ -43,15 +47,12 @@ class ListFoodies extends React.PureComponent {
                 <Text style={styles.usernameTextStyle}>{item.username}</Text>
                 <Text style={styles.nameTextStyle}>{item.name}</Text>
               </View>
-              <View style={{width:100, alignItems:'center'}}>
-                <Button
-                style={{borderWidth:2, alignItems:'center', paddingTop:25, color:'#404242'}}
-                onPress={() => { this.addDeleteFriend( item.user_id )} }>
-                { item.friend_id ? 'unfollow' : 'follow' }
-               </Button>
-              </View>
+              <TouchableOpacity onPress={() => { this.addDeleteFriend( item.user_id)} }>
+                <Text style={{marginLeft:25, color:'#36454f', fontSize:15, fontWeight:'bold'}}>{ item.friend_id ? 'unfollow' : 'follow' }</Text>
+              </TouchableOpacity>
             </CardSection>
             </Card>
+            </TouchableOpacity>
           }
           keyExtractor={(item, index) => index}
         />
@@ -99,7 +100,7 @@ const styles ={
    marginTop:30,
    flex: 1,
    height:'100%',
-   backgroundColor:'#B7F5DE'
+   backgroundColor:'white'
   },
   item: {
     padding: 10,
@@ -115,4 +116,4 @@ const mapStateToProps = ({ getUserlist, auth }) => {
   return { users, userID, token, filteredUsers, myFoodies }
 }
 
-export default connect(mapStateToProps, { listUsers, addFoodie, searchBarInput, grabFoodies, toggleFriends })(ListFoodies)
+export default connect(mapStateToProps, { listUsers, addFoodie, searchBarInput, grabFoodies, toggleFriends, grabProfileInfo })(ListFoodies)

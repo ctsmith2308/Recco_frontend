@@ -9,7 +9,7 @@ export const addTextToReview=(text)=>{
     })
   }
 }
-
+// move this action into same component - no need to dispatch an action...DUH!!!!
 export const postReview = ({ userID, userReview, lat, long, name, address, website, phoneNumber, token }) => {
   return (dispatch) => {
     let url = 'http://localhost:3000/reviews'

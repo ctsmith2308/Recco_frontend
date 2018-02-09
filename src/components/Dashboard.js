@@ -114,15 +114,14 @@ getPhotosFromGallery=()=>{
         <View style={styles.headerContentStyle}>
           <Text style={{fontSize:18}}>Dashboard</Text>
         </View>
-          <Card>
-            <CardSection style={styles.thumbnailContainerStyle}>
-              <TouchableOpacity onPress={()=>{this.getPhotosFromGallery()}}>
+              <TouchableOpacity onPress={()=>{this.getPhotosFromGallery()}} style={styles.thumbnailContainerStyle}>
                 <Image
                   style={styles.thumbnailStyle}
                   source={{uri:this.props.imageURI}}
                 />
               </TouchableOpacity>
-            </CardSection>
+
+            <Card>
             <CardSection style={styles.inputStyle}>
               <Input
                 multiline={false}
@@ -185,21 +184,24 @@ const styles = {
     marginTop:30,
     flex: 1,
     height:'100%',
-    backgroundColor:'#B7F5DE'
+    backgroundColor:'white'
   },
   thumbnailContainerStyle:{
     justifyContent:'center',
     alignItems:'center',
     padding: 15,
     backgroundColor:'white',
+    marginTop:5,
     marginBottom:5,
-    marginLeft: 5,
-    marginRight: 5
+    marginLeft: 10,
+    marginRight: 10
   },
   thumbnailStyle:{
     height:100,
     width:100,
-    borderRadius: 50
+    borderRadius: 50,
+    borderWidth:2,
+    borderColor:'#36454f'
   },
   headerContentStyle: {
     backgroundColor:'white',
@@ -219,10 +221,10 @@ const styles = {
     marginRight: 5
   },
   buttonStyle:{
+    backgroundColor:'transparent',
     marginBottom:10,
     marginLeft:5,
     marginRight:5,
-    borderRadius:5
   }
 }
 

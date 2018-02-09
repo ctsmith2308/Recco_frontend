@@ -20,7 +20,7 @@ class LoginForm extends Component {
   renderError(){
     if(this.props.error){
       return(
-        <View style={{backgroundColor: 'transparent'}}>
+        <View style={{backgroundColor: 'transparent', marginBottom:10}}>
           <Text style={styles.errorTextStyle}>
             {this.props.error}
           </Text>
@@ -33,7 +33,7 @@ class LoginForm extends Component {
       return <Spinner size="large"/>
     }
     return (
-      <Button style={{color:'red'}} onPress={this.onButtonPress.bind(this)}>
+      <Button onPress={this.onButtonPress.bind(this)}>
         Login
       </Button>
     )
@@ -42,6 +42,12 @@ class LoginForm extends Component {
     return(
       <View style={{backgroundColor:'white'}}>
         <Text style={styles.titleStyle}>Recco</Text>
+        <Image
+        style={{height:150, width:150, alignSelf:'center', marginBottom:25}}
+          source={require('../../megaphone.png')}
+        />
+        <Text style={{alignSelf:'center', fontSize:20, color:'#C73415', fontWeight:'bold' }}>Find your friends</Text>
+        <Text style={{alignSelf:'center', fontSize:20, marginBottom: 20, color: '#C73415', fontWeight:'bold'}}>Discover new places</Text>
             {this.renderError()}
         <CardSection style={styles.inputStyle}>
           <Input
@@ -80,11 +86,11 @@ const mapStateToProps = state => {
 const styles = {
   titleStyle:{
     fontFamily:'Avenir-Heavy',
-    marginTop:100,
+    marginTop:45,
     fontWeight:'bold',
     color:'#36454f',
     alignSelf:'center',
-    fontSize:125,
+    fontSize:115,
   },
   inputStyle:{
     marginBottom:10,

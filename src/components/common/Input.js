@@ -41,7 +41,8 @@ const styles = {
     flex:1,
     flexDirection:'row',
     alignItems:'center',
-    backgroundColor:'white'
+    backgroundColor:'white',
+    borderRadius:50
   }
 }
 export {Input}

@@ -4,6 +4,7 @@ import {
   DUMMY_ACTION
 } from './types'
 
+import axios from 'axios'
 
 export const setLocationDetails = ({ name, address, phoneNumber, website, latitude, longitude }) => {
   let info = {name, address, phoneNumber, website, latitude, longitude}
@@ -15,10 +16,18 @@ export const setLocationDetails = ({ name, address, phoneNumber, website, latitu
   }
 }
 
-export const addToFavorites=(userID, locationInfo)=>{
+export const addToFavorites=({userID, locationInfo, token})=>{
   return (dispatch)=>{
-    dispatch({
-      type: DUMMY_ACTION
-    })
-  }
+    let url = 'http://localhost:3000/favorites'
+    let body = {
+      userID,
+      locationInfo
+    }
+    axios.post(url, body, { headers: {'x-access-token': token}})
+      .then(res => {
+        dispatch({
+          type: DUMMY_ACTION
+        })
+      })
+    }
 }

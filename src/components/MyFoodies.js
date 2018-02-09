@@ -30,10 +30,11 @@ class MyFoodies extends Component{
           style={{
             marginTop:150,
             alignSelf: 'center',
-            height: 200,
-            width: 200,
+            height: 150,
+            width: 150,
+            
           }}
-          source={require('../../noFriends.png')}/>
+          source={require('../../x.png')}/>
           <Text style={{alignSelf:'center', fontSize:30, marginTop:15}}>No friends</Text>
         </View>
       )
@@ -61,11 +62,9 @@ class MyFoodies extends Component{
                   <Text style={styles.nameTextStyle}>{item.name}</Text>
                 </View>
                 <View style={{width:70}}>
-                  <Button
-                   onPress={()=>this.foodieReviewListHelperFn(item.user_id)}>
-                    <Icon
-                    style={{color:'#404242'}} name="ios-list-outline"></Icon>
-                   </Button>
+                <TouchableOpacity onPress={()=>this.foodieReviewListHelperFn(item.user_id)}>
+                    <Icon style={{marginLeft:25, color:'#36454f'}} name="ios-list-outline"></Icon>
+                </TouchableOpacity>
                 </View>
               </CardSection>
               </Card>
@@ -90,9 +89,8 @@ const styles ={
     backgroundColor:'white',
     alignItems:'center',
     padding: 1,
-    paddingTop:3,
-    paddingBottom:3,
-    borderBottomWidth: 0.5,
+    paddingTop:7,
+    paddingBottom:7,
     borderColor:'grey'
   },
   headerContentStyle: {
@@ -134,7 +132,7 @@ const styles ={
    marginTop:30,
    flex: 1,
    height:'100%',
-   backgroundColor:'#B7F5DE'
+   backgroundColor:'#white'
   },
   item: {
     padding: 10,

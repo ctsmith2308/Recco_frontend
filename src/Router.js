@@ -7,6 +7,7 @@ import SearchFoodies from './components/SearchFoodies'
 import MyFoodies from './components/MyFoodies'
 import ReviewsList from './components/ReviewsList'
 import TabNavigator from './components/TabNavigator'
+import Favorites from './components/Favorites'
 
 const RouterComponent=()=>{
   return (
@@ -35,6 +36,10 @@ const RouterComponent=()=>{
       <Scene key='map'
           component={ Map }
           title="Location"
+        />
+      <Scene key='favorites'
+          component={ Favorites }
+          title="Favorites"
         />
     </Router>
   )

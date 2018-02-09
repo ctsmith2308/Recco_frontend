@@ -26,6 +26,7 @@ export const ADD_REVIEW_TEXT = 'add_review_text'
 //Placeholder ACTIONS
 export const DUMMY_ACTION = 'dummy_action'
 export const DUMMY = 'dummy'
+
 //Listview ACTIONS
 export const LIST_USERS = 'list_users'
 export const ADD_FOODIE_TO_STATE = 'add_foodie_to_state'
@@ -34,3 +35,4 @@ export const REVIEWS_LIST = 'reviews_list'
 export const SET_CURRENT_FOODIE_REVIEW_LOCATIONS = 'set_current_foodie_review_locations'
 export const SEARCH_USERS = 'search_users'
 export const SEARCH_FRIENDS = 'search_friends'
+export const SET_PROFILE_INFO = 'set_profile_info'
