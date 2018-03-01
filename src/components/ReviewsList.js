@@ -43,16 +43,12 @@ foodieReviewListHelperFn=( name, address, lat, long, website, phoneNumber)=>{
   }
 }
 
-
-
 const styles ={
   headerContentStyle: {
     flexDirection:'row',
     flex:1,
     margin:5,
     alignItems:'center',
-    borderColor:'#B7F5DE',
-    borderWidth:0.5
   },
   headerTextStyle:{
     fontSize:20,

@@ -3,6 +3,8 @@ import { Actions } from 'react-native-router-flux'
 import NativeModules from 'NativeModules';
 import axios from 'axios'
 
+import ID from './imgurClientId'
+
 import {
   ACCESS_PHOTOS,
   ADD_NAME,
@@ -59,10 +61,9 @@ export const setImage = ({ userID, token, uri }) => {
         image: base64,
         type: 'base64'
       })
-      let clientId = 'a0d07d8b8078282'
       axios.post(imgurUrl, body , {
           headers: {
-              'Authorization': `Client-ID ${clientId}`,
+              'Authorization': `Client-ID ${imgurClientId}`,
               'content-type': 'application/json'
           }
       })

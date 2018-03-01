@@ -114,13 +114,15 @@ getPhotosFromGallery=()=>{
         <View style={styles.headerContentStyle}>
           <Text style={{fontSize:18}}>Dashboard</Text>
         </View>
-              <TouchableOpacity onPress={()=>{this.getPhotosFromGallery()}} style={styles.thumbnailContainerStyle}>
+        <View style={styles.thumbnailContainerStyle}>
                 <Image
                   style={styles.thumbnailStyle}
                   source={{uri:this.props.imageURI}}
                 />
+                </View>
+              <TouchableOpacity onPress={()=>{this.getPhotosFromGallery()}}>
+              <Text style={{alignSelf:'center', marginBottom:10, color:'#36454f'}}>Select photo</Text>
               </TouchableOpacity>
-
             <Card>
             <CardSection style={styles.inputStyle}>
               <Input
@@ -216,15 +218,15 @@ const styles = {
     marginRight: 5
   },
   bioStyle:{
-    marginBottom:45,
+    marginBottom:25,
     marginLeft: 5,
     marginRight: 5
   },
   buttonStyle:{
     backgroundColor:'transparent',
     marginBottom:10,
-    marginLeft:5,
-    marginRight:5,
+    alignItems:'center'
+
   }
 }
 

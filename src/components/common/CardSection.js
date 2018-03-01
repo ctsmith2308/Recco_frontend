@@ -20,7 +20,6 @@ const styles = {
     shadowColor: '#36454f',
     shadowOpacity: 0.4,
     shadowRadius: 8,
-    // borderRadius:50
   }
 }
 export { CardSection }

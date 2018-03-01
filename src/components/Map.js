@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import MapView, { Marker, Callout, PROVIDER_GOOGLE } from 'react-native-maps';
 import { connect } from 'react-redux'
-import { Container, Icon } from 'native-base';
+import { Container, Icon, Toast } from 'native-base';
 import RNGooglePlaces from 'react-native-google-places';
 
 import { Card, CardSection, Input, Button, Toolbar } from './common'
@@ -45,6 +45,16 @@ submitReview=()=>{
 }
 
 addFavorite=()=>{
+  Toast.show({
+                text: 'Added to Favorites!',
+                position: 'top',
+                duration: 3000,
+                style: {
+                backgroundColor: '#FFCB28'
+              },
+                textStyle:{color:'black'}
+              })
+
   let { userID, locationInfo, token } = this.props
   this.props.addToFavorites({userID, locationInfo, token})
 }
@@ -53,19 +63,23 @@ reviewModal(){
   if(this.state.toggleModal){
     return (
       <Card>
-      <CardSection>
+      <CardSection style={{flexdirection:'column', width:300, height:80, borderTopLeftRadius:10, borderTopRightRadius:10}}>
           <TextInput
-            style={{width:300, fontSize:18}}
+            style={{width:275}}
             multiline={true}
             maxLength = {126}
             placeholder='Leave a review'
             onChangeText= {this.handleReviewText.bind(this)}
           />
-      </CardSection>
-      <CardSection>
-          <Button onPress={()=> this.submitReview()}>Submit</Button>
-          <Button onPress={()=> this.toggleState()}>Cancel</Button>
-      </CardSection>
+          </CardSection>
+          <CardSection style={{flexdirection:'row',paddingBottom:15, shadowOffset: {width: 0, height:0},
+            shadowColor: '#36454f',
+            shadowOpacity: 0,
+            shadowRadius: 0,
+          borderBottomLeftRadius:10, borderBottomRightRadius:10}}>
+            <Button onPress={()=> this.submitReview()}>Submit</Button>
+            <Button onPress={()=> this.toggleState()}>Cancel</Button>
+          </CardSection>
       </Card>
     )
   }
@@ -88,7 +102,7 @@ reviewModal(){
             <MapView.Callout>
             <View style={styles.popUp}>
             <TouchableOpacity onPress={()=>this.addFavorite()}>
-              <Icon style={{color:'#404242'}} name="md-star-outline"></Icon>
+              <Icon style={{color:'#FFCB28'}} name="md-star-outline"></Icon>
              </TouchableOpacity>
               <Text style={styles.linkStyling} onPress={() => Linking.openURL(this.props.website)}>
               {this.props.name}
@@ -99,7 +113,6 @@ reviewModal(){
             </MapView.Callout>
           </MapView.Marker>
         </MapView>
-
         <Card>
           {this.reviewModal()}
         </Card>

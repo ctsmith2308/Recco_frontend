@@ -13,27 +13,36 @@ class ListFoodies extends React.PureComponent {
     return (
       <View style={styles.container}>
       <Card>
-        <CardSection style={styles.headerContentStyle}>
-          <View style ={styles.thumbnailContainerStyle}>
+        <CardSection style={{flexDirection:'row'}}>
+          <View style={styles.thumbnailContainerStyle}>
             <Image
               style={styles.thumbnailStyle}
               source={{uri:this.props.photo}}/>
-          </View>
-          <View style={{width:165}}>
-            <Text style={styles.usernameTextStyle}>{this.props.username}</Text>
-            <Text style={styles.nameTextStyle}>{this.props.profileInfo.usersName}</Text>
-          </View>
+            </View>
+            <View style={{flexDirection:'column', width:200}}>
+              <Text style={styles.usernameTextStyle}>{this.props.username}</Text>
+              <Text style={styles.nameTextStyle}>{this.props.profileInfo.usersName}</Text>
+            </View>
         </CardSection>
-        <CardSection>
-        <Text style={{fontSize:18, marginLeft:10, marginTop:10}}>{this.props.bio}</Text>
-        </CardSection>
-        <CardSection style={{marginTop:10}}>
+        <CardSection style={{marginTop:0,  shadowOffset: {width: -1, height:2},
+          shadowColor: '#36454f',
+          shadowOpacity: 0.4,
+          shadowRadius: 1}}>
           <View>
-            <Text style={{fontSize:25, marginLeft:100, alignItems:'center'}}>Favorite Places</Text>
+            <Text style={{marginLeft:5, marginBottom:5}}>{this.props.bio}</Text>
           </View>
         </CardSection>
+        <CardSection style={{marginTop:10, flexDirection:'row'}}>
+            <View>
+              <Text style={{fontSize:15, fontWeight:'bold', color:'#C73415', width:310, marginTop:8, marginLeft:5}}>Favorite Places</Text>
+            </View>
+            <View>
+            <Icon style={{color:'#FFCB28'}} name="md-star-outline"></Icon>
+            </View>
+          </CardSection>
         </Card>
-      <FlatList
+
+        <FlatList
           data={this.props.profileInfo.info}
           renderItem={ ({item}) =>
           <Card>
@@ -43,6 +52,7 @@ class ListFoodies extends React.PureComponent {
                 <Text style={styles.nameTextStyle}>{item.address}</Text>
               </View>
             </CardSection>
+
             </Card>
           }
           keyExtractor={(item, index) => index}
@@ -54,33 +64,34 @@ class ListFoodies extends React.PureComponent {
 
 const styles ={
   headerContentStyle: {
-    flexDirection:'column',
+    flexDirection:'row',
     flex:1,
-    borderColor:'#F5F5F5',
-    marginTop:10
+    alignItems:'center',
+    marginTop:10,
   },
   usernameTextStyle:{
-    fontSize:18,
-    marginTop: 3
+    fontSize:25,
+    marginLeft:10,
+    marginTop: 20
   },
   nameTextStyle:{
     marginLeft:10,
     color: '#989898',
     fontSize:15,
-    marginTop: 5,
-    marginBottom:10,
+    marginTop: 3,
+    marginBottom:8
   },
   thumbnailStyle:{
     height: 75,
     width:75,
     borderRadius: 38,
-    marginTop:10,
+    marginTop:5,
     marginLeft:15,
     marginRight:15,
     marginBottom:3
   },
   thumbnailContainerStyle:{
-    marginTop:3,
+    marginTop:1,
     justifyContent:'center',
     alignItems:'center',
   },

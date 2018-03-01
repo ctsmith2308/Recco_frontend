@@ -1,5 +1,4 @@
 
-
 import React, {Component} from 'react'
 import {View, Text} from 'react-native'
 import { Container, Header, Content, Tab, Tabs, TabHeading, Icon} from 'native-base';
@@ -15,7 +14,7 @@ class TabNavigator extends Component{
       <Container>
              <Tabs
              tabBarUnderlineStyle={{backgroundColor:'transparent'}}
-             initialPage={0}
+             initialPage={2}
              tabBarPosition='bottom'
              >
                <Tab heading={<TabHeading><Icon style={styles.iconStyle} name="ios-search" /></TabHeading>}>

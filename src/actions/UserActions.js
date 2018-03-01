@@ -10,7 +10,6 @@ export const grabProfileInfo =(id,name, token)=>{
     .then(res => {
       let usersName= name
       let info = res.data
-      console.log('here is the info', info);
       dispatch({
         type:SET_PROFILE_INFO,
         payload: { info, usersName}

@@ -42,7 +42,7 @@ class GPlacesInput extends Component {
 
 const styles = StyleSheet.create({
   container: {
-
+    marginTop:45,
     justifyContent:'center',
     alignItems:'center',
     backgroundColor:'#C73415',
