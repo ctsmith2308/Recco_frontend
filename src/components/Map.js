@@ -6,7 +6,8 @@ import {
   View,
   TextInput,
   TouchableOpacity,
-  Linking
+  Linking,
+  TouchableHighlight
 } from 'react-native';
 import MapView, { Marker, Callout, PROVIDER_GOOGLE } from 'react-native-maps';
 import { connect } from 'react-redux'
