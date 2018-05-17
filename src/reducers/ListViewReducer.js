@@ -21,8 +21,7 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
   switch(action.type){
     case LIST_USERS:
-      return {...state, users:action.payload, filteredUsers: action.payload
-      }
+      return { ...state, users:action.payload, filteredUsers: action.payload }
     case ADD_FOODIE_TO_STATE:
       return { ...state, myFoodies: [...state.myFoodies, action.payload ] }
     case GRAB_FOODIES:

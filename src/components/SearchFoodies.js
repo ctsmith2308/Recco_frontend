@@ -54,7 +54,7 @@ class ListFoodies extends React.PureComponent {
             </Card>
             </TouchableOpacity>
           }
-          keyExtractor={(item, index) => index}
+          keyExtractor={ (item, index) => index }
         />
         </View>
     )

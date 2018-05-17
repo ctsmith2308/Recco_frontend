@@ -41,7 +41,7 @@ export const toggleFriends = (itemUser_id, userID, token) => {
       friendID: itemUser_id
     }
     axios.post('http://localhost:3000/friends', postBody, { headers:{'x-access-token': token}})
-    .then(()=>{
+    .then(() => {
       updateFriendState(dispatch, userID, token)
       updateUsersState(dispatch, userID, token)
     })
